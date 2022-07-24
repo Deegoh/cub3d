@@ -40,26 +40,29 @@ CFLAGS += -g -fsanitize=address
 
 all: $(NAME)
 
-$(OBJ): $(OBJ_DIR)%.o:  $(SRC_DIR)%.c
+$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@printf "$(GREEN)🚀 Creating $(OBJ_DIR)$(RESET)\n"
-	$(CC) $(CFLAGS) -c $< -o $@ -I inc/ $(INC_LIBFT) $(INC_MLX) -O3
+	@printf "$(GREEN)🏗️ Generate cube3D objects %-33.33s\r" $@
+	@$(CC) $(CFLAGS) -c $< -o $@ -I inc/ $(INC_LIBFT) $(INC_MLX) -O3
+	@printf "$(RESET)"
 
 $(NAME): $(OBJ)
+	@printf "\n$(RESET)"
 	@$(MAKE) all -sC $(LIBFT)
-	@$(MAKE) all -ksC $(MLX)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(INC_LIBFT) $(INC_MLX)
-	@printf "$(GREEN)🚀 Creating $(NAME)$(RESET)\n"
-	@sleep 0.2
+	@$(MAKE) all -skC $(MLX)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(INC_LIBFT) $(INC_MLX)
+	@printf "$(GREEN)🏗️ Generate $(NAME)$(RESET)\n"
 
 clean:
 	@$(MAKE) clean -sC $(LIBFT)
+	@$(MAKE) clean -skC $(MLX)
 	@$(RM) -r $(OBJ_DIR)
-	@printf "$(YELLOW)♻️ Clean $(OBJ_DIR)$(RESET)\n"
-	@sleep 0.2
+	@printf "$(YELLOW)♻️ Clean cube3D objects$(RESET)\n"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(MAKE) fclean -sC $(LIBFT)
+	@$(RM) $(NAME)
+	@printf "$(RED)🗑️ Remove $(NAME)$(WHITE)\n"
 
 leak: all
 	leaks -atExit -- ./$(NAME)
