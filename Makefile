@@ -21,7 +21,7 @@ INC_LIBFT = -I $(LIBFT) -L $(LIBFT) -lft
 ifeq ($(shell uname), Linux)
 	MLX_DIR = mlx_linux
 else
-	MLX_DIR = mlx_mms_20200219
+	MLX_DIR = mlx_macos
 endif
 MLX = $(SRC_DIR)$(MLX_DIR)
 MLX_LIB= $(SRC_DIR)$(MLX_DIR)
@@ -46,7 +46,7 @@ all: $(NAME)
 $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@printf "$(GREEN)🏗️ Generate cube3D objects %-33.33s\r" $@
-	@$(CC) $(CFLAGS) -c $< -o $@ -I inc/ $(INC_LIBFT) $(INC_MLX) -O3
+	@$(CC) $(CFLAGS) -c $< -o $@ -I inc/ -I $(LIBFT) -I $(MLX) -O3
 	@printf "$(RESET)"
 
 $(NAME): $(OBJ)

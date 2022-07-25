@@ -58,16 +58,16 @@ int	main(int ac, char **av)
 		err_msg(ERR_USAGE);
 	parse_map(&map, av);
 	free_all(&map);
+	t_data	mlx;
+	mlx.mlx = mlx_init();
+	mlx.mlx_win = mlx_new_window(mlx.mlx, 128, 128, "Hello cub3D");
+	mlx.img = mlx_new_image(mlx.mlx, 128, 128);
+	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bits_per_pixel, &mlx.line_length,
+								 &mlx.endian);
+	put_img_to_window(mlx, "map/texture/wall1.xpm", 0, 0);
+	put_img_to_window(mlx, "map/texture/wall_b1.xpm", 64, 0);
+	put_img_to_window(mlx, "map/texture/wall_d1.xpm", 0, 64);
+	put_img_to_window(mlx, "map/texture/wall_p1.xpm", 64, 64);
+	mlx_loop(mlx.mlx);
 	return (EXIT_SUCCESS);
 }
-//	t_data	mlx;
-//	mlx.mlx = mlx_init();
-//	mlx.mlx_win = mlx_new_window(mlx.mlx, 128, 128, "Hello cub3D");
-//	mlx.img = mlx_new_image(mlx.mlx, 128, 128);
-//	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bits_per_pixel, &mlx.line_length,
-//			&mlx.endian);
-//	put_img_to_window(mlx, "map/texture/wall1.xpm", 0, 0);
-//	put_img_to_window(mlx, "map/texture/wall_b1.xpm", 64, 0);
-//	put_img_to_window(mlx, "map/texture/wall_d1.xpm", 0, 64);
-//	put_img_to_window(mlx, "map/texture/wall_p1.xpm", 64, 64);
-//	mlx_loop(mlx.mlx);
