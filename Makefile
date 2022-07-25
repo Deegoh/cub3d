@@ -12,6 +12,7 @@ SRC_DIR = src/
 SRC =	main.c\
 		error.c\
 		parse.c\
+		free.c\
 
 LIBFT_DIR = ft
 LIBFT = $(SRC_DIR)$(LIBFT_DIR)

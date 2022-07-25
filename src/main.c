@@ -40,13 +40,24 @@ void	put_img_to_window(t_data mlx, char*path, int x, int y)
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, mlx.img, x, y);
 }
 
+size_t	ft_strlen_c(char *str, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	return (i);
+}
+
 int	main(int ac, char **av)
 {
 	t_map	map;
 
 	if (ac != 2)
 		err_msg(ERR_USAGE);
-	parse_map(map, av);
+	parse_map(&map, av);
+	free_all(&map);
 	return (EXIT_SUCCESS);
 }
 //	t_data	mlx;

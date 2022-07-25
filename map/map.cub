@@ -1,11 +1,17 @@
 
 NO ./map/texture/wall1.xpm
+
+
 SO ./map/texture/wall_b1.xpm
 WE ./map/texture/wall_s1.xpm
+
 EA ./map/texture/wall_p1.xpm
 
 F 220,100,0
-C 225,30,0
+
+
+
+    C 225,30,0
 
         1111111111111111111111111
         1000000000110000000000001

@@ -49,6 +49,11 @@ typedef struct s_map
 void	err_msg(char *str);
 
 // parse.c
-void	parse_map(t_map map, char **av);
+void	parse_map(t_map *map, char **av);
+
+// free.c
+void	free_all(t_map *map);
+
+size_t	ft_strlen_c(char *str, char c);
 
 #endif
