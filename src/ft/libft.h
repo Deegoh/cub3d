@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpinto-m <marvin@24lausanne.ch>            +#+  +:+       +#+        */
+/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 19:10:28 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/05/02 19:43:42 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/07/25 10:23:25 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		ft_isascii(int c);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
 int		ft_isalpha(int c);
-int		ft_strlen(const char *str);
+size_t	ft_strlen(const char *str);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
@@ -75,4 +75,10 @@ void	*ft_memset(void *str, int c, size_t n);
 int		ft_bool(int btn);
 long	ft_atol(const char *str);
 char	*ft_remove_str(char *str, const char *sub);
+char	*ft_strjoin_f(char *s1, char *s2, int mode);
+size_t	ft_arrlen(char **arr);
+int		ft_strcmp(char *s1, char *s2);
+char	*ft_strsubreplace(const char *s, const char *set, const char *sub);
+char	*ft_strtrim_f(char *s1, char const *set);
+
 #endif
