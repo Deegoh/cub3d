@@ -26,13 +26,6 @@
 # define ERR_FILE "Error\nWrong file\n"
 # define ERR_FD "Error\nFile not found\n"
 
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-}t_rgb;
-
 typedef struct s_map
 {
 	char	*map;
@@ -41,8 +34,10 @@ typedef struct s_map
 	char	*w_so;
 	char	*w_we;
 	char	*w_ea;
-	t_rgb	floor;
-	t_rgb	celling;
+	int		floor;
+	int		ceiling;
+	int		nbr_line;
+	int		len_line;
 }t_map;
 
 // error.c
@@ -53,7 +48,5 @@ void	parse_map(t_map *map, char **av);
 
 // free.c
 void	free_all(t_map *map);
-
-size_t	ft_strlen_c(char *str, char c);
 
 #endif

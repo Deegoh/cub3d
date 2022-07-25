@@ -76,6 +76,7 @@ SRC = ft_putnbr_fd.c\
 		ft_strjoin_f.c\
 		ft_strsubreplace.c\
 		ft_strtrim_f.c\
+		ft_strlen_c.c\
 
 OBJ = $(SRC:.c=.o)
 

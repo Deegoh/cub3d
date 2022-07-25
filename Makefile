@@ -39,7 +39,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(_OBJ))
 CFLAGS = -Werror -Wall -Wextra
 CFLAGS += -g -fsanitize=address
 
-.PHONY: all clean fclean re leak norm
+.PHONY: all clean fclean re leak norm run
 
 all: $(NAME)
 
@@ -71,5 +71,8 @@ leak: all
 	leaks -atExit -- ./$(NAME)
 norm:
 	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT)
+
+run: all
+	./$(NAME) map/map.cub
 
 re: fclean all
