@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 08:44:40 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/25 08:44:41 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/07/25 22:50:37 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	get_map(t_map *map, int fd)
 	free(gnl);
 	map->nbr_line -= 6;
 	map->len_line -= 1;
+	map->tile_size = screeHeight / (int)fmax((double)map->nbr_line, (double)map->len_line);
 }
 
 static int	create_trgb(int t, int r, int g, int b)

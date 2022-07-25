@@ -13,6 +13,11 @@ SRC =	main.c\
 		error.c\
 		parse.c\
 		free.c\
+		draw.c\
+		player.c\
+		init.c\
+		display_map.c\
+		key_hook.c\
 
 LIBFT_DIR = ft
 LIBFT = $(SRC_DIR)$(LIBFT_DIR)
