@@ -9,7 +9,9 @@ RESET = \e[0m
 NAME = cub3D
 
 SRC_DIR = src/
-SRC = main.c\
+SRC =	main.c\
+		error.c\
+		parse.c\
 
 LIBFT_DIR = ft
 LIBFT = $(SRC_DIR)$(LIBFT_DIR)
@@ -55,7 +57,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@$(MAKE) clean -sC $(LIBFT)
-	@$(MAKE) clean -skC $(MLX)
+	@$(MAKE) clean -sC $(MLX)
 	@$(RM) -r $(OBJ_DIR)
 	@printf "$(YELLOW)♻️ Clean cube3D objects$(RESET)\n"
 
@@ -67,6 +69,6 @@ fclean: clean
 leak: all
 	leaks -atExit -- ./$(NAME)
 norm:
-	norminette $(SRC_DIR)$(SRC) $(LIBFT)
+	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT)
 
 re: fclean all
