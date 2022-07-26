@@ -47,7 +47,11 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		err_msg(ERR_USAGE);
 	parse_map(&map, av);
+	print_info_map(&map);
+	print_map2d(&map);
 	free_all(&map);
+	return (EXIT_SUCCESS);
+}
 //	t_data	mlx;
 //	mlx.mlx = mlx_init();
 //	mlx.mlx_win = mlx_new_window(mlx.mlx, 128, 128, "Hello cub3D");
@@ -59,5 +63,3 @@ int	main(int ac, char **av)
 //	put_img_to_window(mlx, "map/texture/wall_d1.xpm", 0, 64);
 //	put_img_to_window(mlx, "map/texture/wall_p1.xpm", 64, 64);
 //	mlx_loop(mlx.mlx);
-	return (EXIT_SUCCESS);
-}

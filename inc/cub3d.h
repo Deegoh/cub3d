@@ -22,9 +22,12 @@
 # include <errno.h>
 
 # define EXT ".cub"
+# define IS_SPACE " \n\t\v\f\r"
+# define IS_SPACE_NO_NL " \t\v\f\r"
 # define ERR_USAGE "Error\nUsage: ./cub3D map.cub\n"
 # define ERR_FILE "Error\nWrong file\n"
 # define ERR_FD "Error\nFile not found\n"
+# define ERR_COLOR "Error\nWrong color\n"
 
 typedef struct s_map
 {
@@ -48,5 +51,20 @@ void	parse_map(t_map *map, char **av);
 
 // free.c
 void	free_all(t_map *map);
+void	free_arr(char	**arr);
+
+// map.c
+
+// map_utils.c
+int		get_elems(t_map *map);
+
+// checker_map.c
+void	check_ext(char *path);
+int		is_color(int one_color);
+void	check_map2d(t_map *map);
+
+// test.c
+void	print_map2d(t_map *map);
+void	print_info_map(t_map *map);
 
 #endif
