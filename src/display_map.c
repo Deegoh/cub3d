@@ -29,7 +29,7 @@ void	put_grid(t_data *data)
 
 void	display_player(t_data *data)
 {
-	put_rectangle(data->p->x, data->p->y, data, 16776960);
+	put_rectangle(data->p->x - data->map->tile_size / 18, data->p->y - data->map->tile_size / 18, data, 16776960);
 	display_angle(data);
 }
 

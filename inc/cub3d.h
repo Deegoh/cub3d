@@ -88,6 +88,7 @@ void	put_img_to_window(t_mlx mlx, char*path, int x, int y);
 void	put_rectangle(int x, int y, t_data *data, int color);
 void	put_grid(t_data *data);
 int		make_trgb(int t, int r, int g, int b);
+void 	draw_line(int x2, int y2, t_data *data);
 
 // player .c
 void	get_player_pos(t_data *data);

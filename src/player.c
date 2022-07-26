@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/26 16:44:18 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:10:16 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	display_angle(t_data *data)
 	x2 = data->p->x + (int)((float)cos((double)data->p->angle) * size);
 	y2 = data->p->y - (int)((float)sin((double)data->p->angle) * size);
 	my_mlx_pixel_put(data->mlx, x2, y2, make_trgb(0, 255, 0, 0));
+	draw_line(x2, y2, data);
 }
 
 void	update_angle(int key, t_data *data)
