@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/26 01:06:22 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/26 14:46:00 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	update_angle(int key, t_data *data)
 void	update_position(int key, t_data *data)
 {
 	int		speed;
-	//float	tmp_angle;
+	float	tmp_angle;
 
 	speed = (int)data->map->tile_size / 9;
 	if (key == 13)
@@ -106,6 +106,24 @@ void	update_position(int key, t_data *data)
 		printf("ici\n");
 		data->p->d_x = data->p->x + (int)((float)cos((double)data->p->angle) * speed);
 		data->p->d_y = data->p->y - (int)((float)sin((double)data->p->angle) * speed);
+	}
+	if (key == 0)
+	{
+		tmp_angle = data->p->angle + 90. * (M_PI / 180.0);
+		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
+		data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
+	}
+	if (key == 2)
+	{
+		tmp_angle = data->p->angle - 90. * (M_PI / 180.0);
+		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
+		data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
+	}
+	if (key == 1)
+	{
+		tmp_angle = data->p->angle + 180. * (M_PI / 180.0);
+		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
+		data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
 	}
 	data->p->x = data->p->d_x;
  	data->p->y =  data->p->d_y;
