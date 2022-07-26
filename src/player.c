@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/26 14:46:00 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/26 15:20:57 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	get_player_pos(t_data *data)
 			if (player_start(data->map->map2d[i][j], j, i, data))
 			{
 				data->p->initiated = 1;
-				printf("\n%f %f %f\n", data->p->x, data->p->y, data->p->angle);
 				return ;
 			}
 			j++;
@@ -71,7 +70,6 @@ void	display_angle(t_data *data)
 	int y2;
 	int size;
 
-	printf("%d\n", make_trgb(0, 255, 0, 0));
 	size = (int)data->map->tile_size / 3;
 	x2 = data->p->x + (int)((float)cos((double)data->p->angle) * size);
 	y2 = data->p->y - (int)((float)sin((double)data->p->angle) * size);
@@ -125,7 +123,10 @@ void	update_position(int key, t_data *data)
 		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
 		data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
 	}
-	data->p->x = data->p->d_x;
- 	data->p->y =  data->p->d_y;
+	if (data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] != '1')
+	{
+		data->p->x = data->p->d_x;
+ 		data->p->y =  data->p->d_y;
+	}
 	display_map(data);
 }
