@@ -100,5 +100,5 @@ void	parse_map(t_map *map, char **av)
 	i = get_elems(map);
 	init_map2d(map);
 	populate_map2d(map, i);
-//	check_map2d(map);
+	check_map2d(map);
 }

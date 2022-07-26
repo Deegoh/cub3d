@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		err_msg(ERR_USAGE);
 	parse_map(&map, av);
-	print_info_map(&map);
+//	print_info_map(&map);
 	print_map2d(&map);
 	free_all(&map);
 	return (EXIT_SUCCESS);
