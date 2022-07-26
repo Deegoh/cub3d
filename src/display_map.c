@@ -19,6 +19,8 @@ void	put_grid(t_data *data)
 				put_rectangle(j * size, i * size, data, 26316);
 			else if (data->map->map2d[i][j] == '.')
 				put_rectangle(j * size, i * size, data, 10526880);
+			else if (data->map->map2d[i][j] == 'D')
+				put_rectangle(j * size, i * size, data, 39244);
 			j++;
 		}
 		i++;

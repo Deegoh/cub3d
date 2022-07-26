@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 08:44:40 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/26 16:08:38 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/26 16:34:46 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ static void	populate_map2d(t_map *map, int i)
 		{
 			if (map->map[i] == '\n')
 				continue ;
-			if (map->map[i] == '1' || map->map[i] == '0' || map->map[i] == 'N')
+			if (map->map[i] == '1' || map->map[i] == '0' || map->map[i] == 'N' || map->map[i] == 'D')
 				map->map2d[y][x] = map->map[i];
 			i++;
 		}

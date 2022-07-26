@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:49 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/26 00:19:50 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/26 16:36:35 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
