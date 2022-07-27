@@ -6,7 +6,7 @@
 /*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 10:59:54 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/24 18:02:42 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/07/27 22:24:55 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		err_msg(ERR_USAGE);
 	parse_map(&map, av);
-//	print_info_map(&map);
-//	print_map2d(&map);
+	print_info_map(&map);
+	print_map2d(&map);
 	free_all(&map);
 	return (EXIT_SUCCESS);
 }

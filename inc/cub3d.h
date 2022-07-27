@@ -28,6 +28,10 @@
 # define ERR_FILE "Error\nWrong file\n"
 # define ERR_FD "Error\nFile not found\n"
 # define ERR_COLOR "Error\nWrong color\n"
+# define ERR_MAP_CLOSE "Error\nMap not closed\n"
+# define ERR_MAP_CONTENT "Error\nInvalid content map\n"
+# define ERR_MAP_SIZE "Error\nInvalid size map\n"
+# define ERR_MAP_PLAYER "Error\nInvalid player map\n"
 
 typedef struct s_map
 {

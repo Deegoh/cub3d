@@ -6,7 +6,7 @@
 /*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 08:44:40 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/25 08:44:41 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/07/27 22:24:44 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ static void	populate_map2d(t_map *map, int i)
 				if (is_map(map->map[i]) || map->map[i] == ' ')
 				{
 					if (map->map[i] != ' ')
-						map->map2d[y][x] = map->map[i];
+						map->map2d[y][x] = ft_toupper(map->map[i]);
 				}
 				else
-					map->map2d[y][x] = 'x';//TODO error exit
+					map->map2d[y][x] = 'X';
 			}
 			else
 				continue ;
@@ -108,6 +108,5 @@ void	parse_map(t_map *map, char **av)
 	i = get_elems(map);
 	init_map2d(map);
 	populate_map2d(map, i);
-	print_map2d(map);
-//	check_map2d(map);
+	check_map2d(map);
 }

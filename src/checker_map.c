@@ -6,7 +6,7 @@
 /*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:30 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/26 18:17:33 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/07/27 22:47:46 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,166 +29,52 @@ int	is_color(int one_color)
 	return (one_color);
 }
 
-char	**init_map2d_check(t_map *map)
+static void	check_border_map(t_map *map, int x, int y)
 {
-	int		i;
-	int		j;
-	char	**new_map;
-
-	new_map = ft_calloc(sizeof(char *), map->nbr_line);
-	if (!new_map)
-		err_msg("Error\nMalloc\n");
-	i = -1;
-	while (++i < map->nbr_line)
-	{
-		new_map[i] = ft_calloc(sizeof(char), map->len_line);
-		if (!new_map[i])
-			err_msg("Error\nMalloc[i]\n");
-	}
-	i = -1;
-	while (++i < map->nbr_line)
-	{
-		j = -1;
-		while (++j < map->len_line)
-		{
-			if (map->map2d[i][j] == '.')
-				new_map[i][j] = '5';
-//			else
-//				new_map[i][j] = map->map2d[i][j];
-		}
-	}
-	return (new_map);
+	if (y == 0 || y == map->nbr_line - 1 || x == 0 || x == map->len_line -1)
+		if (map->map2d[y][x] != '.' && map->map2d[y][x] != '1')
+			err_msg(ERR_MAP_CLOSE);
 }
 
-//void	popu_map2d_check(t_map *map)
-//{
-//
-//}
+static void	check_center_map(t_map *map, int x, int y)
+{
+	if (x > 0 && y > 0 && x < map->len_line - 1 && y < map->nbr_line - 1)
+	{
+		if (map->map2d[y][x] == 'X')
+			err_msg(ERR_MAP_CONTENT);
+		if ((map->map2d[y][x] == '0' && map->map2d[y][x - 1] == '.')
+			|| (map->map2d[y][x] == '0' && map->map2d[y][x - 1] == '.')
+			|| (map->map2d[y][x] == '0' && map->map2d[y][x + 1] == '.')
+			|| (map->map2d[y][x] == '0' && map->map2d[y - 1][x] == '.')
+			|| (map->map2d[y][x] == '0' && map->map2d[y + 1][x] == '.'))
+		{
+			err_msg(ERR_MAP_CLOSE);
+		}
+	}
+}
 
 void	check_map2d(t_map *map)
 {
 	int	x;
 	int	y;
-//	int	i;
-//	char	**check_map;
+	int	player;
 
-//	check_map = init_map2d_check(map);
-//	(void)check_map;
-//	y = -1;
-//	while (++y < map->nbr_line)
-//	{
-//		x = -1;
-//		while (++x < map->len_line)
-//		{
-//			printf("%c", check_map[y][x]);
-//		}
-//		printf("\n");
-//	}
-//	printf("\n");
-//	free_arr(check_map);
-	print_map2d(map);
-//	printf("\n");
-//	y = -1;
-//	while (++y < map->nbr_line)
-//	{
-//		x = -1;
-//		while (++x < map->len_line)
-//		{
-//			if (x > 0 && y > 0 && x < map->len_line - 1
-//				&& y < map->nbr_line - 1)
-//			{
-//				i = 0;
-//				if (map->map2d[y][x - 1] == '1')
-//					i++;
-//				if (map->map2d[y - 1][x] == '1')
-//					i++;
-//				if (map->map2d[y][x + 1] == '1')
-//					i++;
-//				if (map->map2d[y + 1][x] == '1')
-//					i++;
-//				if (map->map2d[y][x] == '1')
-//					printf("%d", i);
-//				else
-//				{
-//					if (map->map2d[y][x] == '.')
-//						printf(".");
-//					else
-//						printf("%c", map->map2d[y][x]);
-//				}
-//			}
-//			else
-//			{
-//				if (map->map2d[y][x] == '1')
-//					printf("2");
-//				else
-//					printf(".");
-//			}
-//		}
-//		printf("\n");
-//	}
-//	printf("\n");
-//	y = -1;
-//	while (++y < map->nbr_line)
-//	{
-//		x = -1;
-//		while (++x < map->len_line)
-//		{
-//			if (x > 0 && y > 0 && x < map->len_line - 1
-//				&& y < map->nbr_line - 1)
-//			{
-//				i = 0;
-//				if (map->map2d[y][x - 1] == '.')
-//					i++;
-//				if (map->map2d[y - 1][x] == '.')
-//					i++;
-//				if (map->map2d[y][x + 1] == '.')
-//					i++;
-//				if (map->map2d[y + 1][x] == '.')
-//					i++;
-//				if (map->map2d[y][x] == '.')
-//					printf(".");
-//				else if (map->map2d[y][x] == '1')
-//					printf("1");
-//				else
-//					printf("%d", i);
-//			}
-//			else
-//			{
-//				if (map->map2d[y][x] == '0' || map->map2d[y][x] == 'N' || map->map2d[y][x] == 'S' || map->map2d[y][x] == 'W' || map->map2d[y][x] == 'E')
-//					printf("X");
-//				if (map->map2d[y][x] == '.')
-//					printf(".");
-//				if (map->map2d[y][x] == '1')
-//					printf("1");
-//			}
-////			if (map->map2d[y][x])
-//		}
-//		printf("\n");
-//	}
-	printf("\n");
-	//new checker
+	player = 0;
 	y = -1;
 	while (++y < map->nbr_line)
 	{
 		x = -1;
 		while (++x < map->len_line)
 		{
-			if (x > 0 && y > 0 && x < map->len_line - 1
-				&& y < map->nbr_line - 1)
-			{
-				if (is_map(map->map2d[y][x]) || map->map2d[y][x] == '.')
-					printf("%c", map->map2d[y][x]);
-				else
-					printf("=");
-			}
-			else
-			{
-				if (map->map2d[y][x] == '1' || map->map2d[y][x] == '.')
-					printf("%c", map->map2d[y][x]);
-				else
-					printf("X");
-			}
+			check_border_map(map, x, y);
+			check_center_map(map, x, y);
+			if (map->map2d[y][x] == 'N' || map->map2d[y][x] == 'S'
+				|| map->map2d[y][x] == 'E' || map->map2d[y][x] == 'W')
+				player++;
 		}
-		printf("\n");
 	}
+	if (map->len_line < 3 || map->nbr_line < 3)
+		err_msg(ERR_MAP_SIZE);
+	if (player != 1)
+		err_msg(ERR_MAP_PLAYER);
 }
