@@ -84,6 +84,6 @@ norm:
 	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT)
 
 run: all
-	./$(NAME) map/map.cub
+	./$(NAME) map/hole.cub
 
 re: fclean all

@@ -89,3 +89,10 @@ int	get_elems(t_map *map)
 	}
 	return (i);
 }
+
+int	is_map(char c)
+{
+	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
+	return (0);
+}

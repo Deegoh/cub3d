@@ -45,15 +45,23 @@ static void	populate_map2d(t_map *map, int i)
 	int	y;
 
 	y = -1;
-	while (++y < map->nbr_line && map->map[i])
+	while (++y < map->nbr_line)
 	{
 		x = -1;
 		while (++x < map->len_line && map->map[i])
 		{
-			if (map->map[i] == '\n')
+			if (map->map[i] != '\n')
+			{
+				if (is_map(map->map[i]) || map->map[i] == ' ')
+				{
+					if (map->map[i] != ' ')
+						map->map2d[y][x] = map->map[i];
+				}
+				else
+					map->map2d[y][x] = 'x';//TODO error exit
+			}
+			else
 				continue ;
-			if (map->map[i] == '1' || map->map[i] == '0' || map->map[i] == 'N')
-				map->map2d[y][x] = map->map[i];
 			i++;
 		}
 		i++;
@@ -100,5 +108,6 @@ void	parse_map(t_map *map, char **av)
 	i = get_elems(map);
 	init_map2d(map);
 	populate_map2d(map, i);
-	check_map2d(map);
+	print_map2d(map);
+//	check_map2d(map);
 }

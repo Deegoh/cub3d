@@ -57,6 +57,7 @@ void	free_arr(char	**arr);
 
 // map_utils.c
 int		get_elems(t_map *map);
+int		is_map(char c);
 
 // checker_map.c
 void	check_ext(char *path);

@@ -67,9 +67,9 @@ char	**init_map2d_check(t_map *map)
 
 void	check_map2d(t_map *map)
 {
-	int		x;
-	int		y;
-	int		i;
+	int	x;
+	int	y;
+//	int	i;
 //	char	**check_map;
 
 //	check_map = init_map2d_check(map);
@@ -86,40 +86,109 @@ void	check_map2d(t_map *map)
 //	}
 //	printf("\n");
 //	free_arr(check_map);
+	print_map2d(map);
+//	printf("\n");
+//	y = -1;
+//	while (++y < map->nbr_line)
+//	{
+//		x = -1;
+//		while (++x < map->len_line)
+//		{
+//			if (x > 0 && y > 0 && x < map->len_line - 1
+//				&& y < map->nbr_line - 1)
+//			{
+//				i = 0;
+//				if (map->map2d[y][x - 1] == '1')
+//					i++;
+//				if (map->map2d[y - 1][x] == '1')
+//					i++;
+//				if (map->map2d[y][x + 1] == '1')
+//					i++;
+//				if (map->map2d[y + 1][x] == '1')
+//					i++;
+//				if (map->map2d[y][x] == '1')
+//					printf("%d", i);
+//				else
+//				{
+//					if (map->map2d[y][x] == '.')
+//						printf(".");
+//					else
+//						printf("%c", map->map2d[y][x]);
+//				}
+//			}
+//			else
+//			{
+//				if (map->map2d[y][x] == '1')
+//					printf("2");
+//				else
+//					printf(".");
+//			}
+//		}
+//		printf("\n");
+//	}
+//	printf("\n");
+//	y = -1;
+//	while (++y < map->nbr_line)
+//	{
+//		x = -1;
+//		while (++x < map->len_line)
+//		{
+//			if (x > 0 && y > 0 && x < map->len_line - 1
+//				&& y < map->nbr_line - 1)
+//			{
+//				i = 0;
+//				if (map->map2d[y][x - 1] == '.')
+//					i++;
+//				if (map->map2d[y - 1][x] == '.')
+//					i++;
+//				if (map->map2d[y][x + 1] == '.')
+//					i++;
+//				if (map->map2d[y + 1][x] == '.')
+//					i++;
+//				if (map->map2d[y][x] == '.')
+//					printf(".");
+//				else if (map->map2d[y][x] == '1')
+//					printf("1");
+//				else
+//					printf("%d", i);
+//			}
+//			else
+//			{
+//				if (map->map2d[y][x] == '0' || map->map2d[y][x] == 'N' || map->map2d[y][x] == 'S' || map->map2d[y][x] == 'W' || map->map2d[y][x] == 'E')
+//					printf("X");
+//				if (map->map2d[y][x] == '.')
+//					printf(".");
+//				if (map->map2d[y][x] == '1')
+//					printf("1");
+//			}
+////			if (map->map2d[y][x])
+//		}
+//		printf("\n");
+//	}
+	printf("\n");
+	//new checker
 	y = -1;
 	while (++y < map->nbr_line)
 	{
 		x = -1;
 		while (++x < map->len_line)
 		{
-			if (x > 0 && y > 0 && x < map->len_line -1 && y < map->nbr_line -1)
+			if (x > 0 && y > 0 && x < map->len_line - 1
+				&& y < map->nbr_line - 1)
 			{
-				i = 0;
-				if (map->map2d[y][x - 1] == '1')
-					i++;
-				if (map->map2d[y - 1][x] == '1')
-					i++;
-				if (map->map2d[y][x + 1] == '1')
-					i++;
-				if (map->map2d[y + 1][x] == '1')
-					i++;
-				if (map->map2d[y][x] == '1')
-					printf("%d", i);
+				if (is_map(map->map2d[y][x]) || map->map2d[y][x] == '.')
+					printf("%c", map->map2d[y][x]);
 				else
-					if(map->map2d[y][x] == '.')
-						printf(".");
-					else
-						printf("%c", map->map2d[y][x]);
+					printf("=");
 			}
 			else
 			{
-				if (map->map2d[y][x] == '1')
-					printf("2");
+				if (map->map2d[y][x] == '1' || map->map2d[y][x] == '.')
+					printf("%c", map->map2d[y][x]);
 				else
-					printf(".");
+					printf("X");
 			}
 		}
 		printf("\n");
 	}
-	printf("\n");
 }
