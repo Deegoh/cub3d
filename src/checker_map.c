@@ -40,10 +40,7 @@ static void	check_center_map(t_map *map, int x, int y)
 {
 	if (x > 0 && y > 0 && x < map->len_line - 1 && y < map->nbr_line - 1)
 	{
-		if (map->map2d[y][x] == 'X')
-			err_msg(ERR_MAP_CONTENT);
 		if ((map->map2d[y][x] == '0' && map->map2d[y][x - 1] == '.')
-			|| (map->map2d[y][x] == '0' && map->map2d[y][x - 1] == '.')
 			|| (map->map2d[y][x] == '0' && map->map2d[y][x + 1] == '.')
 			|| (map->map2d[y][x] == '0' && map->map2d[y - 1][x] == '.')
 			|| (map->map2d[y][x] == '0' && map->map2d[y + 1][x] == '.'))
@@ -66,10 +63,11 @@ void	check_map2d(t_map *map)
 		x = -1;
 		while (++x < map->len_line)
 		{
+			if (map->map2d[y][x] == 'X')
+				err_msg(ERR_MAP_CONTENT);
 			check_border_map(map, x, y);
 			check_center_map(map, x, y);
-			if (map->map2d[y][x] == 'N' || map->map2d[y][x] == 'S'
-				|| map->map2d[y][x] == 'E' || map->map2d[y][x] == 'W')
+			if (ft_strchr(PLAYER, map->map2d[y][x]))
 				player++;
 		}
 	}

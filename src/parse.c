@@ -55,7 +55,7 @@ static void	populate_map2d(t_map *map, int i)
 				if (is_map(map->map[i]) || map->map[i] == ' ')
 				{
 					if (map->map[i] != ' ')
-						map->map2d[y][x] = ft_toupper(map->map[i]);
+						map->map2d[y][x] = (char)ft_toupper(map->map[i]);
 				}
 				else
 					map->map2d[y][x] = 'X';
@@ -75,13 +75,13 @@ static void	init_map2d(t_map *map)
 
 	map->map2d = ft_calloc(sizeof(char *), map->nbr_line);
 	if (!map->map2d)
-		err_msg("Error\nMalloc\n");
+		err_msg(ERR_MALLOC);
 	i = -1;
 	while (++i < map->nbr_line)
 	{
 		map->map2d[i] = ft_calloc(sizeof(char), map->len_line);
 		if (!map->map2d[i])
-			err_msg("Error\nMalloc[i]\n");
+			err_msg(ERR_MALLOC);
 	}
 	i = -1;
 	while (++i < map->nbr_line)

@@ -92,7 +92,7 @@ int	get_elems(t_map *map)
 
 int	is_map(char c)
 {
-	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	if (ft_strchr(IS_MAP, c))
 		return (1);
 	return (0);
 }
