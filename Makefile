@@ -12,6 +12,11 @@ SRC_DIR = src/
 SRC =	main.c\
 		error.c\
 		free.c\
+		draw.c\
+		player.c\
+		init.c\
+		display_map.c\
+		key_hook.c\
 		test.c\
 		parse.c\
 		checker_map.c\

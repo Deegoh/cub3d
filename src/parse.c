@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 08:44:40 by tpinto-m          #+#    #+#             */
 /*   Updated: 2022/07/27 22:24:44 by tpinto-m         ###   ########.fr       */
@@ -37,6 +37,8 @@ static void	get_map(t_map *map, int fd)
 	free(gnl);
 	map->nbr_line -= 6;
 	map->len_line -= 1;
+	// TODO change screenheight to desire size of the minimap
+	map->tile_size = screeHeight / (int)fmax((double)map->nbr_line, (double)map->len_line);
 }
 
 static void	populate_map2d(t_map *map, int i)
