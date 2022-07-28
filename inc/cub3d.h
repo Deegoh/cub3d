@@ -24,7 +24,9 @@
 # define EXT ".cub"
 # define IS_SPACE " \n\t\v\f\r"
 # define PLAYER "NSWE"
-# define IS_MAP "01NSWE"
+# ifndef IS_MAP
+#  define IS_MAP "01NSWE"
+# endif
 # define ERR_USAGE "Error\nUsage: ./cub3D map.cub\n"
 # define ERR_FILE "Error\nWrong file\n"
 # define ERR_FD "Error\nFile not found\n"
