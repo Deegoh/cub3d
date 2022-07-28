@@ -81,5 +81,7 @@ int		ft_strcmp(char *s1, char *s2);
 char	*ft_strsubreplace(const char *s, const char *set, const char *sub);
 char	*ft_strtrim_f(char *s1, char const *set);
 size_t	ft_strlen_c(char *str, char c);
+char	*ft_strtrim_head(char *s1, char const *set);
+char	*ft_strtrim_tail(char *s1, char const *set);
 
 #endif

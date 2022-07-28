@@ -11,13 +11,16 @@ NAME = cub3D
 SRC_DIR = src/
 SRC =	main.c\
 		error.c\
-		parse.c\
 		free.c\
 		draw.c\
 		player.c\
 		init.c\
 		display_map.c\
 		key_hook.c\
+		test.c\
+		parse.c\
+		checker_map.c\
+		map_utils.c\
 
 LIBFT_DIR = ft
 LIBFT = $(SRC_DIR)$(LIBFT_DIR)
@@ -44,7 +47,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(_OBJ))
 CFLAGS = -Werror -Wall -Wextra
 CFLAGS += -g -fsanitize=address
 
-.PHONY: all clean fclean re leak norm run
+.PHONY: all clean fclean re leak norm run valgrind
 
 all: $(NAME)
 
@@ -56,28 +59,36 @@ $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(NAME): $(OBJ)
 	@printf "\n$(RESET)"
-	@$(MAKE) all -sC $(LIBFT)
-	@$(MAKE) all -skC $(MLX)
+#	@$(MAKE) all -sC $(LIBFT)
+#	@$(MAKE) all -skC $(MLX)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(INC_LIBFT) $(INC_MLX)
 	@printf "$(GREEN)🏗️ Generate $(NAME)$(RESET)\n"
 
 clean:
-	@$(MAKE) clean -sC $(LIBFT)
-	@$(MAKE) clean -sC $(MLX)
+#	@$(MAKE) clean -sC $(LIBFT)
+#	@$(MAKE) clean -sC $(MLX)
 	@$(RM) -r $(OBJ_DIR)
 	@printf "$(YELLOW)♻️ Clean cube3D objects$(RESET)\n"
 
 fclean: clean
-	@$(MAKE) fclean -sC $(LIBFT)
+	@#$(MAKE) fclean -sC $(LIBFT)
 	@$(RM) $(NAME)
 	@printf "$(RED)🗑️ Remove $(NAME)$(WHITE)\n"
 
 leak: all
-	leaks -atExit -- ./$(NAME)
+	leaks -atExit -- ./$(NAME) map/map.cub
+
+valgrind: all
+		colour-valgrind --leak-check=full \
+	--show-leak-kinds=all \
+	--track-origins=yes \
+	--verbose \
+	./$(NAME) map/map.cub
+
 norm:
 	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT)
 
 run: all
-	./$(NAME) map/map.cub
+	./$(NAME) map/hole.cub
 
 re: fclean all
