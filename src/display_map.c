@@ -4,7 +4,7 @@ void	put_grid(t_data *data)
 {
 	int	i;
 	int	j;
-	int size;
+	int	size;
 
 	i = 0;
 	size = data->map->tile_size;

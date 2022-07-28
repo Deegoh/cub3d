@@ -14,8 +14,6 @@
 
 int	key_hook(int key, t_data *data)
 {
-	(void)data;
-	//printf("%d\n", key);
 	if (key == 123 || key == 124)
 		update_angle(key, data);
 	if (key == 13 || key == 0 || key == 2 || key == 1)

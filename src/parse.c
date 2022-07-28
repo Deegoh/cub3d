@@ -38,7 +38,8 @@ static void	get_map(t_map *map, int fd)
 	map->nbr_line -= 6;
 	map->len_line -= 1;
 	// TODO change screenheight to desire size of the minimap
-	map->tile_size = screeHeight / (int)fmax((double)map->nbr_line, (double)map->len_line);
+	map->tile_size = SCREENHEIGHT / (int)fmax((double)map->nbr_line,
+			(double)map->len_line);
 }
 
 static void	populate_map2d(t_map *map, int i)

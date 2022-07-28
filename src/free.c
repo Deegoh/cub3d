@@ -32,7 +32,7 @@ static void	free_map(t_map *map)
 	free_arr(map->map2d);
 }
 
-void	free_all(t_map *map)
+void	free_all(t_data *data)
 {
-	free_map(map);
+	free_map(data->map);
 }

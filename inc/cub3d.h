@@ -22,13 +22,14 @@
 # include <stdio.h>
 # include <errno.h>
 
-# define screenWidth 600
-# define screeHeight 600
+# define SCREENWIDTH 1200
+# define SCREENHEIGHT 1200
 # define EXT ".cub"
 # define IS_SPACE " \n\t\v\f\r"
 # define PLAYER "NSWE"
+//TODO check D for bonus
 # ifndef IS_MAP
-#  define IS_MAP "01NSWE"
+#  define IS_MAP "01NSWED"
 # endif
 # define ERR_USAGE "Error\nUsage: ./cub3D map.cub\n"
 # define ERR_FILE "Error\nWrong file\n"
@@ -73,7 +74,7 @@ typedef struct s_player{
 	float	d_x;
 	float	d_y;
 	float	angle;
-} t_player;
+}			t_player;
 
 typedef struct s_data
 {
@@ -82,8 +83,6 @@ typedef struct s_data
 	t_player	*p;
 }			t_data;
 
-
-
 // error.c
 void	err_msg(char *str);
 
@@ -91,7 +90,7 @@ void	err_msg(char *str);
 void	parse_map(t_map *map, char **av);
 
 // free.c
-void	free_all(t_map *map);
+void	free_all(t_data *data);
 void	free_arr(char	**arr);
 
 // map.c
@@ -111,11 +110,10 @@ void	print_info_map(t_map *map);
 
 // draw.c
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-void	put_img_to_window(t_mlx mlx, char*path, int x, int y);
 void	put_rectangle(int x, int y, t_data *data, int color);
 void	put_grid(t_data *data);
 int		make_trgb(int t, int r, int g, int b);
-void 	draw_line(int x2, int y2, t_data *data);
+void	draw_line(int x2, int y2, t_data *data);
 
 // player .c
 void	get_player_pos(t_data *data);

@@ -20,20 +20,11 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	put_img_to_window(t_mlx mlx, char*path, int x, int y)
-{
-	int	img_width;
-	int	img_height;
-
-	mlx.img = mlx_xpm_file_to_image(mlx.mlx, path, &img_width, &img_height);
-	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, mlx.img, x, y);
-}
-
 void	put_rectangle(int x, int y, t_data *data, int color)
 {
-	int i;
-	int j;
-	int size;
+	int	i;
+	int	j;
+	int	size;
 
 	size = data->map->tile_size;
 	if (color == 16776960)
@@ -42,7 +33,7 @@ void	put_rectangle(int x, int y, t_data *data, int color)
 	while (i < size + y)
 	{
 		j = x;
-		while(j < size + x)
+		while (j < size + x)
 		{
 			my_mlx_pixel_put(data->mlx, j, i, color);
 			j++;
@@ -61,8 +52,8 @@ void plot_line_low(int x2, int y2, t_data *data)
 	int	dx;
 	int	dy;
 	int	D;
-	int x;
-	int y;
+	int	x;
+	int	y;
 	int	s;
 
 	dx = x2 - data->p->x;
@@ -90,7 +81,7 @@ void plot_line_low(int x2, int y2, t_data *data)
 	}
 }
 
-void draw_line(int x2, int y2, t_data *data)
+void	draw_line(int x2, int y2, t_data *data)
 {
 	double	pixel_x;
 	double	pixel_y;

@@ -12,15 +12,21 @@
 
 #include "cub3d.h"
 
-int init_data(t_data *data, char **av)
+int	init_data(t_data *data, char **av)
 {
 	data->map = malloc(sizeof(t_map));
+	if (!data->map)
+		err_msg(ERR_MALLOC);
 	data->mlx = malloc(sizeof(t_mlx));
+	if (!data->mlx)
+		err_msg(ERR_MALLOC);
 	data->p = malloc(sizeof(t_player));
+	if (!data->p)
+		err_msg(ERR_MALLOC);
 	data->mlx->mlx = mlx_init();
-	data->mlx->img = mlx_new_image(data->mlx->mlx, screenWidth, screeHeight);
+	data->mlx->img = mlx_new_image(data->mlx->mlx, SCREENWIDTH, SCREENHEIGHT);
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, &data->mlx->bits_per_pixel,
-										&data->mlx->line_length, &data->mlx->endian);
+			&data->mlx->line_length, &data->mlx->endian);
 	parse_map(data->map, av);
 	get_player_pos(data);
 	return (1);
