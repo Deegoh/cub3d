@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/26 18:10:16 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/07/28 20:08:44 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ void	display_angle(t_data *data)
 	y2 = data->p->y - (int)((float)sin((double)data->p->angle) * size);
 	my_mlx_pixel_put(data->mlx, x2, y2, make_trgb(0, 255, 0, 0));
 	draw_line(x2, y2, data);
+	get_ray(data);
+	// get_vertical_ray(data, data->ray);
+	// get_horizontal_ray(data, data->ray);
 }
 
 void	update_angle(int key, t_data *data)
@@ -131,4 +134,74 @@ void	update_position(int key, t_data *data)
  		data->p->y =  data->p->d_y;
 	}
 	display_map(data);
+}
+
+int	reach_wall(int x, int y, t_data *data)
+{
+	if (x <= 0 || y <= 0)
+		return (1);
+	if (x >= SCREENWIDTH || y >= SCREENHEIGHT)
+		return (1);
+	if (data->map->map2d[y/data->map->tile_size][x/data->map->tile_size] == '1')
+		return (1);
+	return (0);
+}
+
+void	get_ray(t_data *data)
+{
+	int dist;
+
+	dist = get_vertical_ray(data, data->ray);
+	if (dist < get_horizontal_ray(data, data->ray))
+	{
+		get_vertical_ray(data, data->ray);
+	}
+	else
+		dist = get_horizontal_ray(data, data->ray);
+	draw_line(data->ray->x, data->ray->y, data);
+}
+
+int	get_vertical_ray(t_data *data, t_ray *ray)
+{
+	if (data->p->angle <= M_PI && data->p->angle >= 0)
+		ray->y = floor(data->p->y / data->map->tile_size) * data->map->tile_size - 1;
+	else
+		ray->y = floor(data->p->y / data->map->tile_size) * data->map->tile_size + data->map->tile_size;
+	ray->x = data->p->x + (data->p->y - ray->y) / tan(data->p->angle);
+	while (!reach_wall(ray->x, ray->y, data))
+	{
+		ray->y -= data->map->tile_size;
+		ray->x += data->map->tile_size / tan(data->p->angle);
+	}
+	ray->delta = (int)sqrt(pow(data->p->y - ray->y, 2.) + pow(ray->x - data->p->x, 2.));
+	// draw_line(ray->x, ray->y, data);
+	return (ray->delta);
+}
+
+int	get_horizontal_ray(t_data *data, t_ray *ray)
+{
+	float dir;
+	
+	dir = 1;
+	if ((data->p->angle <= M_PI / 2) 
+		|| (data->p->angle >= 3 * M_PI / 2))
+	{
+		printf("-> %f\n", data->p->angle);
+		ray->x = floor(data->p->x / data->map->tile_size) * data->map->tile_size + data->map->tile_size;
+	}
+	else
+	{
+		printf("<- %f\n", data->p->angle);
+		dir = -dir;
+		ray->x = floor(data->p->x / data->map->tile_size) * data->map->tile_size - 1;
+	}
+	ray->y = data->p->y + (data->p->x - ray->x) * tan(data->p->angle);
+	while (!reach_wall(ray->x, ray->y, data))
+	{
+		ray->x += data->map->tile_size * dir;
+		ray->y += (data->p->x - ray->x) * tan(data->p->angle);
+	}
+	ray->delta = (int)sqrt(pow(data->p->y - ray->y, 2.) + pow(ray->x - data->p->x, 2.));
+	// draw_line(ray->x, ray->y, data);
+	return (ray->delta);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/24 18:01:27 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/07/28 19:09:15 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,19 @@ typedef struct s_player{
 	float	angle;
 }			t_player;
 
+typedef struct s_ray
+{
+	int	x;
+	int	y;
+	int	delta;
+}			t_ray;
+
 typedef struct s_data
 {
 	t_mlx		*mlx;
 	t_map		*map;
 	t_player	*p;
+	t_ray		*ray;
 }			t_data;
 
 // error.c
@@ -122,6 +130,9 @@ void	display_player(t_data *data);
 void	display_angle(t_data *data);
 void	update_angle(int key, t_data *data);
 void	update_position(int key, t_data *data);
+int		get_vertical_ray(t_data *data, t_ray *ray);
+int		get_horizontal_ray(t_data *data, t_ray *ray);
+void	get_ray(t_data *data);
 
 // init.c
 int		init_data(t_data *data, char **av);
