@@ -21,7 +21,7 @@ static void	get_map(t_map *map, int fd)
 	{
 		if (map->nbr_line > 6 && map->len_line < (int)ft_strlen(gnl))
 			map->len_line = (int)ft_strlen(gnl);
-		if (ft_strlen(gnl) > 2)
+		if (ft_strlen(gnl) > 1)
 		{
 			if (map->nbr_line < 6)
 				gnl = ft_strtrim_head(gnl, IS_SPACE);
