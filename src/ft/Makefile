@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tpinto-m <marvin@24lausanne.ch>            +#+  +:+       +#+         #
+#    By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/11 18:54:17 by tpinto-m          #+#    #+#              #
-#    Updated: 2022/05/03 22:29:05 by tpinto-m         ###   ########.fr        #
+#    Updated: 2022/07/25 10:31:08 by tpinto-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,14 @@ SRC = ft_putnbr_fd.c\
 		ft_printf_utils.c\
 		ft_bool.c\
 		ft_atol.c\
-		ft_remove_str.c
+		ft_remove_str.c\
+		ft_strcmp.c\
+		ft_arrlen.c\
+		ft_strjoin_f.c\
+		ft_strsubreplace.c\
+		ft_strtrim_f.c\
+		ft_strlen_c.c\
+		ft_strtrim_head.c\
 
 OBJ = $(SRC:.c=.o)
 
@@ -81,7 +88,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@printf "\n$(RESET)"
 	@ar -rcs $(NAME) $(OBJ)
-	@printf "️️\r$(GREEN)🏗️ Generate $(NAME)$(WHITE)\n"
+	@printf "$(GREEN)🏗️ Generate $(NAME)$(WHITE)\n"
 
 %.o: %.c
 	@printf "$(GREEN)🏗️ Generate libft objects %-33.33s\r" $@

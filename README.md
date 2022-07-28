@@ -18,7 +18,7 @@ votre chemin.
 - [ ] W A S D permettent de déplacer le joueur
 - [ ] ESC quitte le programme proprement
 - [ ] La croix rouge aussi
-- [ ] Le programme doit prendre en arg un ***.cub***
+- [x] Le programme doit prendre en arg un ***.cub***
 - [ ] La map .cub est compose de 6 caractères:
     - 0 les espaces vides
     - 1 les murs

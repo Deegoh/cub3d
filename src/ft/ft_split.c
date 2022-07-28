@@ -30,7 +30,7 @@ static int	ft_count_words(const char *s, char c)
 	return (count + 1);
 }
 
-static int	ft_strlen_c(const char	*s, char c)
+static int	ft_strlen_split(const char	*s, char c)
 {
 	int	i;
 
@@ -66,10 +66,10 @@ char	**ft_split(char const *s, char c)
 	{
 		while (*s == c && *s)
 			s++;
-		res[i] = ft_substr(s, 0, ft_strlen_c(s, c));
+		res[i] = ft_substr(s, 0, ft_strlen_split(s, c));
 		if (res[i] == NULL)
 			return (ft_free_all(res, i));
-		s += ft_strlen_c(s, c);
+		s += ft_strlen_split(s, c);
 		i++;
 	}
 	res[i] = NULL;

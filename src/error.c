@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/11 19:05:37 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/25 10:37:49 by tpinto-m         ###   ########.fr       */
+/*   Created: 2022/07/25 08:44:42 by tpinto-m          #+#    #+#             */
+/*   Updated: 2022/07/25 08:44:42 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-size_t	ft_strlen(const char	*str)
+void	err_msg(char *str)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	ft_putstr_fd(str, 2);
+	exit (EXIT_FAILURE);
 }

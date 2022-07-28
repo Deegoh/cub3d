@@ -21,4 +21,59 @@
 # include <stdio.h>
 # include <errno.h>
 
+# define EXT ".cub"
+# define IS_SPACE " \n\t\v\f\r"
+# define PLAYER "NSWE"
+# ifndef IS_MAP
+#  define IS_MAP "01NSWE"
+# endif
+# define ERR_USAGE "Error\nUsage: ./cub3D map.cub\n"
+# define ERR_FILE "Error\nWrong file\n"
+# define ERR_FD "Error\nFile not found\n"
+# define ERR_COLOR "Error\nWrong color\n"
+# define ERR_MALLOC "Error\nCannot allocate memory\n"
+# define ERR_MAP_CLOSE "Error\nMap not closed\n"
+# define ERR_MAP_CONTENT "Error\nInvalid content map\n"
+# define ERR_MAP_SIZE "Error\nInvalid size map\n"
+# define ERR_MAP_PLAYER "Error\nInvalid player map\n"
+
+typedef struct s_map
+{
+	char	*map;
+	char	**map2d;
+	char	*w_no;
+	char	*w_so;
+	char	*w_we;
+	char	*w_ea;
+	int		floor;
+	int		ceiling;
+	int		nbr_line;
+	int		len_line;
+}t_map;
+
+// error.c
+void	err_msg(char *str);
+
+// parse.c
+void	parse_map(t_map *map, char **av);
+
+// free.c
+void	free_all(t_map *map);
+void	free_arr(char	**arr);
+
+// map.c
+
+// map_utils.c
+int		get_elems(t_map *map);
+int		is_map(char c);
+
+// checker_map.c
+void	check_ext(char *path);
+int		is_color(int one_color);
+void	check_map2d(t_map *map);
+
+// test.c
+void	print_map2d(t_map *map);
+void	print_info_map(t_map *map);
+
 #endif

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/11 19:05:37 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/25 10:37:49 by tpinto-m         ###   ########.fr       */
+/*   Created: 2022/07/25 10:25:29 by tpinto-m          #+#    #+#             */
+/*   Updated: 2022/07/25 10:25:52 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char	*str)
+size_t	ft_arrlen(char **arr)
 {
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (arr[i])
 		i++;
 	return (i);
 }
