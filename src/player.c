@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/28 20:08:44 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/07/29 07:08:45 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,23 @@
 
 int	is_player(char c)
 {
-	if (c == 'N' || c == 'W' 
-		|| c == 'E' || c == 'S')
+	if (ft_strchr(IS_PLAYER, c))
 		return (1);
 	return (0);
 }
 
 int	player_start(char c, int x, int y, t_data *data)
 {
-	int mid;
+	int	mid;
 
 	mid = data->map->tile_size / 2;
 	if (c == 'N')
 		data->p->angle = 90. * (M_PI / 180.0);
-	else if(c == 'W')
-		data->p->angle =  180. * (M_PI / 180.0);
-	else if(c == 'E')
+	else if (c == 'W')
+		data->p->angle = 180. * (M_PI / 180.0);
+	else if (c == 'E')
 		data->p->angle = 0. * (M_PI / 180.0);
-	else if(c == 'S')
+	else if (c == 'S')
 		data->p->angle = 270. * (M_PI / 180.0);
 	else
 		return (0);
@@ -47,7 +46,7 @@ void	get_player_pos(t_data *data)
 
 	i = 0;
 	if (data->p->initiated == 1)
-		return;
+		return ;
 	while (i < data->map->nbr_line)
 	{
 		j = 0;
@@ -66,29 +65,29 @@ void	get_player_pos(t_data *data)
 
 void	display_angle(t_data *data)
 {
-	int x2;
-	int y2;
-	int size;
+	int	x2;
+	int	y2;
+	int	size;
 
 	size = (int)data->map->tile_size / 3;
 	x2 = data->p->x + (int)((float)cos((double)data->p->angle) * size);
 	y2 = data->p->y - (int)((float)sin((double)data->p->angle) * size);
 	my_mlx_pixel_put(data->mlx, x2, y2, make_trgb(0, 255, 0, 0));
 	draw_line(x2, y2, data);
-	get_ray(data);
+	// get_ray(data);
 	// get_vertical_ray(data, data->ray);
 	// get_horizontal_ray(data, data->ray);
 }
 
 void	update_angle(int key, t_data *data)
 {
-	if (key == 123)
+	if (key == KEY_RIGHT || key == KEY_RIGHT_L)
 	{
 		data->p->angle += 0.1;
 		if (data->p->angle >= 360. * (M_PI / 180))
 			data->p->angle = 0.;
 	}
-	if (key == 124)
+	if (key == KEY_LEFT || key == KEY_LEFT_L)
 	{
 		data->p->angle -= 0.1;
 		if (data->p->angle <= 0.)
@@ -103,24 +102,24 @@ void	update_position(int key, t_data *data)
 	float	tmp_angle;
 
 	speed = (int)data->map->tile_size / 9;
-	if (key == 13)
+	if (key == KEY_W || key == KEY_W_L)
 	{
 		data->p->d_x = data->p->x + (int)((float)cos((double)data->p->angle) * speed);
 		data->p->d_y = data->p->y - (int)((float)sin((double)data->p->angle) * speed);
 	}
-	if (key == 0)
+	if (key == KEY_A || key == KEY_A_L)
 	{
 		tmp_angle = data->p->angle + 90. * (M_PI / 180.0);
 		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
 		data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
 	}
-	if (key == 2)
+	if (key == KEY_D || key == KEY_D_L)
 	{
 		tmp_angle = data->p->angle - 90. * (M_PI / 180.0);
 		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
 		data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
 	}
-	if (key == 1)
+	if (key == KEY_S || key == KEY_S_L)
 	{
 		tmp_angle = data->p->angle + 180. * (M_PI / 180.0);
 		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
@@ -142,14 +141,14 @@ int	reach_wall(int x, int y, t_data *data)
 		return (1);
 	if (x >= SCREENWIDTH || y >= SCREENHEIGHT)
 		return (1);
-	if (data->map->map2d[y/data->map->tile_size][x/data->map->tile_size] == '1')
+	if (data->map->map2d[y / data->map->tile_size][x / data->map->tile_size] == '1')
 		return (1);
 	return (0);
 }
 
 void	get_ray(t_data *data)
 {
-	int dist;
+	int	dist;
 
 	dist = get_vertical_ray(data, data->ray);
 	if (dist < get_horizontal_ray(data, data->ray))
@@ -180,8 +179,8 @@ int	get_vertical_ray(t_data *data, t_ray *ray)
 
 int	get_horizontal_ray(t_data *data, t_ray *ray)
 {
-	float dir;
-	
+	float	dir;
+
 	dir = 1;
 	if ((data->p->angle <= M_PI / 2) 
 		|| (data->p->angle >= 3 * M_PI / 2))

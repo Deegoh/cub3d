@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/28 19:09:15 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/07/29 07:22:40 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,28 @@
 # include <stdio.h>
 # include <errno.h>
 
+//macos
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 2
+# define KEY_D 1
+# define KEY_RIGHT 124
+# define KEY_LEFT 123
+# define KEY_ESC 53
+//linux
+# define KEY_W_L 119
+# define KEY_A_L 97
+# define KEY_S_L 115
+# define KEY_D_L 100
+# define KEY_RIGHT_L 65361
+# define KEY_LEFT_L 65363
+# define KEY_ESC_L 65307
+
 # define SCREENWIDTH 1200
 # define SCREENHEIGHT 1200
 # define EXT ".cub"
 # define IS_SPACE " \n\t\v\f\r"
-# define PLAYER "NSWE"
+# define IS_PLAYER "NSWE"
 //TODO check D for bonus
 # ifndef IS_MAP
 #  define IS_MAP "01NSWED"
@@ -93,6 +110,7 @@ typedef struct s_data
 
 // error.c
 void	err_msg(char *str);
+int		exit_cub(t_data *data);
 
 // parse.c
 void	parse_map(t_map *map, char **av);
@@ -100,8 +118,6 @@ void	parse_map(t_map *map, char **av);
 // free.c
 void	free_all(t_data *data);
 void	free_arr(char	**arr);
-
-// map.c
 
 // map_utils.c
 int		get_elems(t_map *map);

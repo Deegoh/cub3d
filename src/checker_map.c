@@ -6,7 +6,7 @@
 /*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 18:17:30 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/27 22:47:46 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/07/29 07:12:06 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	check_map2d(t_map *map)
 				err_msg(ERR_MAP_CONTENT);
 			check_border_map(map, x, y);
 			check_center_map(map, x, y);
-			if (ft_strchr(PLAYER, map->map2d[y][x]))
+			if (is_player(map->map2d[y][x]))
 				player++;
 		}
 	}
