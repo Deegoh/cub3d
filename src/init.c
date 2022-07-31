@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:56 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/31 18:34:44 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/31 21:34:57 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	init_data(t_data *data, char **av)
 	data->p = malloc(sizeof(t_player));
 	if (!data->p)
 		err_msg(ERR_MALLOC);
-	data->ray = malloc(sizeof(t_ray) * SCREENWIDTH + 1);
+	data->ray = ft_calloc(SCREENWIDTH + 1, sizeof(t_ray));
 	if (!data->ray)
 		err_msg(ERR_MALLOC);
 	data->mlx->mlx = mlx_init();

@@ -38,13 +38,25 @@ void put_background(t_data *data)
 	int i;
 	int j;
 
+	printf("%d %d\n", data->map->floor, data->map->ceiling);
 	i = 0;
+	while (i < SCREENHEIGHT / 2)
+	{
+		j = 0;
+		while (j < SCREENWIDTH)
+		{
+			my_mlx_pixel_put(data->mlx, j, i, data->map->ceiling);
+			j++;
+		}
+		i++;
+	}
+	j = 0;
 	while (i < SCREENHEIGHT)
 	{
 		j = 0;
 		while (j < SCREENWIDTH)
 		{
-			my_mlx_pixel_put(data->mlx, j, i, 0);
+			my_mlx_pixel_put(data->mlx, j, i, data->map->floor);
 			j++;
 		}
 		i++;

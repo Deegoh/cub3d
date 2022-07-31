@@ -6,13 +6,13 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/31 21:14:51 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/31 21:36:32 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	reach_wall(int x, int y, t_data *data)
+int	reach_wall(int x, int y, t_data *data, t_ray *ray)
 {
 	if (x <= 0 || y <= 0)
 		return (1);
@@ -25,7 +25,14 @@ int	reach_wall(int x, int y, t_data *data)
 		[x / data->map->tile_size] == '1'
 		|| data->map->map2d[y / data->map->tile_size]
 		[x / data->map->tile_size] == 'D')
+	{
+		if (data->map->map2d[y / data->map->tile_size]
+			[x / data->map->tile_size] == 'D')
+			ray->side = 'D';
+		else
+			ray->side = 0;
 		return (1);
+	}
 	return (0);
 }
 
@@ -47,9 +54,11 @@ void	get_all_rays(t_data *data)
 			angle = 0. + (angle - 360);
 		select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
 		if (data->ray[i].side == 'S' || data->ray[i].side == 'N')
-			draw_line(data->ray[i].x, data->ray[i].y, data, make_trgb(0, 255, 0, 0));
+			draw_line(data->ray[i].x, data->ray[i].y,
+				data, make_trgb(0, 255, 0, 0));
 		else
-			draw_line(data->ray[i].x, data->ray[i].y, data, make_trgb(0, 0, 255, 0));
+			draw_line(data->ray[i].x, data->ray[i].y,
+				data, make_trgb(0, 0, 255, 0));
 		i++;
 	}
 }
@@ -88,16 +97,16 @@ void	get_vertical_ray(t_data *data, t_ray *ray, float angle)
 		direction = -1;
 	}
 	ray->x = (data->p->y - ray->y) / tan(angle) + data->p->x;
-	while (!reach_wall(ray->x, ray->y, data))
+	while (!reach_wall(ray->x, ray->y, data, ray))
 	{
 		ray->y -= data->map->tile_size * direction;
 		ray->x += data->map->tile_size / tan(angle) * direction;
 	}
 	ray->delta = sqrt(pow(data->p->x - ray->x, 2.)
 			+ pow(data->p->y - ray->y, 2.));
-	if (direction == 1)
+	if (direction == 1 && ray->side != 'D')
 		ray->side = 'N';
-	else
+	else if (ray->side != 'D')
 		ray->side = 'S';
 }
 
@@ -117,15 +126,15 @@ void	get_horizontal_ray(t_data *data, t_ray *ray, float angle)
 	}
 	ray->y = data->p->y + (data->p->x - ray->x)
 		* tan(angle);
-	while (!reach_wall(ray->x, ray->y, data))
+	while (!reach_wall(ray->x, ray->y, data, ray))
 	{
 		ray->x += data->map->tile_size * direction;
 		ray->y -= data->map->tile_size * tan(angle) * direction;
 	}
 	ray->delta = sqrt(pow(data->p->x - ray->x, 2.)
 			+ pow(data->p->y - ray->y, 2.));
-	if (direction == 1)
+	if (direction == 1 && ray->side != 'D')
 		ray->side = 'E';
-	else
+	else if (ray->side != 'D')
 		ray->side = 'W';
 }

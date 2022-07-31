@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 19:18:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/31 21:15:55 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/31 21:37:25 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ void	display_ray(t_data *data, int x, int j)
 	distance = data->ray[j].delta * cos(data->ray->relative_angle);
 	size = (SCREENHEIGHT / 2 - 1) / (distance / data->map->tile_size + 1);
 	if (data->ray[j].side == 'N' || data->ray[j].side == 'S')
-		color = make_trgb(0, 0, 76, 153);
+		color = make_trgb(0, 153, 0, 153);
+	else if (data->ray[j].side == 'D')
+		color = make_trgb(0, 102, 255, 178);
 	else
-		color = make_trgb(0, 0, 128, 255);
+		color = make_trgb(0, 255, 153, 255);
 	while (i < size)
 	{
 		my_mlx_pixel_put(data->mlx, x, SCREENHEIGHT / 2 + i, color);
