@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/31 19:04:25 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/31 20:53:12 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	get_all_rays(t_data *data)
 		draw_line(data->ray[i].x, data->ray[i].y, data);
 		i++;
 	}
-	// select_ray(data, data->p->angle - (1 *), &data->ray[0]);
 }
 
 t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
@@ -59,6 +58,7 @@ t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 
 	d_hor = 0;
 	d_ver = 0;
+	ray->relative_angle = angle - data->p->angle;
 	get_horizontal_ray(data, ray, angle);
 	d_hor = ray->delta;
 	get_vertical_ray(data, ray, angle);

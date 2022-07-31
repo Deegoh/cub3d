@@ -22,6 +22,7 @@ SRC =	main.c\
 		checker_map.c\
 		map_utils.c\
 		ray.c\
+		ray_casting.c\
 
 LIBFT_DIR = ft
 LIBFT = $(SRC_DIR)$(LIBFT_DIR)

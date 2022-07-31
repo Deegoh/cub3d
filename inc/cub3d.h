@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/31 18:45:09 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/31 20:56:21 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define KEY_LEFT_L 65363
 # define KEY_ESC_L 65307
 
-# define SCREENWIDTH 900
+# define SCREENWIDTH 1400
 # define SCREENHEIGHT 900
 # define EXT ".cub"
 # define IS_SPACE " \n\t\v\f\r"
@@ -86,20 +86,21 @@ typedef struct s_mlx
 
 typedef struct s_player{
 	int		initiated;
-	float	x;
-	float	y;
-	float	d_x;
-	float	d_y;
-	float	angle;
+	long double	x;
+	long double	y;
+	long double	d_x;
+	long double	d_y;
+	long double	angle;
 }			t_player;
 
 typedef struct s_ray
 {
-	float		x;
-	float		y;
-	float	delta;
+	long double	x;
+	long double	y;
+	long double	delta;
 	char	side;
 	int		cross;
+	long double	relative_angle;
 }			t_ray;
 
 typedef struct s_data
@@ -164,5 +165,8 @@ void	get_vertical_ray(t_data *data, t_ray *ray, float angle);
 void	get_horizontal_ray(t_data *data, t_ray *ray, float angle);
 t_ray	*select_ray(t_data *data, float angle, t_ray *ray);
 void	get_all_rays(t_data *data);
+
+// ray_tracing.c
+void	display_rays(t_data *data);
 
 #endif

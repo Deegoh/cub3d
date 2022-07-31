@@ -33,12 +33,31 @@ void	display_player(t_data *data)
 	display_angle(data);
 }
 
+void put_background(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < SCREENHEIGHT)
+	{
+		j = 0;
+		while (j < SCREENWIDTH)
+		{
+			my_mlx_pixel_put(data->mlx, j, i, 0);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	display_map(t_data *data)
 {
 	// put_background(color = transparant) when it will be put on top of the game
+	put_background(data);
 	put_grid(data);
 	display_player(data);
 	get_all_rays(data);
-	// select_ray(data, data->p->angle, data->ray);
+	display_rays(data);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win, data->mlx->img, 0, 0);
 }

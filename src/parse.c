@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 08:44:40 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/31 18:56:12 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/31 20:23:25 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	get_map(t_map *map, int fd)
 	map->nbr_line -= 6;
 	map->len_line -= 1;
 	// TODO change screenheight to desire size of the minimap
-	map->tile_size = SCREENHEIGHT / (int)fmax((double)map->nbr_line,
+	map->tile_size = (SCREENWIDTH / 4)  / (int)fmax((double)map->nbr_line,
 			(double)map->len_line);
 }
 
