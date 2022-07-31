@@ -38,5 +38,7 @@ void	display_map(t_data *data)
 	// put_background(color = transparant) when it will be put on top of the game
 	put_grid(data);
 	display_player(data);
+	get_all_rays(data);
+	// select_ray(data, data->p->angle, data->ray);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win, data->mlx->img, 0, 0);
 }

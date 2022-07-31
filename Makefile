@@ -21,6 +21,7 @@ SRC =	main.c\
 		parse.c\
 		checker_map.c\
 		map_utils.c\
+		ray.c\
 
 LIBFT_DIR = ft
 LIBFT = $(SRC_DIR)$(LIBFT_DIR)

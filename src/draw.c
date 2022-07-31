@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:49 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/28 19:56:48 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/07/31 16:15:41 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,40 +47,6 @@ void	put_rectangle(int x, int y, t_data *data, int color)
 int	make_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-void plot_line_low(int x2, int y2, t_data *data)
-{
-	int	dx;
-	int	dy;
-	int	D;
-	int	x;
-	int	y;
-	int	s;
-
-	dx = x2 - data->p->x;
-	dy = y2 - data->p->y;
-	s = 1;
-	if (dy < 0)
-	{
-		s = -1;
-		dy *= -1;
-	}
-	D = (2 * dy) - dx;
-	y = data->p->y;
-	x = data->p->x;
-	while (x <= x2)
-	{
-		my_mlx_pixel_put(data->mlx, x, y, make_trgb(0, 255, 0, 0));
-		if (D > 0)
-		{
-			y += s;
-			D += 2 * (dy - dx);
-		}
-		else
-			D += 2 * dy;
-		x++;
-	}
 }
 
 void	draw_line(int x2, int y2, t_data *data)

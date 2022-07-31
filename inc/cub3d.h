@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/29 07:22:40 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:45:09 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 # define KEY_LEFT_L 65363
 # define KEY_ESC_L 65307
 
-# define SCREENWIDTH 1200
-# define SCREENHEIGHT 1200
+# define SCREENWIDTH 900
+# define SCREENHEIGHT 900
 # define EXT ".cub"
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
@@ -95,9 +95,11 @@ typedef struct s_player{
 
 typedef struct s_ray
 {
-	int	x;
-	int	y;
-	int	delta;
+	float		x;
+	float		y;
+	float	delta;
+	char	side;
+	int		cross;
 }			t_ray;
 
 typedef struct s_data
@@ -146,8 +148,6 @@ void	display_player(t_data *data);
 void	display_angle(t_data *data);
 void	update_angle(int key, t_data *data);
 void	update_position(int key, t_data *data);
-int		get_vertical_ray(t_data *data, t_ray *ray);
-int		get_horizontal_ray(t_data *data, t_ray *ray);
 void	get_ray(t_data *data);
 
 // init.c
@@ -158,5 +158,11 @@ void	display_map(t_data *data);
 
 // key_hook.c
 int		key_hook(int key, t_data *data);
+
+// ray.c
+void	get_vertical_ray(t_data *data, t_ray *ray, float angle);
+void	get_horizontal_ray(t_data *data, t_ray *ray, float angle);
+t_ray	*select_ray(t_data *data, float angle, t_ray *ray);
+void	get_all_rays(t_data *data);
 
 #endif
