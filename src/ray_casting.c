@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 19:18:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/31 20:53:16 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/31 21:15:55 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	display_ray(t_data *data, int x, int j)
 	i = 0;
 	distance = data->ray[j].delta * cos(data->ray->relative_angle);
 	size = (SCREENHEIGHT / 2 - 1) / (distance / data->map->tile_size + 1);
-	if (data->ray[x].side == 'N' || data->ray[j].side == 'S')
+	if (data->ray[j].side == 'N' || data->ray[j].side == 'S')
 		color = make_trgb(0, 0, 76, 153);
 	else
 		color = make_trgb(0, 0, 128, 255);

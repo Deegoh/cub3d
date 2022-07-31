@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/31 20:56:21 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/31 21:12:25 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void	put_rectangle(int x, int y, t_data *data, int color);
 void	put_grid(t_data *data);
 int		make_trgb(int t, int r, int g, int b);
-void	draw_line(int x2, int y2, t_data *data);
+void	draw_line(int x2, int y2, t_data *data, int color);
 
 // player .c
 void	get_player_pos(t_data *data);

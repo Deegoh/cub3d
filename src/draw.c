@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:49 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/31 16:15:41 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/07/31 21:12:08 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	make_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	draw_line(int x2, int y2, t_data *data)
+void	draw_line(int x2, int y2, t_data *data, int color)
 {
 	double	pixel_x;
 	double	pixel_y;
@@ -66,7 +66,7 @@ void	draw_line(int x2, int y2, t_data *data)
 	delta_y /= pixels;
 	while (pixels)
 	{
-		my_mlx_pixel_put(data->mlx, pixel_x, pixel_y, make_trgb(0, 255, 0, 0));
+		my_mlx_pixel_put(data->mlx, pixel_x, pixel_y, color);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		pixels--;
