@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/31 21:36:32 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 02:42:12 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,18 @@ void	get_all_rays(t_data *data)
 		if (angle > 360)
 			angle = 0. + (angle - 360);
 		select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
-		if (data->ray[i].side == 'S' || data->ray[i].side == 'N')
+		// if (data->ray[i].side == 'S' || data->ray[i].side == 'N')
 			draw_line(data->ray[i].x, data->ray[i].y,
 				data, make_trgb(0, 255, 0, 0));
-		else
+		// else
 			draw_line(data->ray[i].x, data->ray[i].y,
 				data, make_trgb(0, 0, 255, 0));
 		i++;
 	}
 }
 
+// TODO check si la diff entre les deux distance est tres 
+// courte, choisir le bon side en fonction de l'angle
 t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 {
 	int	d_hor;
@@ -76,9 +78,13 @@ t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 	get_vertical_ray(data, ray, angle);
 	d_ver = ray->delta;
 	if (d_hor < d_ver)
+	{
 		get_horizontal_ray(data, ray, angle);
-	else
+	}
+	if (d_ver < d_hor)
+	{
 		get_vertical_ray(data, ray, angle);
+	}
 	return (ray);
 }
 

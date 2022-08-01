@@ -38,7 +38,6 @@ void put_background(t_data *data)
 	int i;
 	int j;
 
-	printf("%d %d\n", data->map->floor, data->map->ceiling);
 	i = 0;
 	while (i < SCREENHEIGHT / 2)
 	{
