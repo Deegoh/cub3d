@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 13:43:32 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 14:28:39 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	get_all_rays(t_data *data)
 			angle = 0. + (angle - 360);
 		select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
 		// if (data->ray[i].side == 'S' || data->ray[i].side == 'N')
-			draw_line(data->ray[i].x, data->ray[i].y,
-				data, make_trgb(100, 255, 0, 0));
+			// draw_line(data->ray[i].x, data->ray[i].y,
+			// 	data, make_trgb(100, 255, 0, 0));
 		// else
 			// draw_line(data->ray[i].x, data->ray[i].y,
 			// 	data, make_trgb(0, 0, 255, 0));

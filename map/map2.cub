@@ -7,11 +7,11 @@ WE ./map/texture/wall_s1.xpm
 
 EA ./map/texture/wall_p1.xpm
 
-F 220,100,0
+F 0,76,253
 
 
 
-    C 225,30,0
+    C 153,204,255
 
 111111111
 100010101

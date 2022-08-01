@@ -64,11 +64,11 @@ void put_background(t_data *data)
 
 void	display_map(t_data *data)
 {
-	// put_background(color = transparant) when it will be put on top of the game
 	put_background(data);
-	put_grid(data);
-	display_player(data);
 	get_all_rays(data);
 	display_rays(data);
-	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win, data->mlx->img, 0, 0);
+	put_grid(data);
+	display_player(data);
+	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
+		data->mlx->img, 0, 0);
 }
