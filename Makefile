@@ -78,7 +78,7 @@ fclean: clean
 	@printf "$(RED)🗑️ Remove $(NAME)$(WHITE)\n"
 
 leak: all
-	leaks -atExit -- ./$(NAME) map/map.cub
+	leaks -atExit -- ./$(NAME) map/map2.cub
 
 valgrind: all
 		colour-valgrind --leak-check=full \

@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/08/01 20:44:50 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 23:17:15 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,8 @@ void	parse_map(t_map *map, char **av);
 
 // free.c
 void	free_all(t_data *data);
-void	free_arr(char	**arr);
+void	free_arr(char	**arr, int len);
+void	free_map(t_map *map);
 
 // map_utils.c
 int		get_elems(t_map *map);
