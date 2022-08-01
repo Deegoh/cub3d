@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 19:18:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 22:11:27 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 22:17:25 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	get_texture_color(t_data *data, t_ray *ray, int y, int size)
 					((int)ray->x % data->map->tile_size) * 512
 					/ data->map->tile_size, y * 512 / size);
 		else
-			color = make_trgb(0, 255, 153, 255);
+			color = my_mlx_pixel_get(&data->t[4],
+					((int)ray->x % data->map->tile_size) * 512
+					/ data->map->tile_size, y * 512 / size);
 	}
 	if (ray->ver_hor == 1)
 	{
@@ -56,7 +58,9 @@ int	get_texture_color(t_data *data, t_ray *ray, int y, int size)
 					((int)ray->y % data->map->tile_size) * 512
 					/ data->map->tile_size, y * 512 / size);
 		else
-			color = make_trgb(0, 255, 153, 255);
+			color = my_mlx_pixel_get(&data->t[4],
+					((int)ray->y % data->map->tile_size) * 512
+					/ data->map->tile_size, y * 512 / size);
 	}
 	return (color);
 }

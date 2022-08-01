@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:56 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 20:03:10 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 22:16:35 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int	init_texture(t_data *data)
 			data->map->w_ea, &width, &height);
 	data->t[3].img = mlx_xpm_file_to_image(data->mlx->mlx,
 			data->map->w_we, &width, &height);
-	while (i < 4)
+	data->t[4].img = mlx_xpm_file_to_image(data->mlx->mlx,
+			"./map/texture/Plank3_Light.xpm", &width, &height);
+	while (i < 5)
 	{
 		if (!data->t[i].img)
 			return (0);
