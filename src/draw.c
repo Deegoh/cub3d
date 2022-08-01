@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:49 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 20:04:16 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 20:43:29 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
-	
+
 	if ((0 < x && x < SCREENWIDTH) && (0 < y && y < SCREENHEIGHT))
 	{
 		dst = mlx->addr + (y * mlx->line_length

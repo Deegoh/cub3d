@@ -1,10 +1,10 @@
-NO ./map/texture/Bricks_Light_512.xpm
+NO ./map/texture/Bricks5_Light.xpm
 
 
-SO ./map/texture/wall_b1.xpm
-WE ./map/texture/wall2.xpm
+SO ./map/texture/Bricks5_Dark.xpm
+WE ./map/texture/Plank2_Light.xpm
 
-EA ./map/texture/wall_p1.xpm
+EA ./map/texture/Plank2_Dark.xpm
 
 F 0,76,253
 
