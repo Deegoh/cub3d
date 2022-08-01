@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 02:42:12 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 13:43:32 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	get_all_rays(t_data *data)
 		select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
 		// if (data->ray[i].side == 'S' || data->ray[i].side == 'N')
 			draw_line(data->ray[i].x, data->ray[i].y,
-				data, make_trgb(0, 255, 0, 0));
+				data, make_trgb(100, 255, 0, 0));
 		// else
-			draw_line(data->ray[i].x, data->ray[i].y,
-				data, make_trgb(0, 0, 255, 0));
+			// draw_line(data->ray[i].x, data->ray[i].y,
+			// 	data, make_trgb(0, 0, 255, 0));
 		i++;
 	}
 }
@@ -78,12 +78,17 @@ t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 	get_vertical_ray(data, ray, angle);
 	d_ver = ray->delta;
 	if (d_hor < d_ver)
-	{
 		get_horizontal_ray(data, ray, angle);
-	}
 	if (d_ver < d_hor)
-	{
 		get_vertical_ray(data, ray, angle);
+	if (d_hor == d_ver)
+	{
+		if (reach_wall(ray->x, ray->y + 1, data, ray)
+			&& reach_wall(ray->x, ray->y - 1, data, ray))
+			get_horizontal_ray(data, ray, angle);
+		else if (reach_wall(ray->x + 1, ray->y, data, ray)
+			&& reach_wall(ray->x - 1, ray->y, data, ray))
+			get_vertical_ray(data, ray, angle);
 	}
 	return (ray);
 }
@@ -95,7 +100,7 @@ void	get_vertical_ray(t_data *data, t_ray *ray, float angle)
 	direction = 1;
 	if (angle < 180. * (M_PI / 180))
 		ray->y = floor(data->p->y / data->map->tile_size)
-			* data->map->tile_size - 1;
+						* data->map->tile_size - 0.01;
 	else
 	{
 		ray->y = floor(data->p->y / data->map->tile_size)
@@ -127,7 +132,7 @@ void	get_horizontal_ray(t_data *data, t_ray *ray, float angle)
 	else
 	{
 		ray->x = floor(data->p->x / data->map->tile_size)
-			* data->map->tile_size - 1;
+			* data->map->tile_size - 0.009;
 		direction = -1;
 	}
 	ray->y = data->p->y + (data->p->x - ray->x)
