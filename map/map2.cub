@@ -1,9 +1,8 @@
-
-NO ./map/texture/wall1.xpm
+NO ./map/texture/Bricks_Light_512.xpm
 
 
 SO ./map/texture/wall_b1.xpm
-WE ./map/texture/wall_s1.xpm
+WE ./map/texture/wall2.xpm
 
 EA ./map/texture/wall_p1.xpm
 

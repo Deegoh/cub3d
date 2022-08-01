@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 14:28:39 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 19:43:49 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	get_vertical_ray(t_data *data, t_ray *ray, float angle)
 	direction = 1;
 	if (angle < 180. * (M_PI / 180))
 		ray->y = floor(data->p->y / data->map->tile_size)
-						* data->map->tile_size - 0.01;
+			* data->map->tile_size - 0.01;
 	else
 	{
 		ray->y = floor(data->p->y / data->map->tile_size)
@@ -119,6 +119,7 @@ void	get_vertical_ray(t_data *data, t_ray *ray, float angle)
 		ray->side = 'N';
 	else if (ray->side != 'D')
 		ray->side = 'S';
+	ray->ver_hor = 0;
 }
 
 void	get_horizontal_ray(t_data *data, t_ray *ray, float angle)
@@ -148,4 +149,5 @@ void	get_horizontal_ray(t_data *data, t_ray *ray, float angle)
 		ray->side = 'E';
 	else if (ray->side != 'D')
 		ray->side = 'W';
+	ray->ver_hor = 1;
 }

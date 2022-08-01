@@ -6,11 +6,29 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 19:18:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 02:21:46 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 20:00:31 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// int	get_texture_color(t_data *data, t_ray *ray, int x, int y)
+// {
+// 	if (ray->ver_hor == 1)
+// 	{
+// 		if (ray->side == 'N')
+// 		{
+			
+// 		}
+// 	}
+// 	else if (ray->ver_hor == 0)
+// 	{
+// 		if (ray->side == 'N')
+// 		{
+			
+// 		}
+// 	}
+// }
 
 void	display_ray(t_data *data, int x, int j)
 {

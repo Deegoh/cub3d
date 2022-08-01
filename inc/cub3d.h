@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/31 21:12:25 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/01 19:53:59 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,19 @@ typedef struct s_ray
 	long double	x;
 	long double	y;
 	long double	delta;
-	char	side;
-	int		cross;
+	char		side;
+	int			ver_hor;
 	long double	relative_angle;
 }			t_ray;
+
+typedef struct s_texture
+{
+	void	*img;
+	int		bits_nb;
+	int		len_line;
+	int		endien;
+	int		*addr;
+}	t_texture;
 
 typedef struct s_data
 {
@@ -109,6 +118,7 @@ typedef struct s_data
 	t_map		*map;
 	t_player	*p;
 	t_ray		*ray;
+	t_texture	*t;
 }			t_data;
 
 // error.c
