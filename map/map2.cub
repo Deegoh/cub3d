@@ -1,12 +1,12 @@
-NO ./map/texture/Bricks5_Light.xpm
+NO ./map/texture/Leaves_Light.xpm
 
 
-SO ./map/texture/Bricks5_Dark.xpm
+SO ./map/texture/Leaves_Medium.xpm
 WE ./map/texture/Plank2_Light.xpm
 
 EA ./map/texture/Plank2_Dark.xpm
 
-F 0,76,253
+F 160,160,160
 
 
 
