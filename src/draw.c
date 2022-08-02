@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:49 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 20:43:29 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/02 22:47:44 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	put_rectangle(int x, int y, t_data *data, int color)
 	int	j;
 	int	size;
 
-	size = data->map->tile_size;
+	size = data->map->tile_draw_size;
 	if (color == 16776960)
-		size = data->map->tile_size / 10;
+		size = data->map->tile_draw_size / 5;
 	i = y;
 	while (i < size + y)
 	{

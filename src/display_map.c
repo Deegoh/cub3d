@@ -7,12 +7,13 @@ void	put_grid(t_data *data)
 	int	size;
 
 	i = 0;
-	size = data->map->tile_size;
+	size = data->map->tile_draw_size;
 	while (i < data->map->nbr_line)
 	{
 		j = 0;
 		while (j < data->map->len_line)
 		{
+			printf("%d\n", j);
 			if (data->map->map2d[i][j] == '1')
 				put_rectangle(j * size, i * size, data, 6316128);
 			else if (data->map->map2d[i][j] == '0' || is_player(data->map->map2d[i][j]))
@@ -29,8 +30,10 @@ void	put_grid(t_data *data)
 
 void	display_player(t_data *data)
 {
-	put_rectangle(data->p->x - data->map->tile_size / 18, data->p->y - data->map->tile_size / 18, data, 16776960);
-	display_angle(data);
+	put_rectangle(data->p->x/data->map->tile_size * data->map->tile_draw_size
+		- data->map->tile_draw_size / 5, data->p->y / data->map->tile_size * data->map->tile_draw_size
+		- data->map->tile_draw_size / 5, data, 16776960);
+	// display_angle(data);
 }
 
 void put_background(t_data *data)
@@ -67,8 +70,8 @@ void	display_map(t_data *data)
 	put_background(data);
 	get_all_rays(data);
 	display_rays(data);
-	// put_grid(data);
-	// display_player(data);
+	put_grid(data);
+	display_player(data);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
 		data->mlx->img, 0, 0);
 }
