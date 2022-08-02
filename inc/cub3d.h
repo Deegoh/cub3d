@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/08/01 23:17:15 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/02 22:33:13 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_map
 	int		nbr_line;
 	int		len_line;
 	int		tile_size;
+	int		tile_draw_size;
 }t_map;
 
 typedef struct s_mlx

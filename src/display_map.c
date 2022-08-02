@@ -67,8 +67,8 @@ void	display_map(t_data *data)
 	put_background(data);
 	get_all_rays(data);
 	display_rays(data);
-	put_grid(data);
-	display_player(data);
+	// put_grid(data);
+	// display_player(data);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
 		data->mlx->img, 0, 0);
 }
