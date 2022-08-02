@@ -6,12 +6,13 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 08:44:40 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/08/02 23:09:41 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 00:25:10 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//TODO change the site of tile_draw_size if you want to change the minimap
 static void	get_map(t_map *map, int fd)
 {
 	char	*gnl;
@@ -37,9 +38,8 @@ static void	get_map(t_map *map, int fd)
 	free(gnl);
 	map->nbr_line -= 6;
 	map->len_line -= 1;
-	// TODO change screenheight to desire size of the minimap
 	map->tile_size = 512;
-	map->tile_draw_size = SCREENHEIGHT / 60;
+	map->tile_draw_size = SCREENHEIGHT / 50;
 }
 
 static void	populate_map2d(t_map *map, int i)

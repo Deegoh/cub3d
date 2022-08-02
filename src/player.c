@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 14:37:23 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 00:20:54 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,13 @@ void	display_angle(t_data *data)
 	int	y2;
 	int	size;
 
-	size = (int)data->map->tile_size / 3;
-	x2 = data->p->x + (int)((float)cos((double)data->p->angle) * size);
-	y2 = data->p->y - (int)((float)sin((double)data->p->angle) * size);
+	size = (int)data->map->tile_draw_size / 1.5;
+	x2 = data->p->x / data->map->tile_size * data->map->tile_draw_size
+		+ (int)((float)cos((double)data->p->angle) * size);
+	y2 = data->p->y / data->map->tile_size * data->map->tile_draw_size
+		- (int)((float)sin((double)data->p->angle) * size);
 	my_mlx_pixel_put(data->mlx, x2, y2, make_trgb(0, 255, 0, 0));
 	draw_line(x2, y2, data, make_trgb(0, 255, 0, 0));
-	// get_all_rays(data);
-	// select_ray(data, data->p->angle);
-	// get_vertical_ray(data, data->ray);
-	// get_horizontal_ray(data, data->ray);
 }
 
 void	update_angle(int key, t_data *data)

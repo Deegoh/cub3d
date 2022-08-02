@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:49 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/02 22:47:44 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 00:19:02 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void	draw_line(int x2, int y2, t_data *data, int color)
 	double	delta_y;
 	int		pixels;
 
-	delta_x = (double)x2 - data->p->x;
-	delta_y = (double)y2 - data->p->y;
+	delta_x = (double)x2 - data->p->x / data->map->tile_size * data->map->tile_draw_size;
+	delta_y = (double)y2 - data->p->y / data->map->tile_size * data->map->tile_draw_size;
 	pixels = sqrt((delta_x * delta_x) +(delta_y * delta_y));
-	pixel_x = data->p->x;
-	pixel_y = data->p->y;
+	pixel_x = data->p->x / data->map->tile_size * data->map->tile_draw_size;
+	pixel_y = data->p->y / data->map->tile_size * data->map->tile_draw_size;
 	delta_x /= pixels;
 	delta_y /= pixels;
 	while (pixels)
