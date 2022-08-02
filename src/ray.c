@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/01 19:43:49 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/02 23:07:57 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	reach_wall(int x, int y, t_data *data, t_ray *ray)
 {
 	if (x <= 0 || y <= 0)
 		return (1);
-	if (x >= SCREENWIDTH || y >= SCREENHEIGHT)
-		return (1);
+	// if (x >= SCREENWIDTH || y >= SCREENHEIGHT)
+	// 	return (1);
 	if (x / data->map->tile_size > data->map->len_line - 1
 		|| y / data->map->tile_size > data->map->nbr_line - 1)
 		return (1);
