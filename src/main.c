@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 10:59:54 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/31 15:06:47 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 00:33:57 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		err_msg(ERR_USAGE);
 	data = malloc(sizeof(t_data));
+	data->is_minimap = 1;
 	init_data(data, av);
 	data->mlx->mlx_win = mlx_new_window(data->mlx->mlx, SCREENWIDTH, SCREENHEIGHT, "Hello cub3D");
 	// print_info_map(data->map);

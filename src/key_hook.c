@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:59 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/29 07:22:38 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/08/03 00:39:05 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,13 @@ int	key_hook(int key, t_data *data)
 		update_position(key, data);
 	if (key == KEY_ESC || key == KEY_ESC_L)
 		exit_cub(data);
+	if (key == 46)
+	{
+		if (data->is_minimap)
+			data->is_minimap = 0;
+		else
+			data->is_minimap = 1;
+		display_map(data);
+	}
 	return (0);
 }
