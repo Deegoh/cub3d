@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:29:23 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/03 00:35:23 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/04 01:28:46 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	put_background(t_data *data)
 	int	j;
 
 	i = 0;
-	while (i < SCREENHEIGHT / 2)
+	while (i < SCREENHEIGHT / 2 - data->pov_y)
 	{
 		j = 0;
 		while (j < SCREENWIDTH)

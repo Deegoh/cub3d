@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:59 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/03 00:39:05 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/04 01:55:23 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,45 @@ int	key_hook(int key, t_data *data)
 			data->is_minimap = 0;
 		else
 			data->is_minimap = 1;
+		display_map(data);
+	}
+	if (key == 49)
+	{
+		if (data->is_mouse)
+			data->is_mouse = 0;
+		else
+			data->is_mouse = 1;
+	}
+	return (0);
+}
+
+int	mouse_hook(int x, int y, t_data *data)
+{
+	int	diff_x;
+
+	if (data->is_mouse)
+	{	
+		if (y < SCREENHEIGHT && y > 0)
+			data->pov_y = y - SCREENHEIGHT / 2;
+		diff_x = data->prev_x - x;
+		if (x < data->prev_x && abs(diff_x) > 3)
+		{
+			data->p->angle += 0.03;
+			if (data->p->angle == 360. * (M_PI / 180))
+				data->p->angle = 0.;
+			if (data->p->angle > 360. * (M_PI / 180))
+				data->p->angle = 0. + (data->p->angle - 2 * M_PI);
+			data->prev_x = x;
+		}
+		else if (abs(diff_x) > 3)
+		{
+			data->p->angle -= 0.03;
+			if (data->p->angle == 0.)
+				data->p->angle = 360. * (M_PI / 180);
+			if (data->p->angle < 0.)
+				data->p->angle = 2 * M_PI - (data->p->angle * -1);
+			data->prev_x = x;
+		}
 		display_map(data);
 	}
 	return (0);

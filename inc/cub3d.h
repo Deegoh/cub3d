@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/08/03 19:38:42 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/04 01:47:24 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ typedef struct s_data
 	t_player	*p;
 	t_ray		*ray;
 	t_texture	*t;
+	int			is_mouse;
+	int			prev_x;
+	int			pov_y;
 	int			is_minimap;
 }			t_data;
 
@@ -175,6 +178,7 @@ void	display_map(t_data *data);
 
 // key_hook.c
 int		key_hook(int key, t_data *data);
+int		mouse_hook(int x, int y, t_data *data);
 
 // ray.c
 void	get_vertical_ray(t_data *data, t_ray *ray, float angle);

@@ -6,13 +6,12 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 19:18:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/03 19:44:28 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/04 01:28:15 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// TODO protect my_mlx_pixel_get with texture->width et texture->height
 int	get_texture_color(t_data *data, t_ray *ray, int y, int size)
 {
 	int	color;
@@ -86,9 +85,9 @@ void	display_ray(t_data *data, int x, int j)
 	while (i < size)
 	{
 		color = get_texture_color(data, &data->ray[j], size + i, size * 2);
-		my_mlx_pixel_put(data->mlx, x, SCREENHEIGHT / 2 + i, color);
+		my_mlx_pixel_put(data->mlx, x, SCREENHEIGHT / 2 + i - data->pov_y, color);
 		color = get_texture_color(data, &data->ray[j], size - i, size * 2);
-		my_mlx_pixel_put(data->mlx, x, SCREENHEIGHT / 2 - i, color);
+		my_mlx_pixel_put(data->mlx, x, SCREENHEIGHT / 2 - i - data->pov_y, color);
 		i++;
 	}
 }

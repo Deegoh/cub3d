@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/02 23:07:57 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 22:22:33 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int	reach_wall(int x, int y, t_data *data, t_ray *ray)
 	return (0);
 }
 
+
+// TODO if you want to display the fov in the minimap,
+// we should use my_put_pixel in a separate function after the raycasting
 void	get_all_rays(t_data *data)
 {
 	int		i;
@@ -53,18 +56,14 @@ void	get_all_rays(t_data *data)
 		if (angle > 360)
 			angle = 0. + (angle - 360);
 		select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
-		// if (data->ray[i].side == 'S' || data->ray[i].side == 'N')
-			// draw_line(data->ray[i].x, data->ray[i].y,
-			// 	data, make_trgb(100, 255, 0, 0));
-		// else
-			// draw_line(data->ray[i].x, data->ray[i].y,
-			// 	data, make_trgb(0, 0, 255, 0));
+		if (data->is_minimap)
+			draw_line(data->ray[i].x * data->map->tile_draw_size
+				/ data->map->tile_size, data->ray[i].y * data->map->tile_draw_size
+				/ data->map->tile_size, data, make_trgb(100, 255, 0, 0));
 		i++;
 	}
 }
 
-// TODO check si la diff entre les deux distance est tres 
-// courte, choisir le bon side en fonction de l'angle
 t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 {
 	int	d_hor;
