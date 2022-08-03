@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 11:35:56 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/08/01 23:17:55 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 22:12:09 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	free_all(t_data *data)
 	i = 0;
 	free(data->p);
 	free(data->ray);
-	while (i < 5)
+	while (i < 4)
 	{
 		mlx_destroy_image(data->mlx->mlx, data->t[i].img);
 		i++;

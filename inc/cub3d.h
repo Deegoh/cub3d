@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/08/03 00:33:39 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 19:38:42 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ typedef struct s_texture
 	int		len_line;
 	int		endien;
 	int		*addr;
+	int		width;
+	int		height;
 }	t_texture;
 
 typedef struct s_data

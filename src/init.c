@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:56 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/03 01:01:34 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 22:09:55 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 int	init_texture(t_data *data)
 {
-	int	width;
-	int	height;
+	// int	width;
+	// int	height;
 	int	i;
 
-	width = 100;
-	height = 100;
+	// width = 100;
+	// height = 100;
 	i = -1;
 	data->t[0].img = mlx_xpm_file_to_image(data->mlx->mlx,
-			data->map->w_no, &width, &height);
+			data->map->w_no, &data->t[0].width, &data->t[0].height);
 	data->t[1].img = mlx_xpm_file_to_image(data->mlx->mlx,
-			data->map->w_so, &width, &height);
+			data->map->w_so, &data->t[1].width, &data->t[1].height);
 	data->t[2].img = mlx_xpm_file_to_image(data->mlx->mlx,
-			data->map->w_ea, &width, &height);
+			data->map->w_ea, &data->t[2].width, &data->t[2].height);
 	data->t[3].img = mlx_xpm_file_to_image(data->mlx->mlx,
-			data->map->w_we, &width, &height);
+			data->map->w_we, &data->t[3].width, &data->t[3].height);
 	data->t[4].img = mlx_xpm_file_to_image(data->mlx->mlx,
-			"./map/texture/Plank3_Light.xpm", &width, &height);
+			"./map/texture/Plank3_Light.xpm", &data->t[4].width, &data->t[4].height);
 	while (++i < 5)
 	{
 		if (!data->t[i].img)

@@ -6,12 +6,13 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 19:18:50 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/02 22:31:22 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 19:44:28 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// TODO protect my_mlx_pixel_get with texture->width et texture->height
 int	get_texture_color(t_data *data, t_ray *ray, int y, int size)
 {
 	int	color;
@@ -20,47 +21,47 @@ int	get_texture_color(t_data *data, t_ray *ray, int y, int size)
 	{
 		if (ray->side == 'N')
 			color = my_mlx_pixel_get(&data->t[0],
-					floor(((int)ray->x % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->x % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 		else if (ray->side == 'W')
 			color = my_mlx_pixel_get(&data->t[3],
-					floor(((int)ray->x % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->x % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 		else if (ray->side == 'E')
 			color = my_mlx_pixel_get(&data->t[2],
-					floor(((int)ray->x % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->x % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 		else if (ray->side == 'S')
 			color = my_mlx_pixel_get(&data->t[1],
-					floor(((int)ray->x % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->x % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 		else
 			color = my_mlx_pixel_get(&data->t[4],
-					floor(((int)ray->x % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->x % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 	}
 	if (ray->ver_hor == 1)
 	{
 		if (ray->side == 'N')
 			color = my_mlx_pixel_get(&data->t[0],
-					floor(((int)ray->y % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->y % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 		else if (ray->side == 'W')
 			color = my_mlx_pixel_get(&data->t[3],
-					floor(((int)ray->y % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->y % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 		else if (ray->side == 'E')
 			color = my_mlx_pixel_get(&data->t[2],
-					floor(((int)ray->y % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->y % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 		else if (ray->side == '1')
 			color = my_mlx_pixel_get(&data->t[1],
-					floor(((int)ray->y % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->y % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 		else
 			color = my_mlx_pixel_get(&data->t[4],
-					floor(((int)ray->y % data->map->tile_size) * 512
-						/ data->map->tile_size), floor(y * 512 / size));
+					floor(((int)ray->y % data->map->tile_size) * data->t[0].width
+						/ data->map->tile_size), floor(y * data->t[0].height / size));
 	}
 	return (color);
 }

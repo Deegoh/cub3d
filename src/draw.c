@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:49 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/03 00:19:02 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/03 22:10:58 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ int	my_mlx_pixel_get(t_texture *texture, int x, int y)
 {
 	unsigned int	color;
 
-	color = texture->addr[y * texture->len_line / 4 + x];
-	return (color);
+	color = 0;
+	if ((0 <= x && x <= texture->width) && (0 <= y && y <= texture->height))
+	{
+		color = texture->addr[y * texture->len_line / 4 + x];
+	}
+	return (color);	
 }
 
 void	put_rectangle(int x, int y, t_data *data, int color)
