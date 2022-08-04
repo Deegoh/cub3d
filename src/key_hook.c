@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:59 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/04 01:55:23 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/04 02:05:54 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,28 @@ int	key_hook(int key, t_data *data)
 	return (0);
 }
 
+void	decrease_or_increase_angle(t_data *data, int increase, int x)
+{
+	if (increase)
+	{
+		data->p->angle += 0.03;
+		if (data->p->angle == 360. * (M_PI / 180))
+			data->p->angle = 0.;
+		if (data->p->angle > 360. * (M_PI / 180))
+			data->p->angle = 0. + (data->p->angle - 2 * M_PI);
+		data->prev_x = x;
+	}
+	else
+	{
+		data->p->angle -= 0.03;
+		if (data->p->angle == 0.)
+			data->p->angle = 360. * (M_PI / 180);
+		if (data->p->angle < 0.)
+			data->p->angle = 2 * M_PI - (data->p->angle * -1);
+		data->prev_x = x;
+	}
+}
+
 int	mouse_hook(int x, int y, t_data *data)
 {
 	int	diff_x;
@@ -50,23 +72,9 @@ int	mouse_hook(int x, int y, t_data *data)
 			data->pov_y = y - SCREENHEIGHT / 2;
 		diff_x = data->prev_x - x;
 		if (x < data->prev_x && abs(diff_x) > 3)
-		{
-			data->p->angle += 0.03;
-			if (data->p->angle == 360. * (M_PI / 180))
-				data->p->angle = 0.;
-			if (data->p->angle > 360. * (M_PI / 180))
-				data->p->angle = 0. + (data->p->angle - 2 * M_PI);
-			data->prev_x = x;
-		}
+			decrease_or_increase_angle(data, 1, x);
 		else if (abs(diff_x) > 3)
-		{
-			data->p->angle -= 0.03;
-			if (data->p->angle == 0.)
-				data->p->angle = 360. * (M_PI / 180);
-			if (data->p->angle < 0.)
-				data->p->angle = 2 * M_PI - (data->p->angle * -1);
-			data->prev_x = x;
-		}
+			decrease_or_increase_angle(data, 0, x);
 		display_map(data);
 	}
 	return (0);
