@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:59 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/04 02:05:54 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/04 15:23:56 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,14 @@ int	mouse_hook(int x, int y, t_data *data)
 		if (y < SCREENHEIGHT && y > 0)
 			data->pov_y = y - SCREENHEIGHT / 2;
 		diff_x = data->prev_x - x;
-		if (x < data->prev_x && abs(diff_x) > 3)
-			decrease_or_increase_angle(data, 1, x);
-		else if (abs(diff_x) > 3)
-			decrease_or_increase_angle(data, 0, x);
-		display_map(data);
+		if (x > 0 && x < SCREENWIDTH && y < SCREENHEIGHT && y > 0)
+		{
+			if (x < data->prev_x && abs(diff_x) > 3)
+				decrease_or_increase_angle(data, 1, x);
+			else if (abs(diff_x) > 3)
+				decrease_or_increase_angle(data, 0, x);
+			display_map(data);	
+		}
 	}
 	return (0);
 }
