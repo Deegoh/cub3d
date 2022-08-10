@@ -71,13 +71,21 @@ int	mouse_hook(int x, int y, t_data *data)
 		if (y < SCREENHEIGHT && y > 0)
 			data->pov_y = y - SCREENHEIGHT / 2;
 		diff_x = data->prev_x - x;
+		if (x <= 0)
+			mlx_mouse_move(data->mlx->mlx_win, SCREENWIDTH, y);
+		if (x >= SCREENWIDTH)
+			mlx_mouse_move(data->mlx->mlx_win, 0, y);
+		if (y <= 0)
+			mlx_mouse_move(data->mlx->mlx_win, x, 0);
+		if (y >= SCREENHEIGHT)
+			mlx_mouse_move(data->mlx->mlx_win, x, SCREENHEIGHT);
 		if (x > 0 && x < SCREENWIDTH && y < SCREENHEIGHT && y > 0)
 		{
 			if (x < data->prev_x && abs(diff_x) > 3)
 				decrease_or_increase_angle(data, 1, x);
 			else if (abs(diff_x) > 3)
 				decrease_or_increase_angle(data, 0, x);
-			display_map(data);	
+			display_map(data);
 		}
 	}
 	return (0);
