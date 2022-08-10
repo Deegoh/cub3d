@@ -69,7 +69,7 @@ void	display_angle(t_data *data)
 	int	y2;
 	int	size;
 
-	size = (int)data->map->tile_draw_size / 1.5;
+	size = data->map->tile_draw_size / 1.5;
 	x2 = data->p->x / data->map->tile_size * data->map->tile_draw_size
 		+ (int)((float)cos((double)data->p->angle) * size);
 	y2 = data->p->y / data->map->tile_size * data->map->tile_draw_size
@@ -86,7 +86,7 @@ void	update_angle(int key, t_data *data)
 		if (data->p->angle == 360. * (M_PI / 180))
 			data->p->angle = 0.;
 		if (data->p->angle > 360. * (M_PI / 180))
-			data->p->angle = 0. + (data->p->angle -  2 * M_PI);
+			data->p->angle = 0. + (data->p->angle - 2 * M_PI);
 	}
 	if (key == KEY_RIGHT || key == KEY_RIGHT_L)
 	{

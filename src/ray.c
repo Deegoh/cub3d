@@ -36,7 +36,6 @@ int	reach_wall(int x, int y, t_data *data, t_ray *ray)
 	return (0);
 }
 
-
 // TODO if you want to display the fov in the minimap,
 // we should use my_put_pixel in a separate function after the raycasting
 void	get_all_rays(t_data *data)
@@ -69,8 +68,6 @@ t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 	int	d_hor;
 	int	d_ver;
 
-	d_hor = 0;
-	d_ver = 0;
 	ray->relative_angle = angle - data->p->angle;
 	get_horizontal_ray(data, ray, angle);
 	d_hor = ray->delta;
