@@ -21,6 +21,8 @@ SRC =	main.c\
 		parse.c\
 		checker_map.c\
 		map_utils.c\
+		ray.c\
+		ray_casting.c\
 
 LIBFT_DIR = ft
 LIBFT = $(SRC_DIR)$(LIBFT_DIR)
@@ -76,7 +78,7 @@ fclean: clean
 	@printf "$(RED)🗑️ Remove $(NAME)$(WHITE)\n"
 
 leak: all
-	leaks -atExit -- ./$(NAME) map/map.cub
+	leaks -atExit -- ./$(NAME) map/map2.cub
 
 valgrind: all
 		colour-valgrind --leak-check=full \

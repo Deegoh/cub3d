@@ -1,17 +1,16 @@
-
-NO ./map/texture/wall1.xpm
-
-
-SO ./map/texture/wall_b1.xpm
-WE ./map/texture/wall_s1.xpm
-
-EA ./map/texture/wall_p1.xpm
-
-F 220,100,0
+NO ./map/texture/Leaves_Light.xpm
 
 
+SO ./map/texture/Leaves_Medium.xpm
+WE ./map/texture/Bricks5_Light.xpm
 
-    C 225,30,0
+EA ./map/texture/Plank2_Dark.xpm
+
+F 160,160,160
+
+
+
+    C 153,204,255
 
         1111111111111111111111111
         1000000000110000000000001
@@ -24,7 +23,7 @@ F 220,100,0
  
  
 11111111111111111111111111111
-10000000000000000001010010001
+1000000000000000000D0D00D0001
 11000001110101011111011110N0111
 11110111 1110101 101111010001
 11111111 1111111 111111111111

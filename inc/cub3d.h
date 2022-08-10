@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 18:01:27 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/07/29 07:22:40 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:47:24 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 # define KEY_LEFT_L 65363
 # define KEY_ESC_L 65307
 
-# define SCREENWIDTH 1200
-# define SCREENHEIGHT 1200
+# define SCREENWIDTH 1400
+# define SCREENHEIGHT 900
 # define EXT ".cub"
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
@@ -71,6 +71,7 @@ typedef struct s_map
 	int		nbr_line;
 	int		len_line;
 	int		tile_size;
+	int		tile_draw_size;
 }t_map;
 
 typedef struct s_mlx
@@ -86,19 +87,33 @@ typedef struct s_mlx
 
 typedef struct s_player{
 	int		initiated;
-	float	x;
-	float	y;
-	float	d_x;
-	float	d_y;
-	float	angle;
+	long double	x;
+	long double	y;
+	long double	d_x;
+	long double	d_y;
+	long double	angle;
 }			t_player;
 
 typedef struct s_ray
 {
-	int	x;
-	int	y;
-	int	delta;
+	long double	x;
+	long double	y;
+	long double	delta;
+	char		side;
+	int			ver_hor;
+	long double	relative_angle;
 }			t_ray;
+
+typedef struct s_texture
+{
+	void	*img;
+	int		bits_nb;
+	int		len_line;
+	int		endien;
+	int		*addr;
+	int		width;
+	int		height;
+}	t_texture;
 
 typedef struct s_data
 {
@@ -106,6 +121,11 @@ typedef struct s_data
 	t_map		*map;
 	t_player	*p;
 	t_ray		*ray;
+	t_texture	*t;
+	int			is_mouse;
+	int			prev_x;
+	int			pov_y;
+	int			is_minimap;
 }			t_data;
 
 // error.c
@@ -117,7 +137,8 @@ void	parse_map(t_map *map, char **av);
 
 // free.c
 void	free_all(t_data *data);
-void	free_arr(char	**arr);
+void	free_arr(char	**arr, int len);
+void	free_map(t_map *map);
 
 // map_utils.c
 int		get_elems(t_map *map);
@@ -137,7 +158,8 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void	put_rectangle(int x, int y, t_data *data, int color);
 void	put_grid(t_data *data);
 int		make_trgb(int t, int r, int g, int b);
-void	draw_line(int x2, int y2, t_data *data);
+void	draw_line(int x2, int y2, t_data *data, int color);
+int		my_mlx_pixel_get(t_texture *texture, int x, int y);
 
 // player .c
 void	get_player_pos(t_data *data);
@@ -146,8 +168,6 @@ void	display_player(t_data *data);
 void	display_angle(t_data *data);
 void	update_angle(int key, t_data *data);
 void	update_position(int key, t_data *data);
-int		get_vertical_ray(t_data *data, t_ray *ray);
-int		get_horizontal_ray(t_data *data, t_ray *ray);
 void	get_ray(t_data *data);
 
 // init.c
@@ -158,5 +178,15 @@ void	display_map(t_data *data);
 
 // key_hook.c
 int		key_hook(int key, t_data *data);
+int		mouse_hook(int x, int y, t_data *data);
+
+// ray.c
+void	get_vertical_ray(t_data *data, t_ray *ray, float angle);
+void	get_horizontal_ray(t_data *data, t_ray *ray, float angle);
+t_ray	*select_ray(t_data *data, float angle, t_ray *ray);
+void	get_all_rays(t_data *data);
+
+// ray_tracing.c
+void	display_rays(t_data *data);
 
 #endif

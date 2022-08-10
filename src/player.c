@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/07/29 07:08:45 by tpinto-m         ###   ########.fr       */
+/*   Updated: 2022/08/03 00:20:54 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,63 +69,77 @@ void	display_angle(t_data *data)
 	int	y2;
 	int	size;
 
-	size = (int)data->map->tile_size / 3;
-	x2 = data->p->x + (int)((float)cos((double)data->p->angle) * size);
-	y2 = data->p->y - (int)((float)sin((double)data->p->angle) * size);
+	size = (int)data->map->tile_draw_size / 1.5;
+	x2 = data->p->x / data->map->tile_size * data->map->tile_draw_size
+		+ (int)((float)cos((double)data->p->angle) * size);
+	y2 = data->p->y / data->map->tile_size * data->map->tile_draw_size
+		- (int)((float)sin((double)data->p->angle) * size);
 	my_mlx_pixel_put(data->mlx, x2, y2, make_trgb(0, 255, 0, 0));
-	draw_line(x2, y2, data);
-	// get_ray(data);
-	// get_vertical_ray(data, data->ray);
-	// get_horizontal_ray(data, data->ray);
+	draw_line(x2, y2, data, make_trgb(0, 255, 0, 0));
 }
 
 void	update_angle(int key, t_data *data)
 {
-	if (key == KEY_RIGHT || key == KEY_RIGHT_L)
-	{
-		data->p->angle += 0.1;
-		if (data->p->angle >= 360. * (M_PI / 180))
-			data->p->angle = 0.;
-	}
 	if (key == KEY_LEFT || key == KEY_LEFT_L)
 	{
-		data->p->angle -= 0.1;
-		if (data->p->angle <= 0.)
-			data->p->angle = 360. * (M_PI / 180);
+		data->p->angle += 0.1;
+		if (data->p->angle == 360. * (M_PI / 180))
+			data->p->angle = 0.;
+		if (data->p->angle > 360. * (M_PI / 180))
+			data->p->angle = 0. + (data->p->angle -  2 * M_PI);
 	}
+	if (key == KEY_RIGHT || key == KEY_RIGHT_L)
+	{
+		data->p->angle -= 0.1;
+		if (data->p->angle == 0.)
+			data->p->angle = 360. * (M_PI / 180);
+		if (data->p->angle < 0.)
+			data->p->angle = 2 * M_PI - (data->p->angle * -1);
+	}
+	//printf("angle: %d\n", (int)round(data->p->angle /(M_PI / 180.)));
 	display_map(data);
 }
 
 void	update_position(int key, t_data *data)
 {
-	int		speed;
+	long double		speed;
 	float	tmp_angle;
 
 	speed = (int)data->map->tile_size / 9;
+	// if (speed < 2)
+	// 	speed = 1.5;
 	if (key == KEY_W || key == KEY_W_L)
 	{
-		data->p->d_x = data->p->x + (int)((float)cos((double)data->p->angle) * speed);
-		data->p->d_y = data->p->y - (int)((float)sin((double)data->p->angle) * speed);
+		data->p->d_x = data->p->x +
+			(int)((float)cos((double)data->p->angle) * speed);
+		data->p->d_y = data->p->y -
+			(int)((float)sin((double)data->p->angle) * speed);
 	}
 	if (key == KEY_A || key == KEY_A_L)
 	{
 		tmp_angle = data->p->angle + 90. * (M_PI / 180.0);
-		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
-		data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
-	}
-	if (key == KEY_D || key == KEY_D_L)
-	{
-		tmp_angle = data->p->angle - 90. * (M_PI / 180.0);
-		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
-		data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
+		data->p->d_x = data->p->x +
+			(int)((float)cos((double)tmp_angle) * speed);
+		data->p->d_y = data->p->y -
+			(int)((float)sin((double)tmp_angle) * speed);
 	}
 	if (key == KEY_S || key == KEY_S_L)
 	{
-		tmp_angle = data->p->angle + 180. * (M_PI / 180.0);
-		data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
-		data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
+		tmp_angle = data->p->angle - 90. * (M_PI / 180.0);
+		data->p->d_x = data->p->x +
+			(int)((float)cos((double)tmp_angle) * speed);
+		data->p->d_y = data->p->y -
+			(int)((float)sin((double)tmp_angle) * speed);
 	}
-	if (data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] != '1')
+	if (key == KEY_D || key == KEY_D_L)
+	{
+		tmp_angle = data->p->angle + 180. * (M_PI / 180.0);
+		data->p->d_x = data->p->x +
+			(int)((float)cos((double)tmp_angle) * speed);
+		data->p->d_y = data->p->y -(int)((float)sin((double)tmp_angle) * speed);
+	}
+	if (data->map->map2d[(int)floor(data->p->d_y/ data->map->tile_size)]
+		[(int)floor(data->p->d_x / data->map->tile_size)] != '1')
 	{
 		if (data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] == 'D')
 			data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] = '0';
@@ -133,74 +147,4 @@ void	update_position(int key, t_data *data)
  		data->p->y =  data->p->d_y;
 	}
 	display_map(data);
-}
-
-int	reach_wall(int x, int y, t_data *data)
-{
-	if (x <= 0 || y <= 0)
-		return (1);
-	if (x >= SCREENWIDTH || y >= SCREENHEIGHT)
-		return (1);
-	if (data->map->map2d[y / data->map->tile_size][x / data->map->tile_size] == '1')
-		return (1);
-	return (0);
-}
-
-void	get_ray(t_data *data)
-{
-	int	dist;
-
-	dist = get_vertical_ray(data, data->ray);
-	if (dist < get_horizontal_ray(data, data->ray))
-	{
-		get_vertical_ray(data, data->ray);
-	}
-	else
-		dist = get_horizontal_ray(data, data->ray);
-	draw_line(data->ray->x, data->ray->y, data);
-}
-
-int	get_vertical_ray(t_data *data, t_ray *ray)
-{
-	if (data->p->angle <= M_PI && data->p->angle >= 0)
-		ray->y = floor(data->p->y / data->map->tile_size) * data->map->tile_size - 1;
-	else
-		ray->y = floor(data->p->y / data->map->tile_size) * data->map->tile_size + data->map->tile_size;
-	ray->x = data->p->x + (data->p->y - ray->y) / tan(data->p->angle);
-	while (!reach_wall(ray->x, ray->y, data))
-	{
-		ray->y -= data->map->tile_size;
-		ray->x += data->map->tile_size / tan(data->p->angle);
-	}
-	ray->delta = (int)sqrt(pow(data->p->y - ray->y, 2.) + pow(ray->x - data->p->x, 2.));
-	// draw_line(ray->x, ray->y, data);
-	return (ray->delta);
-}
-
-int	get_horizontal_ray(t_data *data, t_ray *ray)
-{
-	float	dir;
-
-	dir = 1;
-	if ((data->p->angle <= M_PI / 2) 
-		|| (data->p->angle >= 3 * M_PI / 2))
-	{
-		printf("-> %f\n", data->p->angle);
-		ray->x = floor(data->p->x / data->map->tile_size) * data->map->tile_size + data->map->tile_size;
-	}
-	else
-	{
-		printf("<- %f\n", data->p->angle);
-		dir = -dir;
-		ray->x = floor(data->p->x / data->map->tile_size) * data->map->tile_size - 1;
-	}
-	ray->y = data->p->y + (data->p->x - ray->x) * tan(data->p->angle);
-	while (!reach_wall(ray->x, ray->y, data))
-	{
-		ray->x += data->map->tile_size * dir;
-		ray->y += (data->p->x - ray->x) * tan(data->p->angle);
-	}
-	ray->delta = (int)sqrt(pow(data->p->y - ray->y, 2.) + pow(ray->x - data->p->x, 2.));
-	// draw_line(ray->x, ray->y, data);
-	return (ray->delta);
 }
