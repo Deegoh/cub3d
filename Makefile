@@ -47,7 +47,7 @@ _OBJ = $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR), $(_OBJ))
 
 CFLAGS = -Werror -Wall -Wextra
-CFLAGS += -g #-fsanitize=address
+CFLAGS += -g -fsanitize=address
 
 .PHONY: all clean fclean re leak norm run valgrind
 

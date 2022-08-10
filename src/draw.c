@@ -33,7 +33,7 @@ int	my_mlx_pixel_get(t_texture *texture, int x, int y)
 	{
 		color = texture->addr[y * texture->len_line / 4 + x];
 	}
-	return (color);	
+	return (color);
 }
 
 void	put_rectangle(int x, int y, t_data *data, int color)
@@ -71,8 +71,10 @@ void	draw_line(int x2, int y2, t_data *data, int color)
 	double	delta_y;
 	int		pixels;
 
-	delta_x = (double)x2 - data->p->x / data->map->tile_size * data->map->tile_draw_size;
-	delta_y = (double)y2 - data->p->y / data->map->tile_size * data->map->tile_draw_size;
+	delta_x = (double)x2 - data->p->x / data->map->tile_size
+		* data->map->tile_draw_size;
+	delta_y = (double)y2 - data->p->y / data->map->tile_size
+		* data->map->tile_draw_size;
 	pixels = sqrt((delta_x * delta_x) +(delta_y * delta_y));
 	pixel_x = data->p->x / data->map->tile_size * data->map->tile_draw_size;
 	pixel_y = data->p->y / data->map->tile_size * data->map->tile_draw_size;

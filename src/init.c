@@ -31,7 +31,7 @@ int	init_texture(t_data *data)
 	while (++i < 5)
 	{
 		if (!data->t[i].img)
-			return (0);
+			err_msg(ERR_TEXTURE);
 		data->t[i].addr = (int *)mlx_get_data_addr(data->t[i].img,
 				&data->t[0].bits_nb, &data->t[i].len_line, &data->t[i].endien);
 	}
