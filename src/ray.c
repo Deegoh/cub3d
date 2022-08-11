@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/03 22:22:33 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/11 18:46:19 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	get_all_rays(t_data *data)
 		if (angle > 360)
 			angle = 0. + (angle - 360);
 		select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
-		if (data->is_minimap)
-			draw_line(data->ray[i].x * data->map->tile_draw_size
-				/ data->map->tile_size, data->ray[i].y * data->map->tile_draw_size
-				/ data->map->tile_size, data, make_trgb(100, 255, 0, 0));
+		// if (data->is_minimap)
+		// 	draw_line(data->ray[i].x * data->map->tile_draw_size
+		// 		/ data->map->tile_size, data->ray[i].y * data->map->tile_draw_size
+		// 		/ data->map->tile_size, data, make_trgb(100, 255, 0, 0));
 		i++;
 	}
 }

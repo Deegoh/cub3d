@@ -6,7 +6,7 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/11 18:28:34 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:43:23 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	display_angle(t_data *data)
 	int	y2;
 	int	size;
 
-	size = data->map->tile_draw_size / 1.5;
+	size = data->map->tile_draw_size / 2;
 	x2 = data->p->x / data->map->tile_size * data->map->tile_draw_size
 		+ (int)((float)cos((double)data->p->angle) * size);
 	y2 = data->p->y / data->map->tile_size * data->map->tile_draw_size
