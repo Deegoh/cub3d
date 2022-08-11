@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/03 00:20:54 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/11 18:28:34 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	update_position(int key, t_data *data)
 	long double		speed;
 	float	tmp_angle;
 
-	speed = (int)data->map->tile_size / 9;
+	speed = (int)data->map->tile_size / 7;
 	// if (speed < 2)
 	// 	speed = 1.5;
 	if (key == KEY_W || key == KEY_W_L)
@@ -141,10 +141,12 @@ void	update_position(int key, t_data *data)
 	if (data->map->map2d[(int)floor(data->p->d_y/ data->map->tile_size)]
 		[(int)floor(data->p->d_x / data->map->tile_size)] != '1')
 	{
-		if (data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] == 'D')
-			data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] = '0';
+		if (data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] != 'D')
+			// data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] = '0';
+		{
 		data->p->x = data->p->d_x;
  		data->p->y =  data->p->d_y;
+		}
 	}
 	display_map(data);
 }

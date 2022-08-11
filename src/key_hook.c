@@ -6,11 +6,27 @@
 /*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:59 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/04 15:23:56 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:51:45 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	open_door(t_data *data)
+{
+	t_ray	*ray;
+
+	ray = malloc(sizeof(t_ray));
+	ray = select_ray(data, data->p->angle, ray);
+	
+	if (ray->side == 'D' && ray->delta < data->map->tile_size)
+	{
+		data->map->map2d[(int)floor(ray->y / data->map->tile_size)]
+			[(int)floor(ray->x / data->map->tile_size)] = '0';
+		display_map(data);
+	}
+	free(ray);
+}
 
 int	key_hook(int key, t_data *data)
 {
@@ -36,6 +52,10 @@ int	key_hook(int key, t_data *data)
 			data->is_mouse = 0;
 		else
 			data->is_mouse = 1;
+	}
+	if (key == 31)
+	{
+		open_door(data);
 	}
 	return (0);
 }

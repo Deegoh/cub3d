@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:29:23 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/04 01:28:46 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/11 16:07:30 by ybentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
