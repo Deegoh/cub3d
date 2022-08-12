@@ -49,11 +49,11 @@ void	put_grid2(t_data *data)
 			if (!(i < 0 || j < 0 || i > data->map->nbr_line - 1 || j > data->map->len_line - 1))
 			{
 				if (data->map->map2d[i][j] == '1')
-					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 0, 102, 204));
+					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 76, 0, 253));
 				else if (data->map->map2d[i][j] == '0' || is_player(data->map->map2d[i][j]))
-					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 153, 204, 255));
+					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 178, 102, 255));
 				else if (data->map->map2d[i][j] == 'D')
-					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 100, 255, 100));
+					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 51, 153, 255));
 			}
 			j++;
 			l++;
@@ -97,7 +97,7 @@ void	display_player(t_data *data)
 	// 	data->p->y / data->map->tile_size * data->map->tile_draw_size
 	// 	- data->map->tile_draw_size / 8, data, 16776960);
 	put_rectangle(data->map->tile_draw_size * 7,
-		data->map->tile_draw_size * 7, data, make_trgb(0, 255, 200, 0));
+		data->map->tile_draw_size * 7, data, make_trgb(100, 255, 0, 0));
 	//display_angle(data);
 }
 
