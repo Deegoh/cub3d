@@ -6,7 +6,7 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 00:01:26 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/13 00:01:46 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/13 00:41:10 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_collision(t_data *data, int col_x, int col_y)
 			[(int)floor(col_x / data->map->tile_size)] != 'D')
 		{
 			data->p->x = data->p->d_x;
-			data->p->y =  data->p->d_y;
+			data->p->y = data->p->d_y;
 		}
 	}
 }
@@ -40,12 +40,10 @@ void	choose_direction(t_data *data, int key, float speed)
 		tmp_angle = data->p->angle - 90. * (M_PI / 180.0);
 	if (key == KEY_W || key == KEY_W_L)
 		tmp_angle = data->p->angle;
-	data->p->d_x = data->p->x +
-		(int)((float)cos((double)tmp_angle) * speed);
-	data->p->d_y = data->p->y -(int)((float)sin((double)tmp_angle) * speed);
-	col_x = data->p->x +
-		(int)((float)cos((double)tmp_angle) * (speed * 2.8));
-	col_y = data->p->y -(int)((float)sin((double)tmp_angle) * (speed * 2.8));
+	data->p->d_x = data->p->x + (int)((float)cos((double)tmp_angle) * speed);
+	data->p->d_y = data->p->y - (int)((float)sin((double)tmp_angle) * speed);
+	col_x = data->p->x + (int)((float)cos((double)tmp_angle) * (speed * 3.8));
+	col_y = data->p->y - (int)((float)sin((double)tmp_angle) * (speed * 3.8));
 	check_collision(data, col_x, col_y);
 }
 
@@ -55,5 +53,5 @@ void	update_position(int key, t_data *data)
 
 	speed = (int)data->map->tile_size / 7;
 	choose_direction(data, key, speed);
-	update_image(data);
+	display_map(data);
 }
