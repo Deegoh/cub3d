@@ -96,8 +96,7 @@ void	update_angle(int key, t_data *data)
 		if (data->p->angle < 0.)
 			data->p->angle = 2 * M_PI - (data->p->angle * -1);
 	}
-	//printf("angle: %d\n", (int)round(data->p->angle /(M_PI / 180.)));
-	display_map(data);
+	update_image(data);
 }
 
 void	update_position(int key, t_data *data)
@@ -148,5 +147,5 @@ void	update_position(int key, t_data *data)
  		data->p->y =  data->p->d_y;
 		}
 	}
-	display_map(data);
+	update_image(data);
 }

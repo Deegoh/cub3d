@@ -23,7 +23,8 @@ void	open_door(t_data *data)
 	{
 		data->map->map2d[(int)floor(ray->y / data->map->tile_size)]
 			[(int)floor(ray->x / data->map->tile_size)] = '0';
-		display_map(data);
+
+		update_image(data);
 	}
 	free(ray);
 }
@@ -105,7 +106,7 @@ int	mouse_hook(int x, int y, t_data *data)
 				decrease_or_increase_angle(data, 1, x);
 			else if (abs(diff_x) > 3)
 				decrease_or_increase_angle(data, 0, x);
-			display_map(data);
+			update_image(data);
 		}
 	}
 	return (0);

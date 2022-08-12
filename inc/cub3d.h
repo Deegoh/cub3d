@@ -103,6 +103,7 @@ typedef struct s_ray
 	char		side;
 	int			ver_hor;
 	long double	relative_angle;
+	float		angle;
 }			t_ray;
 
 typedef struct s_texture
@@ -176,6 +177,8 @@ int		init_data(t_data *data, char **av);
 
 // display_map.c
 void	display_map(t_data *data);
+void	put_background(t_data *data);
+void	update_image(t_data *data);
 
 // key_hook.c
 int		key_hook(int key, t_data *data);

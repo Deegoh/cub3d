@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 			SCREENWIDTH, SCREENHEIGHT, "Hello cub3D");
 	print_info_map(data->map);
 	print_map2d(data->map);
-	display_map(data);
+	update_image(data);
 	mlx_mouse_hide();
 	mlx_hook(data->mlx->mlx_win, 2, 1, key_hook, data);
 	mlx_hook(data->mlx->mlx_win, 6, 1, mouse_hook, data);

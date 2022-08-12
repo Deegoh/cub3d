@@ -12,6 +12,16 @@
 
 #include "cub3d.h"
 
+void	update_image(t_data *data)
+{
+	put_background(data);
+	get_all_rays(data);
+	display_rays(data);
+	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
+		data->mlx->img, 0, 0);
+	display_map(data);
+}
+
 void	put_grid2(t_data *data)
 {
 	int	i;
@@ -22,10 +32,12 @@ void	put_grid2(t_data *data)
 	int	p_y;
 	int	size;
 
+	put_background(data);
+	get_all_rays(data);
+	display_rays(data);
 	size = data->map->tile_draw_size;
 	p_x = floor(data->p->x / data->map->tile_size);
 	p_y = floor(data->p->y / data->map->tile_size);
-	printf("player %d %d\n", p_x, p_y);
 	i = p_y - 5;
 	k = 0;
 	while (i < p_y + 6)
@@ -34,19 +46,15 @@ void	put_grid2(t_data *data)
 		l = 0;
 		while (j < p_x + 6)
 		{
-			if (i < 0 || j < 0 || i > data->map->nbr_line - 1 || j > data->map->len_line - 1)
+			if (!(i < 0 || j < 0 || i > data->map->nbr_line - 1 || j > data->map->len_line - 1))
 			{
-			printf("outside %d %d\n", i, j);	
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, 10526880);		
+				if (data->map->map2d[i][j] == '1')
+					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 0, 102, 204));
+				else if (data->map->map2d[i][j] == '0' || is_player(data->map->map2d[i][j]))
+					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 153, 204, 255));
+				else if (data->map->map2d[i][j] == 'D')
+					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 100, 255, 100));
 			}
-			else if (data->map->map2d[i][j] == '1')
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, 6316128);
-			else if (data->map->map2d[i][j] == '0' || is_player(data->map->map2d[i][j]))
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, 26316);
-			else if (data->map->map2d[i][j] == '.')
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, 10526880);
-			else if (data->map->map2d[i][j] == 'D')
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, 39244);
 			j++;
 			l++;
 		}

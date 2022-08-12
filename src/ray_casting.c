@@ -73,9 +73,8 @@ void	display_ray(t_data *data, int x, int j)
 	int		color;
 
 	i = 0;
-	distance = data->ray[j].delta * cos(data->ray->relative_angle);
-	size = data->map->tile_size / distance * 355;
-	// size = (SCREENHEIGHT / 2 - 1) / (distance / data->map->tile_size + 1);
+	distance = data->ray[j].delta * cos(data->ray[j].relative_angle);
+	size = data->map->tile_size / distance * 300;
 	if (data->ray[j].side == 'N' || data->ray[j].side == 'S')
 		color = make_trgb(0, 153, 0, 153);
 	else if (data->ray[j].side == 'D')
