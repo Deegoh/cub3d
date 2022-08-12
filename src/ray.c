@@ -29,6 +29,9 @@ int	reach_wall(int x, int y, t_data *data, t_ray *ray)
 		if (data->map->map2d[y / data->map->tile_size]
 			[x / data->map->tile_size] == 'D')
 			ray->side = 'D';
+		else if (data->map->map2d[y / data->map->tile_size]
+			[x / data->map->tile_size] == 'O')
+			ray->side = 'O';
 		else
 			ray->side = 0;
 		return (1);

@@ -14,6 +14,7 @@ SRC =	main.c\
 		free.c\
 		draw.c\
 		player.c\
+		player_movement.c\
 		init.c\
 		display_map.c\
 		key_hook.c\

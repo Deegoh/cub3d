@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:19:59 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/11 17:51:45 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/08/13 00:08:00 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,25 @@
 
 void	open_door(t_data *data)
 {
-	t_ray	*ray;
+	float	x2;
+	float	y2;
+	char	c;
+	float	size;
 
-	ray = malloc(sizeof(t_ray));
-	ray = select_ray(data, data->p->angle, ray);
-	
-	if (ray->side == 'D' && ray->delta < data->map->tile_size)
+	size = data->map->tile_size / 1.1;
+	x2 = (data->p->x + size * cos(data->p->angle)) / data->map->tile_size ;
+	y2 = (data->p->y - size * sin(data->p->angle)) / data->map->tile_size;
+	c = data->map->map2d[(int)floor(y2)][(int)floor(x2)];
+	if (c == 'D')
 	{
-		data->map->map2d[(int)floor(ray->y / data->map->tile_size)]
-			[(int)floor(ray->x / data->map->tile_size)] = '0';
-
+		data->map->map2d[(int)floor(y2)][(int)floor(x2)] = 'O';
 		update_image(data);
 	}
-	free(ray);
+	else if (c == 'O')
+	{
+		data->map->map2d[(int)floor(y2)][(int)floor(x2)] = 'D';
+		update_image(data);
+	}
 }
 
 int	key_hook(int key, t_data *data)
@@ -34,30 +40,22 @@ int	key_hook(int key, t_data *data)
 	if (key == KEY_LEFT || key == KEY_RIGHT
 		|| key == KEY_LEFT_L || key == KEY_RIGHT_L)
 		update_angle(key, data);
-	if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D
+	else if (key == KEY_W || key == KEY_A || key == KEY_S || key == KEY_D
 		|| key == KEY_W_L || key == KEY_A_L || key == KEY_S_L || key == KEY_D_L)
 		update_position(key, data);
-	if (key == KEY_ESC || key == KEY_ESC_L)
+	else if (key == KEY_ESC || key == KEY_ESC_L)
 		exit_cub(data);
-	if (key == 46)
-	{
-		if (data->is_minimap)
-			data->is_minimap = 0;
-		else
-			data->is_minimap = 1;
-		display_map(data);
-	}
-	if (key == 49)
-	{
-		if (data->is_mouse)
-			data->is_mouse = 0;
-		else
-			data->is_mouse = 1;
-	}
-	if (key == 31)
-	{
+	else if (key == 46 && data->is_minimap)
+		data->is_minimap = 0;
+	else if (key == 46 && !(data->is_minimap))
+		data->is_minimap = 1;
+	else if (key == 49 && data->is_mouse)
+		data->is_mouse = 0;
+	else if (key == 49 && !(data->is_mouse))
+		data->is_mouse = 1;
+	else if (key == 31)
 		open_door(data);
-	}
+	update_image(data);
 	return (0);
 }
 

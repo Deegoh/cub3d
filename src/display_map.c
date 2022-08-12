@@ -46,15 +46,18 @@ void	put_grid2(t_data *data)
 		l = 0;
 		while (j < p_x + 6)
 		{
-			if (!(i < 0 || j < 0 || i > data->map->nbr_line - 1 || j > data->map->len_line - 1))
-			{
-				if (data->map->map2d[i][j] == '1')
-					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 76, 0, 253));
-				else if (data->map->map2d[i][j] == '0' || is_player(data->map->map2d[i][j]))
-					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 178, 102, 255));
-				else if (data->map->map2d[i][j] == 'D')
-					put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 51, 153, 255));
-			}
+			if (i < 0 || j < 0 || i > data->map->nbr_line - 1 || j > data->map->len_line - 1)
+				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(180, 230, 230, 230));
+			else if (data->map->map2d[i][j] == '1')
+				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 76, 0, 253));
+			else if (data->map->map2d[i][j] == '.')
+				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 76, 0, 253));
+			else if (data->map->map2d[i][j] == '0' || is_player(data->map->map2d[i][j]))
+				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 178, 102, 255));
+			else if (data->map->map2d[i][j] == 'O' || is_player(data->map->map2d[i][j]))
+				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 51, 153, 255));
+			else if (data->map->map2d[i][j] == 'D')
+				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 51, 153, 255));
 			j++;
 			l++;
 		}

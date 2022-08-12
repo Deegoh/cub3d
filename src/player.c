@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybentaye <ybentaye@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 00:20:05 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/11 18:43:23 by ybentaye         ###   ########.fr       */
+/*   Updated: 2022/08/13 00:02:37 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,57 +95,6 @@ void	update_angle(int key, t_data *data)
 			data->p->angle = 360. * (M_PI / 180);
 		if (data->p->angle < 0.)
 			data->p->angle = 2 * M_PI - (data->p->angle * -1);
-	}
-	update_image(data);
-}
-
-void	update_position(int key, t_data *data)
-{
-	long double		speed;
-	float	tmp_angle;
-
-	speed = (int)data->map->tile_size / 7;
-	// if (speed < 2)
-	// 	speed = 1.5;
-	if (key == KEY_W || key == KEY_W_L)
-	{
-		data->p->d_x = data->p->x +
-			(int)((float)cos((double)data->p->angle) * speed);
-		data->p->d_y = data->p->y -
-			(int)((float)sin((double)data->p->angle) * speed);
-	}
-	if (key == KEY_A || key == KEY_A_L)
-	{
-		tmp_angle = data->p->angle + 90. * (M_PI / 180.0);
-		data->p->d_x = data->p->x +
-			(int)((float)cos((double)tmp_angle) * speed);
-		data->p->d_y = data->p->y -
-			(int)((float)sin((double)tmp_angle) * speed);
-	}
-	if (key == KEY_S || key == KEY_S_L)
-	{
-		tmp_angle = data->p->angle - 90. * (M_PI / 180.0);
-		data->p->d_x = data->p->x +
-			(int)((float)cos((double)tmp_angle) * speed);
-		data->p->d_y = data->p->y -
-			(int)((float)sin((double)tmp_angle) * speed);
-	}
-	if (key == KEY_D || key == KEY_D_L)
-	{
-		tmp_angle = data->p->angle + 180. * (M_PI / 180.0);
-		data->p->d_x = data->p->x +
-			(int)((float)cos((double)tmp_angle) * speed);
-		data->p->d_y = data->p->y -(int)((float)sin((double)tmp_angle) * speed);
-	}
-	if (data->map->map2d[(int)floor(data->p->d_y/ data->map->tile_size)]
-		[(int)floor(data->p->d_x / data->map->tile_size)] != '1')
-	{
-		if (data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] != 'D')
-			// data->map->map2d[(int)floor(data->p->d_y / data->map->tile_size)][(int)floor(data->p->d_x / data->map->tile_size)] = '0';
-		{
-		data->p->x = data->p->d_x;
- 		data->p->y =  data->p->d_y;
-		}
 	}
 	update_image(data);
 }
