@@ -40,6 +40,8 @@ void	free_all(t_data *data)
 	int	i;
 
 	i = 0;
+	free_map(data->map);
+	free(data->map);
 	free(data->p);
 	free(data->ray);
 	while (i < 4)
@@ -48,4 +50,5 @@ void	free_all(t_data *data)
 		i++;
 	}
 	free(data->t);
+	free(data->mlx);
 }

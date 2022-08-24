@@ -22,86 +22,10 @@ void	update_image(t_data *data)
 	display_map(data);
 }
 
-void	put_grid2(t_data *data)
-{
-	int	i;
-	int	j;
-	int	k;
-	int	l;
-	int	p_x;
-	int	p_y;
-	int	size;
-
-	put_background(data);
-	get_all_rays(data);
-	display_rays(data);
-	size = data->map->tile_draw_size;
-	p_x = floor(data->p->x / data->map->tile_size);
-	p_y = floor(data->p->y / data->map->tile_size);
-	i = p_y - 5;
-	k = 0;
-	while (i < p_y + 6)
-	{
-		j = p_x - 5;
-		l = 0;
-		while (j < p_x + 6)
-		{
-			if (i < 0 || j < 0 || i > data->map->nbr_line - 1 || j > data->map->len_line - 1)
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(180, 230, 230, 230));
-			else if (data->map->map2d[i][j] == '1')
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 76, 0, 253));
-			else if (data->map->map2d[i][j] == '.')
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 76, 0, 253));
-			else if (data->map->map2d[i][j] == '0' || is_player(data->map->map2d[i][j]))
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 178, 102, 255));
-			else if (data->map->map2d[i][j] == 'O' || is_player(data->map->map2d[i][j]))
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 51, 153, 255));
-			else if (data->map->map2d[i][j] == 'D')
-				put_rectangle(l * size + (data->map->tile_draw_size * 2), k * size + (data->map->tile_draw_size * 2), data, make_trgb(100, 51, 153, 255));
-			j++;
-			l++;
-		}
-		k++;
-		i++;
-	}
-}
-
-void	put_grid(t_data *data)
-{
-	int	i;
-	int	j;
-	int	size;
-
-	i = 0;
-	size = data->map->tile_draw_size;
-	while (i < data->map->nbr_line)
-	{
-		j = 0;
-		while (j < data->map->len_line)
-		{
-			if (data->map->map2d[i][j] == '1')
-				put_rectangle(j * size + (data->map->tile_draw_size * 5), i * size + (data->map->tile_draw_size * 5), data, 6316128);
-			else if (data->map->map2d[i][j] == '0' || is_player(data->map->map2d[i][j]))
-				put_rectangle(j * size + (data->map->tile_draw_size * 5), i * size + (data->map->tile_draw_size * 5), data, 26316);
-			else if (data->map->map2d[i][j] == '.')
-				put_rectangle(j * size + (data->map->tile_draw_size * 5), i * size + (data->map->tile_draw_size * 5), data, 10526880);
-			else if (data->map->map2d[i][j] == 'D')
-				put_rectangle(j * size + (data->map->tile_draw_size * 5), i * size + (data->map->tile_draw_size * 5), data, 39244);
-			j++;
-		}
-		i++;
-	}
-}
-
 void	display_player(t_data *data)
 {
-	// put_rectangle(data->p->x / data->map->tile_size * data->map->tile_draw_size
-	// 	- data->map->tile_draw_size / 8,
-	// 	data->p->y / data->map->tile_size * data->map->tile_draw_size
-	// 	- data->map->tile_draw_size / 8, data, 16776960);
 	put_rectangle(data->map->tile_draw_size * 7,
 		data->map->tile_draw_size * 7, data, make_trgb(100, 255, 0, 0));
-	//display_angle(data);
 }
 
 void	put_background(t_data *data)

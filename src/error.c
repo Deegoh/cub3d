@@ -22,10 +22,6 @@ void	err_msg(char *str)
 int	exit_cub(t_data *data)
 {
 	free_all(data);
-	free_map(data->map);
-	mlx_destroy_image(data->mlx->mlx, data->mlx->img);
-	mlx_destroy_window(data->mlx->mlx, data->mlx->mlx_win);
-	free(data->mlx);
 	free(data);
 	exit(EXIT_SUCCESS);
 }

@@ -24,6 +24,7 @@ SRC =	main.c\
 		map_utils.c\
 		ray.c\
 		ray_casting.c\
+		display_minimap.c\
 
 LIBFT_DIR = ft
 LIBFT = $(SRC_DIR)$(LIBFT_DIR)
@@ -48,7 +49,7 @@ _OBJ = $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR), $(_OBJ))
 
 CFLAGS = -Werror -Wall -Wextra
-CFLAGS += -g -fsanitize=address
+CFLAGS += -g #-fsanitize=address
 
 .PHONY: all clean fclean re leak norm run valgrind
 
@@ -62,19 +63,19 @@ $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(NAME): $(OBJ)
 	@printf "\n$(RESET)"
-#	@$(MAKE) all -sC $(LIBFT)
-#	@$(MAKE) all -skC $(MLX)
+	@$(MAKE) all -sC $(LIBFT)
+	@$(MAKE) all -skC $(MLX)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(INC_LIBFT) $(INC_MLX)
 	@printf "$(GREEN)🏗️ Generate $(NAME)$(RESET)\n"
 
 clean:
-#	@$(MAKE) clean -sC $(LIBFT)
-#	@$(MAKE) clean -sC $(MLX)
+	@$(MAKE) clean -sC $(LIBFT)
+	@$(MAKE) clean -sC $(MLX)
 	@$(RM) -r $(OBJ_DIR)
 	@printf "$(YELLOW)♻️ Clean cube3D objects$(RESET)\n"
 
 fclean: clean
-	@#$(MAKE) fclean -sC $(LIBFT)
+	@$(MAKE) fclean -sC $(LIBFT)
 	@$(RM) $(NAME)
 	@printf "$(RED)🗑️ Remove $(NAME)$(WHITE)\n"
 
@@ -89,7 +90,7 @@ valgrind: all
 	./$(NAME) map/map.cub
 
 norm:
-	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT)
+	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT) /inc
 
 run: all
 	./$(NAME) map/hole.cub
