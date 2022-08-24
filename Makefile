@@ -49,7 +49,7 @@ _OBJ = $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR), $(_OBJ))
 
 CFLAGS = -Werror -Wall -Wextra
-CFLAGS += -g #-fsanitize=address
+CFLAGS += -g -fsanitize=address
 
 .PHONY: all clean fclean re leak norm run valgrind
 
@@ -83,10 +83,9 @@ leak: all
 	leaks -atExit -- ./$(NAME) map/map2.cub
 
 valgrind: all
-		valgrind --leak-check=full \
+	valgrind --leak-check=full \
 	--show-leak-kinds=all \
 	--track-origins=yes \
-	--verbose \
 	./$(NAME) map/map.cub
 
 norm:
