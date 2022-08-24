@@ -59,6 +59,17 @@
 # define ERR_MAP_SIZE "Error\nInvalid size map\n"
 # define ERR_MAP_PLAYER "Error\nInvalid player map\n"
 
+typedef struct s_grid
+{
+	int	i;
+	int	j;
+	int	k;
+	int	l;
+	int	p_x;
+	int	p_y;
+	int	size;
+}t_grid;
+
 typedef struct s_map
 {
 	char	*map;
@@ -87,7 +98,7 @@ typedef struct s_mlx
 }			t_mlx;
 
 typedef struct s_player{
-	int		initiated;
+	int			initiated;
 	long double	x;
 	long double	y;
 	long double	d_x;
@@ -103,6 +114,7 @@ typedef struct s_ray
 	char		side;
 	int			ver_hor;
 	long double	relative_angle;
+	float		angle;
 }			t_ray;
 
 typedef struct s_texture
@@ -172,10 +184,12 @@ void	update_position(int key, t_data *data);
 void	get_ray(t_data *data);
 
 // init.c
-int		init_data(t_data *data, char **av);
+t_data	*init_data(char **av);
 
 // display_map.c
 void	display_map(t_data *data);
+void	put_background(t_data *data);
+void	update_image(t_data *data);
 
 // key_hook.c
 int		key_hook(int key, t_data *data);
@@ -189,5 +203,8 @@ void	get_all_rays(t_data *data);
 
 // ray_tracing.c
 void	display_rays(t_data *data);
+
+// display_minimap.c
+void	put_grid2(t_data *data);
 
 #endif

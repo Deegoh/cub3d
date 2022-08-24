@@ -6,18 +6,20 @@
 /*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:27:27 by yacinebenta       #+#    #+#             */
-/*   Updated: 2022/08/03 22:22:33 by yacinebenta      ###   ########.fr       */
+/*   Updated: 2022/08/13 00:49:08 by yacinebenta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// if (x >= SCREENWIDTH || y >= SCREENHEIGHT)
+	// 	return (1);
+//--> the code above does not work but we need another way
+// to check high value x and y in order to reduce the lag
 int	reach_wall(int x, int y, t_data *data, t_ray *ray)
 {
 	if (x <= 0 || y <= 0)
 		return (1);
-	// if (x >= SCREENWIDTH || y >= SCREENHEIGHT)
-	// 	return (1);
 	if (x / data->map->tile_size > data->map->len_line - 1
 		|| y / data->map->tile_size > data->map->nbr_line - 1)
 		return (1);
@@ -29,6 +31,9 @@ int	reach_wall(int x, int y, t_data *data, t_ray *ray)
 		if (data->map->map2d[y / data->map->tile_size]
 			[x / data->map->tile_size] == 'D')
 			ray->side = 'D';
+		else if (data->map->map2d[y / data->map->tile_size]
+			[x / data->map->tile_size] == 'O')
+			ray->side = 'O';
 		else
 			ray->side = 0;
 		return (1);
@@ -55,13 +60,14 @@ void	get_all_rays(t_data *data)
 		if (angle > 360)
 			angle = 0. + (angle - 360);
 		select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
-		if (data->is_minimap)
-			draw_line(data->ray[i].x * data->map->tile_draw_size
-				/ data->map->tile_size, data->ray[i].y * data->map->tile_draw_size
-				/ data->map->tile_size, data, make_trgb(100, 255, 0, 0));
 		i++;
 	}
 }
+// code to display the fov on the minimap
+	// if (data->is_minimap)
+	// 	draw_line(data->ray[i].x * data->map->tile_draw_size
+	// 		/ data->map->tile_size, data->ray[i].y * data->map->tile_draw_size
+	// 		/ data->map->tile_size, data, make_trgb(100, 255, 0, 0));
 
 t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 {
@@ -132,8 +138,7 @@ void	get_horizontal_ray(t_data *data, t_ray *ray, float angle)
 			* data->map->tile_size - 0.009;
 		direction = -1;
 	}
-	ray->y = data->p->y + (data->p->x - ray->x)
-		* tan(angle);
+	ray->y = data->p->y + (data->p->x - ray->x) * tan(angle);
 	while (!reach_wall(ray->x, ray->y, data, ray))
 	{
 		ray->x += data->map->tile_size * direction;

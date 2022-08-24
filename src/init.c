@@ -57,9 +57,13 @@ void	malloc_data(t_data *data)
 		err_msg(ERR_MALLOC);
 }
 
-int	init_data(t_data *data, char **av)
+t_data	*init_data(char **av)
 {
-	data->map = malloc(sizeof(t_map));
+	t_data	*data;
+
+	data = malloc(sizeof(t_data));
+	data->is_minimap = 1;
+	data->is_mouse = 1;
 	malloc_data(data);
 	data->mlx->mlx = mlx_init();
 	data->mlx->img = mlx_new_image(data->mlx->mlx, SCREENWIDTH, SCREENHEIGHT);
@@ -71,5 +75,5 @@ int	init_data(t_data *data, char **av)
 	get_player_pos(data);
 	data->prev_x = SCREENWIDTH / 2;
 	data->pov_y = 0;
-	return (1);
+	return (data);
 }
