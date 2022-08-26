@@ -41,7 +41,7 @@ int	reach_wall(int x, int y, t_data *data, t_ray *ray)
 	return (0);
 }
 
-// TODO if you want to display the fov in the minimap,
+// if you want to display the fov in the minimap,
 // we should use my_put_pixel in a separate function after the raycasting
 void	get_all_rays(t_data *data)
 {
@@ -59,7 +59,7 @@ void	get_all_rays(t_data *data)
 		angle += angle_diff;
 		if (angle > 360)
 			angle = 0. + (angle - 360);
-		select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
+		data->ray[i] = *select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
 		i++;
 	}
 }
@@ -71,26 +71,29 @@ void	get_all_rays(t_data *data)
 
 t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 {
-	int	d_hor;
-	int	d_ver;
+	t_ray	ray_hor;
+	t_ray	ray_ver;
+	int		d_hor;
+	int		d_ver;
 
-	ray->relative_angle = angle - data->p->angle;
-	get_horizontal_ray(data, ray, angle);
-	d_hor = ray->delta;
-	get_vertical_ray(data, ray, angle);
-	d_ver = ray->delta;
+	ray_hor.relative_angle = angle - data->p->angle;
+	ray_ver.relative_angle = angle - data->p->angle;
+	get_horizontal_ray(data, &ray_hor, angle);
+	d_hor = ray_hor.delta;
+	get_vertical_ray(data, &ray_ver, angle);
+	d_ver = ray_ver.delta;
 	if (d_hor < d_ver)
-		get_horizontal_ray(data, ray, angle);
+		ray = &ray_hor;
 	if (d_ver < d_hor)
-		get_vertical_ray(data, ray, angle);
+		ray = &ray_ver;
 	if (d_hor == d_ver)
 	{
 		if (reach_wall(ray->x, ray->y + 1, data, ray)
 			&& reach_wall(ray->x, ray->y - 1, data, ray))
-			get_horizontal_ray(data, ray, angle);
+			ray = &ray_hor;
 		else if (reach_wall(ray->x + 1, ray->y, data, ray)
 			&& reach_wall(ray->x - 1, ray->y, data, ray))
-			get_vertical_ray(data, ray, angle);
+			ray = &ray_ver;
 	}
 	return (ray);
 }
@@ -138,7 +141,7 @@ void	get_horizontal_ray(t_data *data, t_ray *ray, float angle)
 			* data->map->tile_size - 0.009;
 		direction = -1;
 	}
-	ray->y = data->p->y + (data->p->x - ray->x) * tan(angle);
+	ray->y = floor(data->p->y + (data->p->x - ray->x) * tan(angle));
 	while (!reach_wall(ray->x, ray->y, data, ray))
 	{
 		ray->x += data->map->tile_size * direction;

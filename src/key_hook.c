@@ -26,12 +26,13 @@ void	open_door(t_data *data)
 	if (c == 'D')
 	{
 		data->map->map2d[(int)floor(y2)][(int)floor(x2)] = 'O';
-		update_image(data);
+		//TODO animation door
+//		update_image(data);
 	}
 	else if (c == 'O')
 	{
 		data->map->map2d[(int)floor(y2)][(int)floor(x2)] = 'D';
-		update_image(data);
+//		update_image(data);
 	}
 }
 
@@ -55,7 +56,7 @@ int	key_hook(int key, t_data *data)
 		data->is_mouse = 1;
 	else if (key == 31)
 		open_door(data);
-	update_image(data);
+//	update_image(data);
 	return (0);
 }
 
@@ -104,7 +105,7 @@ int	mouse_hook(int x, int y, t_data *data)
 				decrease_or_increase_angle(data, 1, x);
 			else if (abs(diff_x) > 3)
 				decrease_or_increase_angle(data, 0, x);
-			update_image(data);
+//			update_image(data);
 		}
 	}
 	return (0);

@@ -30,17 +30,17 @@ void	put_rectangles(t_grid *grid, t_data *data)
 	y = grid->k * grid->size + (data->map->tile_draw_size * 2);
 	if (grid->i < 0 || grid->j < 0 || grid->i > data->map->nbr_line - 1
 		|| grid->j > data->map->len_line - 1)
-		put_rectangle(x, y, data, make_trgb(180, 230, 230, 230));
+		put_rectangle(x, y, data, make_trgb(0, 230, 230, 230));
 	else if (data->map->map2d[grid->i][grid->j] == '1'
 		|| data->map->map2d[grid->i][grid->j] == '.')
-		put_rectangle(x, y, data, make_trgb(100, 76, 0, 253));
+		put_rectangle(x, y, data, make_trgb(0, 105, 105, 105));
 	else if (data->map->map2d[grid->i][grid->j] == '0'
 		|| is_player(data->map->map2d[grid->i][grid->j]))
-		put_rectangle(x, y, data, make_trgb(100, 178, 102, 255));
+		put_rectangle(x, y, data, make_trgb(0, 180, 180, 180));
 	else if (data->map->map2d[grid->i][grid->j] == 'O'
 		|| is_player(data->map->map2d[grid->i][grid->j])
 		|| data->map->map2d[grid->i][grid->j] == 'D')
-		put_rectangle(x, y, data, make_trgb(100, 51, 153, 255));
+		put_rectangle(x, y, data, make_trgb(0, 71, 224, 84));
 }
 
 void	put_grid2(t_data *data)
@@ -62,33 +62,3 @@ void	put_grid2(t_data *data)
 		grid.i++;
 	}
 }
-
-//void	put_grid(t_data *data)
-//{
-//	int	i;
-//	int	j;
-//	int	size;
-//
-//	i = -1;
-//	size = data->map->tile_draw_size;
-//	while (++i < data->map->nbr_line)
-//	{
-//		j = -1;
-//		while (++j < data->map->len_line)
-//		{
-//			if (data->map->map2d[i][j] == '1')
-//				put_rectangle(j * size + (data->map->tile_draw_size * 5),
-//					i * size + (data->map->tile_draw_size * 5), data, 6316128);
-//			else if (data->map->map2d[i][j] == '0'
-//					|| is_player(data->map->map2d[i][j]))
-//				put_rectangle(j * size + (data->map->tile_draw_size * 5),
-//					i * size + (data->map->tile_draw_size * 5), data, 26316);
-//			else if (data->map->map2d[i][j] == '.')
-//				put_rectangle(j * size + (data->map->tile_draw_size * 5),
-//					i * size + (data->map->tile_draw_size * 5), data, 10526880);
-//			else if (data->map->map2d[i][j] == 'D')
-//				put_rectangle(j * size + (data->map->tile_draw_size * 5),
-//					i * size + (data->map->tile_draw_size * 5), data, 39244);
-//		}
-//	}
-//}

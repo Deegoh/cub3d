@@ -40,19 +40,19 @@ int	init_texture(t_data *data)
 
 void	malloc_data(t_data *data)
 {
-	data->map = malloc(sizeof(t_map));
+	data->map = ft_calloc(sizeof(t_map), 1);
 	if (!data->map)
 		err_msg(ERR_MALLOC);
-	data->mlx = malloc(sizeof(t_mlx));
+	data->mlx = ft_calloc(sizeof(t_mlx), 1);
 	if (!data->mlx)
 		err_msg(ERR_MALLOC);
-	data->p = malloc(sizeof(t_player));
+	data->p = ft_calloc(sizeof(t_player), 1);
 	if (!data->p)
 		err_msg(ERR_MALLOC);
-	data->t = malloc(sizeof(t_texture) * 6);
+	data->t = ft_calloc(sizeof(t_texture), 6);
 	if (!data->t)
 		err_msg(ERR_MALLOC);
-	data->ray = ft_calloc(SCREENWIDTH + 1, sizeof(t_ray));
+	data->ray = ft_calloc(SCREENWIDTH, sizeof(t_ray));
 	if (!data->ray)
 		err_msg(ERR_MALLOC);
 }
@@ -61,7 +61,9 @@ t_data	*init_data(char **av)
 {
 	t_data	*data;
 
-	data = malloc(sizeof(t_data));
+	data = ft_calloc(sizeof(t_data), 1);
+	if (!data)
+		err_msg(ERR_MALLOC);
 	data->is_minimap = 1;
 	data->is_mouse = 1;
 	malloc_data(data);

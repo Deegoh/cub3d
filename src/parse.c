@@ -12,7 +12,23 @@
 
 #include "cub3d.h"
 
-//TODO change the site of tile_draw_size if you want to change the minimap
+static void	check_line_info_map(char *gnl, int line)
+{
+	if (line == 0 && ft_strncmp(gnl, "NO ", 3) == 0)
+		return ;
+	else if (line == 1 && ft_strncmp(gnl, "SO ", 3) == 0)
+		return ;
+	else if (line == 2 && ft_strncmp(gnl, "WE ", 3) == 0)
+		return ;
+	else if (line == 3 && ft_strncmp(gnl, "EA ", 3) == 0)
+		return ;
+	else if (line == 4 && ft_strncmp(gnl, "F ", 2) == 0)
+		return ;
+	else if (line == 5 && ft_strncmp(gnl, "C ", 2) == 0)
+		return ;
+	err_msg(ERR_MAP_INFO);
+}
+
 static void	get_map(t_map *map, int fd)
 {
 	char	*gnl;
@@ -25,7 +41,10 @@ static void	get_map(t_map *map, int fd)
 		if (ft_strlen(gnl) > 1)
 		{
 			if (map->nbr_line < 6)
+			{
 				gnl = ft_strtrim_head(gnl, IS_SPACE);
+				check_line_info_map(gnl, map->nbr_line);
+			}
 			if (!map->map)
 				map->map = ft_strdup(gnl);
 			else
@@ -36,10 +55,6 @@ static void	get_map(t_map *map, int fd)
 		gnl = get_next_line(fd);
 	}
 	free(gnl);
-	map->nbr_line -= 6;
-	map->len_line -= 1;
-	map->tile_size = 512;
-	map->tile_draw_size = SCREENHEIGHT / 50;
 }
 
 static void	populate_map2d(t_map *map, int i)
@@ -108,6 +123,10 @@ void	parse_map(t_map *map, char **av)
 	map->nbr_line = 0;
 	map->len_line = 0;
 	get_map(map, fd);
+	map->nbr_line -= 6;
+	map->len_line -= 1;
+	map->tile_size = 512;
+	map->tile_draw_size = SCREENHEIGHT / 50;
 	i = get_elems(map);
 	init_map2d(map);
 	populate_map2d(map, i);

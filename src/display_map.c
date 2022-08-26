@@ -17,15 +17,19 @@ void	update_image(t_data *data)
 	put_background(data);
 	get_all_rays(data);
 	display_rays(data);
+	if (data->is_minimap)
+	{
+		put_grid2(data);
+		display_player(data);
+	}
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
 		data->mlx->img, 0, 0);
-	display_map(data);
 }
 
 void	display_player(t_data *data)
 {
 	put_rectangle(data->map->tile_draw_size * 7,
-		data->map->tile_draw_size * 7, data, make_trgb(100, 255, 0, 0));
+		data->map->tile_draw_size * 7, data, make_trgb(0, 6, 92, 204));
 }
 
 void	put_background(t_data *data)
@@ -34,39 +38,17 @@ void	put_background(t_data *data)
 	int	j;
 
 	i = 0;
-	while (i < SCREENHEIGHT / 2 - data->pov_y)
-	{
-		j = 0;
-		while (j < SCREENWIDTH)
-		{
-			my_mlx_pixel_put(data->mlx, j, i, data->map->ceiling);
-			j++;
-		}
-		i++;
-	}
-	j = 0;
 	while (i < SCREENHEIGHT)
 	{
 		j = 0;
 		while (j < SCREENWIDTH)
 		{
-			my_mlx_pixel_put(data->mlx, j, i, data->map->floor);
+			if (i < SCREENHEIGHT / 2 - data->pov_y)
+				my_mlx_pixel_put(data->mlx, j, i, data->map->ceiling);
+			else
+				my_mlx_pixel_put(data->mlx, j, i, data->map->floor);
 			j++;
 		}
 		i++;
 	}
-}
-
-void	display_map(t_data *data)
-{
-	put_background(data);
-	get_all_rays(data);
-	display_rays(data);
-	if (data->is_minimap)
-	{
-		put_grid2(data);
-		display_player(data);
-	}
-	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
-		data->mlx->img, 0, 0);
 }

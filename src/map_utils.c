@@ -12,11 +12,6 @@
 
 #include "cub3d.h"
 
-static int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
 int	get_floor_or_ceiling(t_map *map, int i)
 {
 	int	a;
@@ -36,7 +31,7 @@ int	get_floor_or_ceiling(t_map *map, int i)
 	while (!ft_isdigit(map->map[i]))
 		i++;
 	b = ft_atoi(map->map + i);
-	return (create_trgb(is_color(a), is_color(r), is_color(g), is_color(b)));
+	return (make_trgb(is_color(a), is_color(r), is_color(g), is_color(b)));
 }
 
 static int	get_info(t_map *map, char *type, int i)

@@ -54,6 +54,7 @@
 # define ERR_COLOR "Error\nWrong color\n"
 # define ERR_MALLOC "Error\nCannot allocate memory\n"
 # define ERR_TEXTURE "Error\nTexture not found\n"
+# define ERR_MAP_INFO "Error\nInvalid map info\n"
 # define ERR_MAP_CLOSE "Error\nMap not closed\n"
 # define ERR_MAP_CONTENT "Error\nInvalid content map\n"
 # define ERR_MAP_SIZE "Error\nInvalid size map\n"
@@ -95,7 +96,7 @@ typedef struct s_mlx
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}			t_mlx;
+}t_mlx;
 
 typedef struct s_player{
 	int			initiated;
@@ -104,7 +105,7 @@ typedef struct s_player{
 	long double	d_x;
 	long double	d_y;
 	long double	angle;
-}			t_player;
+}t_player;
 
 typedef struct s_ray
 {
@@ -115,7 +116,7 @@ typedef struct s_ray
 	int			ver_hor;
 	long double	relative_angle;
 	float		angle;
-}			t_ray;
+}t_ray;
 
 typedef struct s_texture
 {
@@ -126,7 +127,7 @@ typedef struct s_texture
 	int		*addr;
 	int		width;
 	int		height;
-}	t_texture;
+}t_texture;
 
 typedef struct s_data
 {
@@ -135,11 +136,12 @@ typedef struct s_data
 	t_player	*p;
 	t_ray		*ray;
 	t_texture	*t;
+	int			frame;
 	int			is_mouse;
 	int			prev_x;
 	int			pov_y;
 	int			is_minimap;
-}			t_data;
+}t_data;
 
 // error.c
 void	err_msg(char *str);
@@ -187,7 +189,6 @@ void	get_ray(t_data *data);
 t_data	*init_data(char **av);
 
 // display_map.c
-void	display_map(t_data *data);
 void	put_background(t_data *data);
 void	update_image(t_data *data);
 
@@ -206,5 +207,10 @@ void	display_rays(t_data *data);
 
 // display_minimap.c
 void	put_grid2(t_data *data);
+
+// math_utils.c
+double	rad_to_degree(double rad);
+double	degree_to_rad(double degree);
+float	precision(double num, int digit);
 
 #endif

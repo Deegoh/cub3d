@@ -43,8 +43,6 @@ void	put_rectangle(int x, int y, t_data *data, int color)
 	int	size;
 
 	size = data->map->tile_draw_size;
-	if (color == 16776960)
-		size = data->map->tile_draw_size / 5;
 	i = y;
 	while (i < size + y)
 	{

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yacinebentayeb <yacinebentayeb@student.    +#+  +:+       +#+        */
+/*   By: tpinto-m <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/25 08:44:42 by tpinto-m          #+#    #+#             */
-/*   Updated: 2022/08/01 23:23:11 by yacinebenta      ###   ########.fr       */
+/*   Created: 2022/08/26 15:43:56 by tpinto-m          #+#    #+#             */
+/*   Updated: 2022/08/26 15:43:58 by tpinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	err_msg(char *str)
+double	rad_to_degree(double rad)
 {
-	ft_putstr_fd(str, 2);
-	exit (EXIT_FAILURE);
+	return (180 / M_PI * rad);
 }
 
-int	exit_cub(t_data *data)
+double	degree_to_rad(double degree)
 {
-	free_all(data);
-	free(data);
-	exit(EXIT_SUCCESS);
+	return (M_PI / 180 * degree);
+}
+
+float	precision(double num, int digit)
+{
+	return (floor(digit * num) / digit);
 }
