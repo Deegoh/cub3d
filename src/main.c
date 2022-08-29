@@ -12,14 +12,6 @@
 
 #include "cub3d.h"
 
-int	ft_loop_hook(t_data	*data)
-{
-	mlx_clear_window(data->mlx->mlx, data->mlx->mlx_win);
-	update_image(data);
-	data->frame = (data->frame + 1) % 1000000000;
-	return (0);
-}
-
 int	main(int ac, char **av)
 {
 	t_data	*data;
@@ -29,12 +21,13 @@ int	main(int ac, char **av)
 	data = init_data(av);
 	data->mlx->mlx_win = mlx_new_window(data->mlx->mlx,
 			SCREENWIDTH, SCREENHEIGHT, "Hello cub3D");
-//	print_info_map(data->map);
-//	print_map2d(data->map);
-//	mlx_mouse_hide();
+	print_info_map(data->map);
+	print_map2d(data->map);
+	mlx_mouse_hide();
 	mlx_loop_hook(data->mlx->mlx, ft_loop_hook, data);
+	if (data->is_mouse)
+		mlx_hook(data->mlx->mlx_win, 6, 1, mouse_hook, data);
 	mlx_hook(data->mlx->mlx_win, 2, 1, key_hook, data);
-//	mlx_hook(data->mlx->mlx_win, 6, 1, mouse_hook, data);
 	mlx_hook(data->mlx->mlx_win, 17, 0, exit_cub, data);
 	mlx_loop(data->mlx->mlx);
 	free_all(data);

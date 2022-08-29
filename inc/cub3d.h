@@ -27,6 +27,10 @@
 # define KEY_A 0
 # define KEY_S 2
 # define KEY_D 1
+# define KEY_M 46
+# define KEY_N 45
+# define KEY_O 31
+# define KEY_H 4
 # define KEY_RIGHT 124
 # define KEY_LEFT 123
 # define KEY_ESC 53
@@ -44,10 +48,12 @@
 # define EXT ".cub"
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
-//TODO check D for bonus
 # ifndef IS_MAP
 #  define IS_MAP "01NSWED"
 # endif
+# define IMG_DOOR "./map/texture/Plank3_Light.xpm"
+# define IMG_KNIFE "./map/texture/knifeX4.xpm"
+
 # define ERR_USAGE "Error\nUsage: ./cub3D map.cub\n"
 # define ERR_FILE "Error\nWrong file\n"
 # define ERR_FD "Error\nFile not found\n"
@@ -129,6 +135,16 @@ typedef struct s_texture
 	int		height;
 }t_texture;
 
+typedef struct s_hud
+{
+	void	*img;
+	int		width;
+	int		height;
+	int 	anim;
+	int		is_hud;
+	int		sign;
+}t_hud;
+
 typedef struct s_data
 {
 	t_mlx		*mlx;
@@ -136,6 +152,8 @@ typedef struct s_data
 	t_player	*p;
 	t_ray		*ray;
 	t_texture	*t;
+	t_hud		hud;
+	int			nbr_t;
 	int			frame;
 	int			is_mouse;
 	int			prev_x;
@@ -171,7 +189,6 @@ void	print_info_map(t_map *map);
 // draw.c
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void	put_rectangle(int x, int y, t_data *data, int color);
-void	put_grid(t_data *data);
 int		make_trgb(int t, int r, int g, int b);
 void	draw_line(int x2, int y2, t_data *data, int color);
 int		my_mlx_pixel_get(t_texture *texture, int x, int y);
@@ -189,10 +206,12 @@ void	get_ray(t_data *data);
 t_data	*init_data(char **av);
 
 // display_map.c
+int		ft_loop_hook(t_data	*data);
 void	put_background(t_data *data);
 void	update_image(t_data *data);
 
 // key_hook.c
+void	update_hud(t_data *data);
 int		key_hook(int key, t_data *data);
 int		mouse_hook(int x, int y, t_data *data);
 

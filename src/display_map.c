@@ -12,11 +12,30 @@
 
 #include "cub3d.h"
 
+int	ft_loop_hook(t_data	*data)
+{
+	mlx_clear_window(data->mlx->mlx, data->mlx->mlx_win);
+	update_image(data);
+	data->frame = (data->frame + 1) % 1000000000;
+	return (0);
+}
+
+void	put_hud(t_data *data)
+{
+	data->hud.img = mlx_xpm_file_to_image(data->mlx->mlx, IMG_KNIFE,
+			&data->hud.width, &data->hud.height);
+	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
+		data->hud.img, (SCREENWIDTH - data->hud.width) / 4 * 3,
+		SCREENHEIGHT - data->hud.height + data->hud.anim + 15);
+}
+
 void	update_image(t_data *data)
 {
 	put_background(data);
 	get_all_rays(data);
 	display_rays(data);
+	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
+		data->mlx->img, 0, 0);
 	if (data->is_minimap)
 	{
 		put_grid2(data);
@@ -24,12 +43,14 @@ void	update_image(t_data *data)
 	}
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
 		data->mlx->img, 0, 0);
+	if (data->hud.is_hud)
+		put_hud(data);
 }
 
 void	display_player(t_data *data)
 {
 	put_rectangle(data->map->tile_draw_size * 7,
-		data->map->tile_draw_size * 7, data, make_trgb(0, 6, 92, 204));
+		data->map->tile_draw_size * 7, data, make_trgb(50, 6, 92, 204));
 }
 
 void	put_background(t_data *data)

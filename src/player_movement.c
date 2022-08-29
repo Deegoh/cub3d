@@ -53,5 +53,4 @@ void	update_position(int key, t_data *data)
 
 	speed = (int)data->map->tile_size / 7;
 	choose_direction(data, key, speed);
-//	display_map(data);
 }

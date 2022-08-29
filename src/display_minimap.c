@@ -30,17 +30,16 @@ void	put_rectangles(t_grid *grid, t_data *data)
 	y = grid->k * grid->size + (data->map->tile_draw_size * 2);
 	if (grid->i < 0 || grid->j < 0 || grid->i > data->map->nbr_line - 1
 		|| grid->j > data->map->len_line - 1)
-		put_rectangle(x, y, data, make_trgb(0, 230, 230, 230));
-	else if (data->map->map2d[grid->i][grid->j] == '1'
-		|| data->map->map2d[grid->i][grid->j] == '.')
-		put_rectangle(x, y, data, make_trgb(0, 105, 105, 105));
+		;
+	else if (data->map->map2d[grid->i][grid->j] == '1')
+		put_rectangle(x, y, data, make_trgb(50, 105, 105, 105));
 	else if (data->map->map2d[grid->i][grid->j] == '0'
 		|| is_player(data->map->map2d[grid->i][grid->j]))
-		put_rectangle(x, y, data, make_trgb(0, 180, 180, 180));
+		put_rectangle(x, y, data, make_trgb(50, 180, 180, 180));
 	else if (data->map->map2d[grid->i][grid->j] == 'O'
 		|| is_player(data->map->map2d[grid->i][grid->j])
 		|| data->map->map2d[grid->i][grid->j] == 'D')
-		put_rectangle(x, y, data, make_trgb(0, 71, 224, 84));
+		put_rectangle(x, y, data, make_trgb(50, 71, 224, 84));
 }
 
 void	put_grid2(t_data *data)

@@ -59,7 +59,8 @@ void	get_all_rays(t_data *data)
 		angle += angle_diff;
 		if (angle > 360)
 			angle = 0. + (angle - 360);
-		data->ray[i] = *select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
+		data->ray[i] = *select_ray(data, angle * (M_PI / 180.),
+				&(data->ray[i]));
 		i++;
 	}
 }
@@ -88,11 +89,11 @@ t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 		ray = &ray_ver;
 	if (d_hor == d_ver)
 	{
-		if (reach_wall(ray->x, ray->y + 1, data, ray)
-			&& reach_wall(ray->x, ray->y - 1, data, ray))
+		if (reach_wall(ray->x, ray->y + 1, data, &ray_hor)
+			&& reach_wall(ray->x, ray->y - 1, data, &ray_hor))
 			ray = &ray_hor;
-		else if (reach_wall(ray->x + 1, ray->y, data, ray)
-			&& reach_wall(ray->x - 1, ray->y, data, ray))
+		else if (reach_wall(ray->x + 1, ray->y, data, &ray_ver)
+			&& reach_wall(ray->x - 1, ray->y, data, &ray_ver))
 			ray = &ray_ver;
 	}
 	return (ray);
@@ -138,7 +139,7 @@ void	get_horizontal_ray(t_data *data, t_ray *ray, float angle)
 	else
 	{
 		ray->x = floor(data->p->x / data->map->tile_size)
-			* data->map->tile_size - 0.009;
+			* data->map->tile_size - 0.01;
 		direction = -1;
 	}
 	ray->y = floor(data->p->y + (data->p->x - ray->x) * tan(angle));

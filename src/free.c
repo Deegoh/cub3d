@@ -44,7 +44,7 @@ void	free_all(t_data *data)
 	free(data->map);
 	free(data->p);
 	free(data->ray);
-	while (i < 4)
+	while (i < data->nbr_t)
 	{
 		mlx_destroy_image(data->mlx->mlx, data->t[i].img);
 		i++;

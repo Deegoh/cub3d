@@ -96,5 +96,4 @@ void	update_angle(int key, t_data *data)
 		if (data->p->angle < 0.)
 			data->p->angle = 2 * M_PI - (data->p->angle * -1);
 	}
-//	update_image(data);
 }

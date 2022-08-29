@@ -25,10 +25,11 @@ int	init_texture(t_data *data)
 			data->map->w_ea, &data->t[2].width, &data->t[2].height);
 	data->t[3].img = mlx_xpm_file_to_image(data->mlx->mlx,
 			data->map->w_we, &data->t[3].width, &data->t[3].height);
-	data->t[4].img = mlx_xpm_file_to_image(data->mlx->mlx,
-			"./map/texture/Plank3_Light.xpm",
+	data->t[4].img = mlx_xpm_file_to_image(data->mlx->mlx, IMG_DOOR,
 			&data->t[4].width, &data->t[4].height);
-	while (++i < 5)
+	data->t[5].img = mlx_xpm_file_to_image(data->mlx->mlx, IMG_KNIFE,
+			&data->t[5].width, &data->t[5].height);
+	while (++i < data->nbr_t)
 	{
 		if (!data->t[i].img)
 			err_msg(ERR_TEXTURE);
@@ -49,7 +50,7 @@ void	malloc_data(t_data *data)
 	data->p = ft_calloc(sizeof(t_player), 1);
 	if (!data->p)
 		err_msg(ERR_MALLOC);
-	data->t = ft_calloc(sizeof(t_texture), 6);
+	data->t = ft_calloc(sizeof(t_texture), data->nbr_t);
 	if (!data->t)
 		err_msg(ERR_MALLOC);
 	data->ray = ft_calloc(SCREENWIDTH, sizeof(t_ray));
@@ -66,6 +67,10 @@ t_data	*init_data(char **av)
 		err_msg(ERR_MALLOC);
 	data->is_minimap = 1;
 	data->is_mouse = 1;
+	data->hud.is_hud = 0;
+	data->hud.sign = 0;
+	data->nbr_t = 6;
+	data->hud.anim = 0;
 	malloc_data(data);
 	data->mlx->mlx = mlx_init();
 	data->mlx->img = mlx_new_image(data->mlx->mlx, SCREENWIDTH, SCREENHEIGHT);
