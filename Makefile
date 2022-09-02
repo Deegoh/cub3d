@@ -50,7 +50,7 @@ _OBJ = $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR), $(_OBJ))
 
 CFLAGS = -Werror -Wall -Wextra
-CFLAGS += -g3 # -fsanitize=address
+CFLAGS += -g3 -fsanitize=address
 
 .PHONY: all clean fclean re leak norm run valgrind
 
@@ -90,7 +90,7 @@ valgrind: all
 	./$(NAME) map/map.cub
 
 norm:
-	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT) /inc
+	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT) inc/
 
 run: all
 	./$(NAME) map/hole.cub

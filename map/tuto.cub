@@ -1,0 +1,19 @@
+NO ./map/texture/Leaves_Light.xpm
+
+
+SO ./map/texture/Leaves_Medium.xpm
+WE ./map/texture/Bricks5_Light.xpm
+
+EA ./map/texture/Plank2_Dark.xpm
+
+F 160,160,160
+
+
+
+    C 153,204,255
+
+111111
+100001
+100001
+1N0001
+111111

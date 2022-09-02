@@ -41,60 +41,38 @@ int	reach_wall(int x, int y, t_data *data, t_ray *ray)
 	return (0);
 }
 
-// if you want to display the fov in the minimap,
-// we should use my_put_pixel in a separate function after the raycasting
-void	get_all_rays(t_data *data)
+void	dup_ray(t_ray *ray, t_ray *dup)
 {
-	int		i;
-	float	angle;
-	float	angle_diff;
-
-	i = 0;
-	angle_diff = (60. / (float)SCREENWIDTH);
-	angle = data->p->angle / (M_PI / 180.) - 30.;
-	if (angle < 0.)
-		angle += 360;
-	while (i < SCREENWIDTH)
-	{
-		angle += angle_diff;
-		if (angle > 360)
-			angle = 0. + (angle - 360);
-		data->ray[i] = *select_ray(data, angle * (M_PI / 180.),
-				&(data->ray[i]));
-		i++;
-	}
+	dup->x = ray->x;
+	dup->y = ray->y;
+	dup->delta = ray->delta;
+	dup->side = ray->side;
+	dup->ver_hor = ray->ver_hor;
+	dup->relative_angle = ray->relative_angle;
+	dup->angle = ray->angle;
 }
-// code to display the fov on the minimap
-	// if (data->is_minimap)
-	// 	draw_line(data->ray[i].x * data->map->tile_draw_size
-	// 		/ data->map->tile_size, data->ray[i].y * data->map->tile_draw_size
-	// 		/ data->map->tile_size, data, make_trgb(100, 255, 0, 0));
 
 t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 {
-	t_ray	ray_hor;
-	t_ray	ray_ver;
 	int		d_hor;
 	int		d_ver;
+	t_ray	last_ray;
+	t_ray	dup;
 
-	ray_hor.relative_angle = angle - data->p->angle;
-	ray_ver.relative_angle = angle - data->p->angle;
-	get_horizontal_ray(data, &ray_hor, angle);
-	d_hor = ray_hor.delta;
-	get_vertical_ray(data, &ray_ver, angle);
-	d_ver = ray_ver.delta;
+	ray->relative_angle = angle - data->p->angle;
+	dup_ray(ray, &last_ray);
+	get_horizontal_ray(data, ray, angle);
+	d_hor = ray->delta;
+	dup_ray(ray, &dup);
+	get_vertical_ray(data, ray, angle);
+	d_ver = ray->delta;
 	if (d_hor < d_ver)
-		ray = &ray_hor;
-	if (d_ver < d_hor)
-		ray = &ray_ver;
-	if (d_hor == d_ver)
 	{
-		if (reach_wall(ray->x, ray->y + 1, data, &ray_hor)
-			&& reach_wall(ray->x, ray->y - 1, data, &ray_hor))
-			ray = &ray_hor;
-		else if (reach_wall(ray->x + 1, ray->y, data, &ray_ver)
-			&& reach_wall(ray->x - 1, ray->y, data, &ray_ver))
-			ray = &ray_ver;
+		dup_ray(&dup, ray);
+	}
+	if (ft_abs(d_ver - d_hor) <= 5)
+	{
+		ray->side = -1;
 	}
 	return (ray);
 }
@@ -104,9 +82,9 @@ void	get_vertical_ray(t_data *data, t_ray *ray, float angle)
 	int	direction;
 
 	direction = 1;
-	if (angle < 180. * (M_PI / 180))
+	if (angle > 0 && angle < degree_to_rad(180))
 		ray->y = floor(data->p->y / data->map->tile_size)
-			* data->map->tile_size - 0.01;
+			* data->map->tile_size - 1;
 	else
 	{
 		ray->y = floor(data->p->y / data->map->tile_size)
@@ -133,13 +111,13 @@ void	get_horizontal_ray(t_data *data, t_ray *ray, float angle)
 	int	direction;
 
 	direction = 1;
-	if (angle < M_PI / 2 || angle > 3 * M_PI / 2)
+	if (angle <= degree_to_rad(90) || angle >= degree_to_rad(270))
 		ray->x = floor(data->p->x / data->map->tile_size)
 			* data->map->tile_size + data->map->tile_size;
 	else
 	{
 		ray->x = floor(data->p->x / data->map->tile_size)
-			* data->map->tile_size - 0.01;
+			* data->map->tile_size - 1;
 		direction = -1;
 	}
 	ray->y = floor(data->p->y + (data->p->x - ray->x) * tan(angle));

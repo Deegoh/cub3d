@@ -26,3 +26,10 @@ float	precision(double num, int digit)
 {
 	return (floor(digit * num) / digit);
 }
+
+int	ft_abs(int x)
+{
+	if (x < 0)
+		x = -x;
+	return (x);
+}

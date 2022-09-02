@@ -49,7 +49,7 @@
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
 # ifndef IS_MAP
-#  define IS_MAP "01NSWED"
+#  define IS_MAP "01NSWEDO"
 # endif
 # define IMG_DOOR "./map/texture/Plank3_Light.xpm"
 # define IMG_KNIFE "./map/texture/knifeX4.xpm"
@@ -140,7 +140,7 @@ typedef struct s_hud
 	void	*img;
 	int		width;
 	int		height;
-	int 	anim;
+	int		anim;
 	int		is_hud;
 	int		sign;
 }t_hud;
@@ -231,5 +231,6 @@ void	put_grid2(t_data *data);
 double	rad_to_degree(double rad);
 double	degree_to_rad(double degree);
 float	precision(double num, int digit);
+int		ft_abs(int x);
 
 #endif

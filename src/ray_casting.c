@@ -12,6 +12,34 @@
 
 #include "cub3d.h"
 
+// if you want to display the fov in the minimap,
+// we should use my_put_pixel in a separate function after the raycasting
+void	get_all_rays(t_data *data)
+{
+	int		i;
+	float	angle;
+	float	angle_diff;
+
+	i = 0;
+	angle_diff = (60. / (float)SCREENWIDTH);
+	angle = data->p->angle / (M_PI / 180.) - 30.;
+	if (angle < 0.)
+		angle += 360;
+	while (i < SCREENWIDTH)
+	{
+		angle += angle_diff;
+		if (angle >= 360)
+			angle = 0. + (angle - 360);
+		select_ray(data, angle * (M_PI / 180.), &(data->ray[i]));
+		i++;
+	}
+}
+// code to display the fov on the minimap
+// if (data->is_minimap)
+// 	draw_line(data->ray[i].x * data->map->tile_draw_size
+// 		/ data->map->tile_size, data->ray[i].y * data->map->tile_draw_size
+// 		/ data->map->tile_size, data, make_trgb(100, 255, 0, 0));
+
 int	choose_texture(t_data *data, t_ray *ray, int y, int size)
 {
 	int	s;
@@ -50,14 +78,12 @@ void	display_ray(t_data *data, int x, int j)
 	i = 0;
 	distance = data->ray[j].delta * cos(data->ray[j].relative_angle);
 	size = data->map->tile_size / distance * 512;
-	if (data->ray[j].side == 'N' || data->ray[j].side == 'S')
-		color = make_trgb(0, 153, 0, 153);
-	else if (data->ray[j].side == 'D')
-		color = make_trgb(0, 102, 255, 178);
-	else
-		color = make_trgb(0, 255, 153, 255);
 	while (i < size)
 	{
+		if (data->ray[j].side == -1 && j > SCREENWIDTH / 2)
+			data->ray[j].side = data->ray[j - 10].side;
+		else if (data->ray[j].side == -1 && j < SCREENWIDTH / 2)
+			data->ray[j].side = data->ray[j + 10].side;
 		color = choose_texture(data, &data->ray[j], size + i, size * 2);
 		my_mlx_pixel_put(data->mlx, x,
 			SCREENHEIGHT / 2 + i - data->pov_y, color);
@@ -75,7 +101,7 @@ void	display_rays(t_data *data)
 
 	i = SCREENWIDTH - 1;
 	x = 0;
-	while (i > 0)
+	while (i >= 0)
 	{	
 		display_ray(data, x, i);
 		x++;
