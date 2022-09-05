@@ -49,7 +49,7 @@
 # define IS_SPACE " \n\t\v\f\r"
 # define IS_PLAYER "NSWE"
 # ifndef IS_MAP
-#  define IS_MAP "01NSWEDO"
+#  define IS_MAP "01NSWE"
 # endif
 # define IMG_DOOR "./map/texture/Plank3_Light.xpm"
 # define IMG_KNIFE "./map/texture/knifeX4.xpm"

@@ -50,10 +50,14 @@ OBJ_DIR = obj/
 _OBJ = $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR), $(_OBJ))
 
+OBJ_DIR_BONUS = obj_bonus/
+_OBJ_BONUS = $(SRC:.c=.o)
+OBJ_BONUS = $(addprefix $(OBJ_DIR_BONUS), $(_OBJ_BONUS))
+
 CFLAGS = -Werror -Wall -Wextra
 CFLAGS += -g3 #-fsanitize=address
 
-.PHONY: all clean fclean re leak norm run valgrind
+.PHONY: all clean fclean re leak norm run valgrind bonus
 
 all: $(NAME)
 
@@ -66,14 +70,28 @@ $(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 $(NAME): $(OBJ)
 	@printf "\n$(RESET)"
 	@$(MAKE) all -sC $(LIBFT)
-	@$(MAKE) all -skC $(MLX)
+	@$(MAKE) all -sC $(MLX)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(INC_LIBFT) $(INC_MLX)
+	@printf "$(GREEN)🏗️ Generate $(NAME)$(RESET)\n"
+
+$(OBJ_BONUS): $(OBJ_DIR_BONUS)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR_BONUS)
+	@printf "$(GREEN)🏗️ Generate cube3D objects_bonus %-33.33s\r" $@
+	@$(CC) $(CFLAGS) -D IS_MAP=\"01NSWEOD\" -c $< -o $@ -I inc/ -I $(LIBFT) -I $(MLX) -O3
+	@printf "$(RESET)"
+
+bonus: $(OBJ_BONUS)
+	@printf "\n$(RESET)"
+	@$(MAKE) all -sC $(LIBFT)
+	@$(MAKE) all -sC $(MLX)
+	$(CC) $(CFLAGS) $(OBJ_BONUS) -o $(NAME) $(INC_LIBFT) $(INC_MLX)
 	@printf "$(GREEN)🏗️ Generate $(NAME)$(RESET)\n"
 
 clean:
 	@$(MAKE) clean -sC $(LIBFT)
 	@$(MAKE) clean -sC $(MLX)
 	@$(RM) -r $(OBJ_DIR)
+	@$(RM) -r $(OBJ_DIR_BONUS)
 	@printf "$(YELLOW)♻️ Clean cube3D objects$(RESET)\n"
 
 fclean: clean
@@ -82,18 +100,12 @@ fclean: clean
 	@printf "$(RED)🗑️ Remove $(NAME)$(WHITE)\n"
 
 leak: all
-	leaks -atExit -- ./$(NAME) map/map2.cub
-
-valgrind: all
-	valgrind --leak-check=full \
-	--show-leak-kinds=all \
-	--track-origins=yes \
-	./$(NAME) map/map.cub
+	leaks -atExit -- ./$(NAME) map/map.cub
 
 norm:
 	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT) inc/
 
-run: all
+run:
 	./$(NAME) map/hole.cub
 
 re: fclean all

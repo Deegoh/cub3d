@@ -21,8 +21,6 @@ int	main(int ac, char **av)
 	data = init_data(av);
 	data->mlx->mlx_win = mlx_new_window(data->mlx->mlx,
 			SCREENWIDTH, SCREENHEIGHT, "Hello cub3D");
-	print_info_map(data->map);
-	print_map2d(data->map);
 	mlx_mouse_hide();
 	mlx_loop_hook(data->mlx->mlx, ft_loop_hook, data);
 	if (data->is_mouse)

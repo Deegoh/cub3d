@@ -70,7 +70,7 @@ t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 	{
 		dup_ray(&dup, ray);
 	}
-	if (ft_abs(d_ver - d_hor) <= 5)
+	if (ft_abs(d_ver - d_hor) <= 4)
 	{
 		ray->side = -1;
 	}
