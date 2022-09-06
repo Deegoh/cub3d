@@ -47,6 +47,20 @@ static void	check_center_map(t_map *map, int x, int y)
 		{
 			err_msg(ERR_MAP_CLOSE);
 		}
+		if ((map->map2d[y][x] == 'D' && map->map2d[y][x - 1] == '.')
+			|| (map->map2d[y][x] == 'D' && map->map2d[y][x + 1] == '.')
+			|| (map->map2d[y][x] == 'D' && map->map2d[y - 1][x] == '.')
+			|| (map->map2d[y][x] == 'D' && map->map2d[y + 1][x] == '.'))
+		{
+			err_msg(ERR_MAP_CLOSE);
+		}
+		if ((map->map2d[y][x] == 'O' && map->map2d[y][x - 1] == '.')
+			|| (map->map2d[y][x] == 'O' && map->map2d[y][x + 1] == '.')
+			|| (map->map2d[y][x] == 'O' && map->map2d[y - 1][x] == '.')
+			|| (map->map2d[y][x] == 'O' && map->map2d[y + 1][x] == '.'))
+		{
+			err_msg(ERR_MAP_CLOSE);
+		}
 	}
 }
 
