@@ -69,3 +69,11 @@ int	mouse_hook(int x, int y, t_data *data)
 	}
 	return (0);
 }
+
+int	keymouse_hook(int button, int x, int y, t_data *data)
+{
+	if (button == 1 && x >= 0 && y >= 0
+		&& x <= SCREENWIDTH && y <= SCREENHEIGHT)
+		anim_schlass(data);
+	return (0);
+}

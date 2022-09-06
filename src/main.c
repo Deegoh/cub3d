@@ -26,6 +26,7 @@ int	main(int ac, char **av)
 	if (data->is_mouse)
 		mlx_hook(data->mlx->mlx_win, 6, 1, mouse_hook, data);
 	mlx_hook(data->mlx->mlx_win, 2, 1, key_hook, data);
+	mlx_hook(data->mlx->mlx_win, 4, 1, keymouse_hook, data);
 	mlx_hook(data->mlx->mlx_win, 17, 0, exit_cub, data);
 	mlx_loop(data->mlx->mlx);
 	free_all(data);

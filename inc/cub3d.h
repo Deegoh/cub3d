@@ -31,6 +31,7 @@
 # define KEY_N 45
 # define KEY_O 31
 # define KEY_H 4
+# define KEY_SPACE 49
 # define KEY_RIGHT 124
 # define KEY_LEFT 123
 # define KEY_ESC 53
@@ -140,9 +141,11 @@ typedef struct s_hud
 	void	*img;
 	int		width;
 	int		height;
-	int		anim;
+	int		x;
+	int		y;
 	int		is_hud;
 	int		sign;
+	int		is_animated;
 }t_hud;
 
 typedef struct s_data
@@ -155,6 +158,7 @@ typedef struct s_data
 	t_hud		hud;
 	int			nbr_t;
 	int			frame;
+	int			last_frame;
 	int			is_mouse;
 	int			prev_x;
 	int			pov_y;
@@ -214,6 +218,8 @@ void	update_image(t_data *data);
 void	update_hud(t_data *data);
 int		key_hook(int key, t_data *data);
 int		mouse_hook(int x, int y, t_data *data);
+void	anim_schlass(t_data *data);
+int		keymouse_hook(int button, int x, int y, t_data *data);
 
 // ray.c
 void	get_vertical_ray(t_data *data, t_ray *ray, float angle);

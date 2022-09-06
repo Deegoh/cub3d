@@ -35,17 +35,28 @@ void	open_door(t_data *data)
 
 void	update_hud(t_data *data)
 {
-	if (data->hud.sign)
+	if (data->hud.sign && !data->hud.is_animated)
 	{
-		data->hud.anim -= 1;
-		if (data->hud.anim < -10)
+		data->hud.y -= 1;
+		if (data->hud.y < -10)
 			data->hud.sign = ft_bool(data->hud.sign);
 	}
-	else
+	else if (!data->hud.sign && !data->hud.is_animated)
 	{
-		data->hud.anim += 1;
-		if (data->hud.anim > 10)
+		data->hud.y += 1;
+		if (data->hud.y > 10)
 			data->hud.sign = ft_bool(data->hud.sign);
+	}
+}
+
+void	anim_schlass(t_data *data)
+{
+	if (!data->hud.is_animated)
+	{
+		data->last_frame = data->frame;
+		data->hud.is_animated = 1;
+		data->hud.y -= 100;
+		data->hud.x -= 100;
 	}
 }
 
@@ -70,5 +81,7 @@ int	key_hook(int key, t_data *data)
 		open_door(data);
 	else if (key == KEY_H)
 		data->hud.is_hud = ft_bool(data->hud.is_hud);
+	else if (key == KEY_SPACE)
+		anim_schlass(data);
 	return (0);
 }

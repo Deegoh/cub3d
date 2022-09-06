@@ -17,6 +17,12 @@ int	ft_loop_hook(t_data	*data)
 	mlx_clear_window(data->mlx->mlx, data->mlx->mlx_win);
 	update_image(data);
 	data->frame = (data->frame + 1) % 1000000000;
+	if (data->hud.is_animated && ft_abs(data->last_frame + data->frame) >= 200)
+	{
+		data->hud.y += 100;
+		data->hud.x += 100;
+		data->hud.is_animated = 0;
+	}
 	return (0);
 }
 
@@ -25,8 +31,8 @@ void	put_hud(t_data *data)
 	data->hud.img = mlx_xpm_file_to_image(data->mlx->mlx, IMG_KNIFE,
 			&data->hud.width, &data->hud.height);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win,
-		data->hud.img, (SCREENWIDTH - data->hud.width) / 4 * 3,
-		SCREENHEIGHT - data->hud.height + data->hud.anim + 15);
+		data->hud.img, (SCREENWIDTH - data->hud.width) / 4 * 3 + data->hud.x,
+		SCREENHEIGHT - data->hud.height + data->hud.y + 15);
 }
 
 //void	put_grid(t_data *data)

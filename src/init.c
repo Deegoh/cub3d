@@ -67,10 +67,12 @@ t_data	*init_data(char **av)
 		err_msg(ERR_MALLOC);
 	data->is_minimap = 1;
 	data->is_mouse = 1;
+	data->hud.x = 0;
+	data->hud.y = 0;
 	data->hud.is_hud = 0;
+	data->hud.is_animated = 0;
 	data->hud.sign = 0;
 	data->nbr_t = 6;
-	data->hud.anim = 0;
 	malloc_data(data);
 	data->mlx->mlx = mlx_init();
 	data->mlx->img = mlx_new_image(data->mlx->mlx, SCREENWIDTH, SCREENHEIGHT);
