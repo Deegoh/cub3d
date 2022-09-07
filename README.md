@@ -9,22 +9,22 @@ est de faire une vue dynamique au sein d’un labyrinthe, dans lequel vous devre
 votre chemin.
 
 ## Objectifs
-- [ ] Utiliser la mlx
-- [ ] Gestion de la fenêtre (minimalisation, passage d'une autre fenêtre, ...)
-- [ ] Afficher des textures selon la cardinalité
-- [ ] Le sol et le plafond doivent être des couleurs différentes (texture ?)
-- [ ] Le programme doit afficher une page d'accueil avec les règles du jeu
-- [ ] <- et -> du clavier permettent de modifier la angle de la caméra
-- [ ] W A S D permettent de déplacer le joueur
-- [ ] ESC quitte le programme proprement
-- [ ] La croix rouge aussi
+- [x] Utiliser la mlx
+- [x] Gestion de la fenêtre (minimalisation, passage d'une autre fenêtre, ...)
+- [x] Afficher des textures selon la cardinalité
+- [x] Le sol et le plafond doivent être des couleurs différentes (texture ?)
+- [x] Le programme doit afficher une page d'accueil avec les règles du jeu
+- [x] <- et -> du clavier permettent de modifier la angle de la caméra
+- [x] W A S D permettent de déplacer le joueur
+- [x] ESC quitte le programme proprement
+- [x] La croix rouge aussi
 - [x] Le programme doit prendre en arg un ***.cub***
-- [ ] La map .cub est compose de 6 caractères:
+- [x] La map .cub est compose de 6 caractères:
     - 0 les espaces vides
     - 1 les murs
     - N, S, W, E position de départ selon le sens du joueur
-- [ ] la map doit être entourée de murs et fermée
-- [ ] En cas de problème, le msg d'erreur **Error\n** suivi d'une explication de notre choix doit être afficher
+- [x] la map doit être entourée de murs et fermée
+- [x] En cas de problème, le msg d'erreur **Error\n** suivi d'une explication de notre choix doit être afficher
 
 ## Map
     NO ./path_to_the_north_texture
@@ -51,9 +51,9 @@ votre chemin.
     11111111 1111111 111111111111
 
 ## Bonus
-- [ ] Gérer les collision contre les murs
-- [ ] Système de minicarte
-- [ ] Porte qui s'ouvre/ferme
-- [ ] Animation
-- [ ] faire pivoter le pov selon la souris et <- et ->
-- [ ] Le format de la map peut être modifier selon les besoin
+- [x] Gérer les collision contre les murs
+- [x] Système de minicarte
+- [x] Porte qui s'ouvre/ferme
+- [x] Animation
+- [x] faire pivoter le pov selon la souris et <- et ->
+- [x] Le format de la map peut être modifier selon les besoin
