@@ -56,6 +56,7 @@
 # define IMG_KNIFE "./map/texture/knifeX4.xpm"
 
 # define ERR_USAGE "Error\nUsage: ./cub3D map.cub\n"
+# define ERR_SCREEN "Error\nInvalid size screen\n"
 # define ERR_FILE "Error\nWrong file\n"
 # define ERR_FD "Error\nFile not found\n"
 # define ERR_COLOR "Error\nWrong color\n"
