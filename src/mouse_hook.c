@@ -12,11 +12,11 @@
 
 #include "cub3d.h"
 
-void	decrease_or_increase_angle(t_data *data, int increase, int x)
+void	decrease_or_increase_angle(t_data *data, int increase, int x, int diff)
 {
 	if (increase)
 	{
-		data->p->angle += 0.03;
+		data->p->angle += (0.03 * ft_abs(diff) / 10);
 		if (data->p->angle == degree_to_rad(360))
 			data->p->angle = 0.;
 		if (data->p->angle > degree_to_rad(360))
@@ -25,7 +25,7 @@ void	decrease_or_increase_angle(t_data *data, int increase, int x)
 	}
 	else
 	{
-		data->p->angle -= 0.03;
+		data->p->angle -= (0.03 * ft_abs(diff) / 10);
 		if (data->p->angle == 0.)
 			data->p->angle = degree_to_rad(360);
 		if (data->p->angle < 0.)
@@ -62,9 +62,9 @@ int	mouse_hook(int x, int y, t_data *data)
 		if (x > 0 && x < SCREENWIDTH && y < SCREENHEIGHT && y > 0)
 		{
 			if (x < data->prev_x && abs(data->prev_x - x) >= 1)
-				decrease_or_increase_angle(data, 1, x);
+				decrease_or_increase_angle(data, 1, x, abs(data->prev_x - x));
 			else if (abs(data->prev_x - x) >= 1)
-				decrease_or_increase_angle(data, 0, x);
+				decrease_or_increase_angle(data, 0, x, abs(data->prev_x - x));
 		}
 	}
 	return (0);

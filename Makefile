@@ -46,6 +46,10 @@ else
 	INC_MLX= -I $(MLX_INC) -L $(MLX_LIB) -lmlx -lm -framework OpenGL -framework AppKit
 endif
 
+INC_SRC = cub3d.h
+INC_DIR = inc/
+INC = $(addprefix $(INC_DIR), $(INC_SRC))
+
 OBJ_DIR = obj/
 _OBJ = $(SRC:.c=.o)
 OBJ = $(addprefix $(OBJ_DIR), $(_OBJ))
@@ -61,10 +65,10 @@ CFLAGS += -g3 #-fsanitize=address
 
 all: $(NAME)
 
-$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ): $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC)
 	@mkdir -p $(OBJ_DIR)
 	@printf "$(GREEN)🏗️ Generate cube3D objects %-33.33s\r" $@
-	@$(CC) $(CFLAGS) -c $< -o $@ -I inc/ -I $(LIBFT) -I $(MLX) -O3
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) -I $(LIBFT) -I $(MLX) -O3
 	@printf "$(RESET)"
 
 $(NAME): $(OBJ)
@@ -74,10 +78,10 @@ $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(INC_LIBFT) $(INC_MLX)
 	@printf "$(GREEN)🏗️ Generate $(NAME)$(RESET)\n"
 
-$(OBJ_BONUS): $(OBJ_DIR_BONUS)%.o: $(SRC_DIR)%.c
+$(OBJ_BONUS): $(OBJ_DIR_BONUS)%.o: $(SRC_DIR)%.c $(INC)
 	@mkdir -p $(OBJ_DIR_BONUS)
 	@printf "$(GREEN)🏗️ Generate cube3D objects_bonus %-33.33s\r" $@
-	@$(CC) $(CFLAGS) -D IS_MAP=\"01NSWEOD\" -c $< -o $@ -I inc/ -I $(LIBFT) -I $(MLX) -O3
+	@$(CC) $(CFLAGS) -D IS_MAP=\"01NSWEOD\" -c $< -o $@ -I $(INC_DIR) -I $(LIBFT) -I $(MLX) -O3
 	@printf "$(RESET)"
 
 bonus: $(OBJ_BONUS)

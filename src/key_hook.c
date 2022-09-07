@@ -77,7 +77,7 @@ int	key_hook(int key, t_data *data)
 		data->is_minimap = ft_bool(data->is_minimap);
 	else if (key == KEY_N)
 		data->is_mouse = ft_bool(data->is_mouse);
-	else if (key == KEY_O)
+	else if (key == KEY_E)
 		open_door(data);
 	else if (key == KEY_H)
 		data->hud.is_hud = ft_bool(data->hud.is_hud);

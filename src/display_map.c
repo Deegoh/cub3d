@@ -17,7 +17,7 @@ int	ft_loop_hook(t_data	*data)
 	mlx_clear_window(data->mlx->mlx, data->mlx->mlx_win);
 	update_image(data);
 	data->frame = (data->frame + 1) % 1000000000;
-	if (data->hud.is_animated && ft_abs(data->last_frame + data->frame) >= 200)
+	if (data->hud.is_animated && ft_abs(data->last_frame - data->frame) >= 5)
 	{
 		data->hud.y += 100;
 		data->hud.x += 100;
@@ -34,34 +34,6 @@ void	put_hud(t_data *data)
 		data->hud.img, (SCREENWIDTH - data->hud.width) / 4 * 3 + data->hud.x,
 		SCREENHEIGHT - data->hud.height + data->hud.y + 15);
 }
-
-//void	put_grid(t_data *data)
-//{
-//	int	i;
-//	int	j;
-//	int	size;
-//
-//	i = 0;
-//	size = data->map->tile_draw_size;
-//	while (i < data->map->nbr_line)
-//	{
-//		j = 0;
-//		while (j < data->map->len_line)
-//		{
-//			if (data->map->map2d[i][j] == '1')
-//				put_rectangle(j * size, i * size, data, 6316128);
-//			else if (data->map->map2d[i][j] == '0'
-//					|| is_player(data->map->map2d[i][j]))
-//				put_rectangle(j * size, i * size, data, 26316);
-//			else if (data->map->map2d[i][j] == '.')
-//				put_rectangle(j * size, i * size, data, 10526880);
-//			else if (data->map->map2d[i][j] == 'D')
-//				put_rectangle(j * size, i * size, data, 39244);
-//			j++;
-//		}
-//		i++;
-//	}
-//}
 
 void	update_image(t_data *data)
 {
