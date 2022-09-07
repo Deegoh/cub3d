@@ -38,20 +38,20 @@ void	mouse_checker(t_data *data, int x, int y)
 {
 	if (y < SCREENHEIGHT && y > 0)
 		data->pov_y = y - SCREENHEIGHT / 2;
-	if (x < 0)
+	if (x <= 0)
 	{
 		data->prev_x = SCREENWIDTH + 1;
 		mlx_mouse_move(data->mlx->mlx_win, SCREENWIDTH, y);
 	}
-	if (x > SCREENWIDTH)
+	if (x >= SCREENWIDTH)
 	{
 		data->prev_x = -1;
 		mlx_mouse_move(data->mlx->mlx_win, 0, y);
 	}
-	if (y < -30)
-		mlx_mouse_move(data->mlx->mlx_win, x, -30);
-	if (y > SCREENHEIGHT)
-		mlx_mouse_move(data->mlx->mlx_win, x, SCREENHEIGHT);
+	if (y <= -20)
+		mlx_mouse_move(data->mlx->mlx_win, x, -20);
+	if (y >= SCREENHEIGHT - 20)
+		mlx_mouse_move(data->mlx->mlx_win, x, SCREENHEIGHT - 20);
 }
 
 int	mouse_hook(int x, int y, t_data *data)
