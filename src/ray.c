@@ -67,12 +67,15 @@ t_ray	*select_ray(t_data *data, float angle, t_ray *ray)
 	get_vertical_ray(data, ray, angle);
 	d_ver = ray->delta;
 	if (d_hor < d_ver)
-	{
 		dup_ray(&dup, ray);
-	}
-	if (ft_abs(d_ver - d_hor) <= 4)
+	if (ft_abs(d_ver - d_hor) <= 0)
 	{
-		ray->side = -1;
+		if (reach_wall(last_ray.x, last_ray.y + 1, data, &last_ray)
+			&& reach_wall(last_ray.x, last_ray.y - 1, data, &last_ray))
+			dup_ray(&dup, ray);
+		else if (reach_wall(last_ray.x + 1, last_ray.y, data, ray)
+			&& reach_wall(last_ray.x - 1, last_ray.y, data, ray))
+			get_vertical_ray(data, &last_ray, angle);
 	}
 	return (ray);
 }
@@ -84,7 +87,7 @@ void	get_vertical_ray(t_data *data, t_ray *ray, float angle)
 	direction = 1;
 	if (angle > 0 && angle < degree_to_rad(180))
 		ray->y = floor(data->p->y / data->map->tile_size)
-			* data->map->tile_size - 1;
+			* data->map->tile_size - 0.001;
 	else
 	{
 		ray->y = floor(data->p->y / data->map->tile_size)
@@ -117,10 +120,10 @@ void	get_horizontal_ray(t_data *data, t_ray *ray, float angle)
 	else
 	{
 		ray->x = floor(data->p->x / data->map->tile_size)
-			* data->map->tile_size - 1;
+			* data->map->tile_size - 0.001;
 		direction = -1;
 	}
-	ray->y = floor(data->p->y + (data->p->x - ray->x) * tan(angle));
+	ray->y = data->p->y + (data->p->x - ray->x) * tan(angle);
 	while (!reach_wall(ray->x, ray->y, data, ray))
 	{
 		ray->x += data->map->tile_size * direction;

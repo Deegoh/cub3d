@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 	data->mlx->mlx_win = mlx_new_window(data->mlx->mlx,
 			SCREENWIDTH, SCREENHEIGHT, "Hello cub3D");
 	mlx_mouse_hide();
+	mlx_mouse_move(data->mlx->mlx_win, SCREENWIDTH / 2, SCREENHEIGHT / 2);
 	mlx_loop_hook(data->mlx->mlx, ft_loop_hook, data);
 	if (data->is_mouse)
 		mlx_hook(data->mlx->mlx_win, 6, 1, mouse_hook, data);
