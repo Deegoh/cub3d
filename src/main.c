@@ -33,6 +33,5 @@ int	main(int ac, char **av)
 	mlx_hook(data->mlx->mlx_win, 17, 0, exit_cub, data);
 	mlx_loop(data->mlx->mlx);
 	free_all(data);
-	free(data);
 	return (EXIT_SUCCESS);
 }

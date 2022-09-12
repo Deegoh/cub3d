@@ -21,6 +21,5 @@ void	err_msg(char *str)
 int	exit_cub(t_data *data)
 {
 	free_all(data);
-	free(data);
 	exit(EXIT_SUCCESS);
 }

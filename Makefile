@@ -59,7 +59,7 @@ _OBJ_BONUS = $(SRC:.c=.o)
 OBJ_BONUS = $(addprefix $(OBJ_DIR_BONUS), $(_OBJ_BONUS))
 
 CFLAGS = -Werror -Wall -Wextra
-CFLAGS += -g3 #-fsanitize=address
+CFLAGS += -g3 -fsanitize=address
 
 .PHONY: all clean fclean re leak norm run valgrind bonus
 
@@ -110,6 +110,6 @@ norm:
 	norminette $(addprefix $(SRC_DIR), $(SRC)) $(LIBFT) inc/
 
 run:
-	./$(NAME) map/hole.cub
+	./$(NAME) map/map.cub
 
 re: fclean all

@@ -50,5 +50,8 @@ void	free_all(t_data *data)
 		i++;
 	}
 	free(data->t);
+	mlx_destroy_image(data->mlx->mlx, data->mlx->img);
+	mlx_destroy_window(data->mlx->mlx, data->mlx->mlx_win);
 	free(data->mlx);
+	free(data);
 }
