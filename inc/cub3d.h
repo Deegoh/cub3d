@@ -52,8 +52,8 @@
 # ifndef IS_MAP
 #  define IS_MAP "01NSWE"
 # endif
-# define IMG_DOOR "./map/texture/Plank3_Light.xpm"
-# define IMG_KNIFE "./map/texture/knifeX4.xpm"
+# define IMG_DOOR "./texture/Plank3_Light.xpm"
+# define IMG_KNIFE "./texture/knifeX4.xpm"
 
 # define ERR_USAGE "Error\nUsage: ./cub3D map.cub\n"
 # define ERR_SCREEN "Error\nInvalid size screen\n"

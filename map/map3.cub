@@ -1,11 +1,11 @@
 
-NO ./map/texture/Leaves_Light.xpm
+NO ./texture/Leaves_Light.xpm
 
 
-SO ./map/texture/Leaves_Medium.xpm
-WE ./map/texture/Bricks5_Light.xpm
+SO ./texture/Leaves_Medium.xpm
+WE ./texture/Bricks5_Light.xpm
 
-EA ./map/texture/Plank2_Dark.xpm
+EA ./texture/Plank2_Dark.xpm
 
 F 160,160,160
 
