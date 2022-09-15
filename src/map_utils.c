@@ -64,6 +64,8 @@ int	get_elems(t_map *map)
 
 	i = -1;
 	count_nl = 0;
+	if (!map->map)
+		err_msg(ERR_MAP_INFO);
 	while (map->map[++i] && count_nl <= 6)
 	{
 		if (map->map[i] == '\n')
