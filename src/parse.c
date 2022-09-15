@@ -123,6 +123,8 @@ void	parse_map(t_map *map, char **av)
 	map->nbr_line = 0;
 	map->len_line = 0;
 	get_map(map, fd);
+	if (!map->map)
+		err_msg(ERR_MAP_INFO);
 	map->nbr_line -= 6;
 	map->len_line -= 1;
 	map->tile_size = 512;
